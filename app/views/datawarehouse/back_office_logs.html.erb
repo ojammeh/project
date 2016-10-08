@@ -1,0 +1,54 @@
+<%if session[:userrole] == "admin"%>
+<div class="container">
+<section>				
+    <div id="container_demo" >
+
+        <div id="wrapper">
+            <div id="login" class="animate form">
+              <center>
+                <form  action="/datawarehouse/office_logs" method="get" > 
+                    <h1>Back Office Logs</h1> 
+                     
+                        <label for="user"> User </label>
+                        <select name ="user" required="required">
+                            <option value="" disabled selected>Name / Username / Department / UserRole</option>
+                        <% @users.each do |user| %>
+                            <option value="<%=user.full_name%>"><%=user.full_name%> / <%=user.name%> /<%=user.department%> /<%=user.role%></option> 
+                            <%end%>
+                        </select> 
+
+              </center>
+                    <p class="login button"> 
+                        <input type="submit" value="Generate"/> 
+    				                </p>
+
+                    <p></p>
+                </form>
+                    <p class="change_link">
+    					<font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+    				</p>
+            </div>
+        </div>
+    </div>  
+</section>
+ </div>
+
+ <%else%>
+<div class="container">
+  <section>       
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+            <h1><font color="red"> You Do Not have Permission to Access This Page !</font></h1> 
+              <p></p>                      
+              <p class="change_link">
+                <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+            </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>
+ <%end%>

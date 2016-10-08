@@ -1,0 +1,50 @@
+<div class="container">
+  <section>				
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+          <%if session[:userrole] == "admin" or session[:userrole] =="outlet" %>
+          <%= link_to 'New Receipt', cashier_receipt_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+          <%end%>
+          <form  action="/cashier/new_other_receipt" > 
+            <h1>Other Receipts</h1> 
+
+            <center>        
+            
+              <label for="name">Received From:</label>
+              <input id="name" size="30" name="name" required="required" type="text" placeholder="Name"/>&#8195;
+
+              <label for="amount">Amount:</label>
+              <input id="amount" size="12" name="amount" required="required" onkeypress="return isNumberKey(event)" type="text" placeholder="Amount Paid"/> &#8195;
+
+              <label for="cheque">Cheque Number:</label>
+              <input id="cheque" size="30" name="cheque" required="required" type="text" placeholder="Cheque Number"/>&#8195;<br/><br/>
+
+              <label for="type">Type:</label>
+              <select size="1" name="type" id="type">
+                <option value="Direct sales">Direct Sales</option>
+                <option value="Scratch Cards">Scratch Cards</option>
+                <option value="Sim Cards">Sim Cards</option>
+                <option value="Refund">Refund</option>
+                <option value="Credit Deal">Credit Deal</option>
+                <option value="Credit Deal">CUG</option>
+              </select>
+  
+            <label for="description">Description:</label>
+              <input id="description" size="30" name="description" required="required" type="text" placeholder="Description"/>&#8195;
+            </center><br/>
+
+            <p class="login button"> 
+              <input type="submit" value="Generate" name="other_receipt" /> 
+						</p>
+          </form>
+              <p></p>                      
+              <p class="change_link">
+			         <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+		        </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>

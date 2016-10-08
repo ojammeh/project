@@ -1,0 +1,55 @@
+<div class="container">
+  <section>				
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+            <h1>Sim Registration</h1> 
+          <%= paginate @subs%>
+            <table>
+              <tr>
+                <th>MSISDN</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Gender</th>
+                <th>Nationality</th>
+                <th>ID Type</th>
+                
+                <th>Date</th>
+                <th>Agent</th>
+                <th>Image</th>
+                <th>Validate</th>
+                <th>Invalidate</th>
+              </tr>
+              <%@subs.each do |sub|%>
+              <tr>
+                <td><%= sub.SIMNDC %><%= sub.SIMMSISDN %></td>
+                <td><%=sub.FirstName%></td>
+                <td><%=sub.lastName%></td>
+                <td><%=sub.Gender%></td>
+                <td><%=sub.Nationality%></td>
+                <td><%=sub.IdType%></td>
+                
+                <td><%=sub.CreateDate%></td>
+                <td><%=sub.CreateUser%></td>
+                <!-- <td><%= link_to 'Image', {:controller => 'sim_registration', :action => 'view_image', :id => sub.id}, :method => :get%></td> -->
+                <td><%= link_to 'Image', sim_registration_view_image_path(:id => sub.id),:onclick=>"window.open(this.href,'subscriber_details', 'height=650, width=800');return false;" %></td>
+                <td><%=link_to "Validate", sim_registration_validate_smart_path(:id => sub.id) %></td>
+                <td><%=link_to "Invalidate", sim_registration_invalidate_smart_path(:id => sub.id) %></td>
+                <!--  <tr><td><%= image_tag('admin.png', size: "300x300", alt: "Not Available") %></td><td>&#8195;<%= image_tag('admin.png', size: "300x300", alt: "Not Available") %>&#8195;<td><%= image_tag('admin.png', size: "300x300", alt: "Not Available") %>&#8195;</td></tr>  -->
+
+              </tr>
+              <%end%>
+        </table>
+
+          </center>
+        
+              <p></p>                      
+              <p class="change_link">
+			<font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+		        </p>
+          </div>
+        </div>
+      </div> 
+    </section>
+ </div>

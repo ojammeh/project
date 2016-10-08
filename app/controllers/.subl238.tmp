@@ -1,0 +1,579 @@
+class CustomercareController < ApplicationController
+	protect_from_forgery :except => [:vas_actions, :add_details]
+
+	def check_registration
+
+		session[:msisdn] = params[:msisdn].to_s
+
+		registration = SimRegistration.where(phone: params[:msisdn])
+		custcareregistration = CustcareRegistration.where(msisdn: params[:msisdn])
+		if(!registration.blank? or !custcareregistration.blank?)
+			redirect_to customercare_vas_path(:msisdn => session[:msisdn]) and return
+		end
+	end
+
+	def add_details
+		msisdn = session[:msisdn]
+		CustcareRegistration.new(:msisdn => session[:msisdn], :first_name => params[:f_name], :last_name => params[:l_name], :id_type => params[:id_type], :id_number => params[:id_number], :custcare_agent => session[:fullname]).save
+		redirect_to customercare_vas_path(:msisdn => msisdn) and return
+	end
+
+	def vas
+			
+			if params[:check_vas]
+				session[:consumption]=nil
+			end
+			
+			crbt = Crbt.where('msisdn =? and HaveRings =? and flagSubscription =?', "220"+session[:msisdn], 1, 0)	
+			if !crbt.blank?
+				@crbt_status = "Active"
+				crbt.each do |date|
+					@sub_date = date.Subscription_Date
+				end
+			else
+				@crbt_status = "Inactive"
+				crbt.each do |date|
+					@sub_date = date.Subscription_Date
+				end
+			end
+
+			jazeera = Jazeera.where(msisdn: session[:msisdn])
+			if !jazeera.blank?
+				@jazeera_status = "Active"
+				jazeera.each do |date|
+					@jazeera_date = date.reg_date
+				end
+			else
+				@jazeera_status = "Inactive"	
+			end
+
+			smsclass = Smsclass.where(msisdn: session[:msisdn])
+			if !smsclass.blank?
+				@smsclass_status = "Active"
+				smsclass.each do |date|
+					@smsclass_date = date.start_date
+				end
+			else
+				@smsclass_status = "Inactive"	
+			end
+
+			sport = Sport.where(msisdn: session[:msisdn])
+			if !sport.blank?
+				@sport_status = "Active"
+				sport.each do |date|
+					@sport_date = date.reg_date
+				end
+			else
+				@sport_status = "Inactive"
+			end
+
+			prayertime = Prayer.where(msisdn: session[:msisdn])
+			if !prayertime.blank?
+				@prayertime_status = "Active"
+				prayertime.each do |date|
+					@prayertime_date = date.reg_date
+				end
+			else
+				@prayertime_status = "Inactive"
+			end
+
+			boy = Boy.where(msisdn: session[:msisdn])
+			if !boy.blank?
+				@boy_status = "Active"
+				boy.each do |date|
+					@boy_date = date.reg_date
+				end
+			else
+				@boy_status = "Inactive"
+			end
+
+			girl = Girl.where(msisdn: session[:msisdn])
+			if !girl.blank?
+				@girl_status = "Active"
+				girl.each do |date|
+					@girl_date = date.reg_date
+				end
+			else
+				@girl_status = "Inactive"
+			end
+
+			#query = "select * from openquery(KHAVAS_CONTROL,'select * from vas.dbo.horoscope_sub where msisdn = ''#{session[:msisdn]}''')"
+			horoscope = Linkedserver.find_by_sql("select * from openquery(KHAVAS_CONTROL,'select * from VAS.dbo.horoscope_sub where msisdn = ''#{session[:msisdn]}''')")
+			if !horoscope.blank?
+				@horoscope_status = "Active"
+				horoscope.each do |date|
+					@horoscope_date = date.reg_date
+				end
+			else
+				@horoscope_status = "Inactive"
+			end
+
+			tok = Tok.where(msisdn: session[:msisdn])
+			if !tok.blank?
+				@active_faf = "true"
+				tok.each do |date|
+					@tok_start_date = date.reg_date
+					@tok_end_date = date.end_date
+				end
+			end
+			@active_tok = Tok.find_by_sql("select * from openquery(CDN,'SELECT ff_phone_number FROM dbo.db_sub_friends_family_tbl WHERE subscriber_id = ''#{session[:msisdn]}''')")
+				if !@active_tok.blank?
+					@tok_status = "Active"
+					@active_tok.each do |toknum|
+						@tok_number = toknum.ff_phone_number
+						@alreadyactive = "true"
+						@talktime = Tok.find_by_sql("EXEC fandFproc '#{session[:msisdn]}','#{@tok_number}'")
+						#@talktime = Tok.fetch_val_from_sp("EXEC fandFproc '#{session[:msisdn]}','#{@tok_number}'")
+						@talktime.each do |duration|
+							@call_duration = duration.CALL_DUR
+						end
+					end
+				else
+					@tok_status = "Inactive"
+				end
+
+
+
+			kolareh = Linkedserver.find_by_sql(["EXEC CDN...GetAccount_loyalty '#{session[:msisdn]}'"])
+				kolareh.each do |kol|
+					@kolstatus = kol.Loyalty_status
+				end
+				if(@kolstatus == "Y")
+					@kolareh_status = "Active"
+				else
+					@kolareh_status = "Inactive"
+				end
+
+			@tokens = Token.where(msisdn: "220"+session[:msisdn])
+			#@purchased = Token.find_by_sql("SELECT max(purchase_date) from vas1.vas.dbo.subqueue_3gbkp WHERE msisdn = '#{session[:msisdn]}' ORDER BY purchase_date DESC")
+
+			ifpostpaid = Postpaid.where(msisdn: "220"+session[:msisdn])
+			if ifpostpaid.blank?
+				postpaid = "Prepaid"
+			else
+				postpaid = "Postpaid"
+			end
+
+			if(postpaid == "Prepaid")
+
+				balance = Linkedserver.find_by_sql(["EXEC customerInfo '#{session[:msisdn]}'"])
+					balance.each do |bal|
+						@credit = (bal.balance).to_i
+					end
+					if(@credit >= 5)
+						@credit_balance = "Credit Balance: Above 5 Dalasis" 
+					elsif(@credit > 0 and @credit < 5)
+						@credit_balance = "Credit Balance: Between 0 and 5 Dalasis"
+					elsif(@credit == 0)
+						@credit_balance = "Credit Balance: 0 Dalasis"
+					elsif(@credit < 0 )
+						@credit_balance = "Credit Balance: Negative Balance"
+					end	
+			end				
+
+	end
+
+	def vas_actions
+
+			@tones = Tone.all.order('Ring_Name')
+			msisdn = session[:msisdn]
+		
+		if params[:activate_crbt]
+				
+			Subqueue.new(:MSISDN => "220" + msisdn, :Tone_ID => params[:toneid], :Status => 0, :TimeStamp => Time.now).save
+			sleep 25
+			Custcarelog.new(:msisdn	=> msisdn, :username => session[:username], :full_name => session[:fullname], :department => session[:department], :role => session[:userrole], :transaction_type => "CRBT", :action_performed => "Activate", :description =>"Activate CRBT").save
+			UserLog.new(:user => session[:fullname], :transaction_type => "CRBT", :description => "Activate CRBT", :msisdn => msisdn, :ip_address =>request.remote_ip, :username => session[:username], :created_at => Time.now).save
+			redirect_to customercare_vas_path(:msisdn => msisdn) and return
+
+		elsif params[:deactivate_crbt]
+
+			Unsubqueue.new(:msisdn => "220"+ msisdn, :Status => 0, :user_flag => 2, :TimeStamp => Time.now).save
+			sleep 10
+			Custcarelog.new(:msisdn	=> msisdn, :username => session[:username], :full_name => session[:fullname], :department => session[:department], :role => session[:userrole], :transaction_type => "CRBT", :action_performed => "Deactivate", :description =>"Deactivate CRBT").save
+			redirect_to customercare_vas_path(:msisdn => msisdn) and return
+			
+
+		elsif params[:activate_jazeera]
+
+			ifpostpaid = Postpaid.where(msisdn: "220"+msisdn)
+			if ifpostpaid.blank?
+				postpaid = "Prepaid"
+			else
+				postpaid = "Postpaid"
+			end
+			Jazeera.new(:msisdn => session[:msisdn], :reg_date => Time.now, :end_date => 31.days.from_now, :num_type => postpaid).save
+			Custcarelog.new(:msisdn	=> msisdn, :username => session[:username], :full_name => session[:fullname], :department => session[:department], :role => session[:userrole], :transaction_type => "Jazeera", :action_performed => "Activate", :description =>"Activate Jazeera").save
+			redirect_to customercare_vas_path(:msisdn => msisdn) and return
+
+		elsif params[:deactivate_jazeera]
+
+			Jazeera.delete_all(:msisdn => msisdn)
+			Custcarelog.new(:msisdn	=> msisdn, :username => session[:username], :full_name => session[:fullname], :department => session[:department], :role => session[:userrole], :transaction_type => "Jazeera", :action_performed => "Deactivate", :description =>"Deactivate Jazeera").save
+			redirect_to customercare_vas_path(:msisdn => msisdn) and return
+
+		elsif params[:activate_sport]
+
+			ifpostpaid = Postpaid.where(msisdn: "220"+msisdn)
+			if ifpostpaid.blank?
+				postpaid = "Prepaid"
+			else
+				postpaid = "Postpaid"
+			end
+			Sport.new(:msisdn => session[:msisdn], :reg_date => Time.now, :end_date => 31.days.from_now, :num_type => postpaid).save
+			Custcarelog.new(:msisdn	=> msisdn, :username => session[:username], :full_name => session[:fullname], :department => session[:department], :role => session[:userrole], :transaction_type => "Sport Service", :action_performed => "Activate", :description =>"Activate Sport Service").save
+			redirect_to customercare_vas_path(:msisdn => msisdn) and return
+
+		elsif params[:deactivate_sport]
+
+			Sport.delete_all(:msisdn => msisdn)
+			Custcarelog.new(:msisdn	=> msisdn, :username => session[:username], :full_name => session[:fullname], :department => session[:department], :role => session[:userrole], :transaction_type => "Sport Service", :action_performed => "Deactivate", :description =>"Deactivate Sport Service").save
+			redirect_to customercare_vas_path(:msisdn => msisdn) and return
+
+		elsif params[:activate_prayertime]
+
+			ifpostpaid = Postpaid.where(msisdn: "220"+msisdn)
+			if ifpostpaid.blank?
+				postpaid = "Prepaid"
+			else
+				postpaid = "Postpaid"
+			end
+			Prayer.new(:msisdn => session[:msisdn], :reg_date => Time.now, :end_date => 31.days.from_now, :num_type => postpaid).save
+			Custcarelog.new(:msisdn	=> msisdn, :username => session[:username], :full_name => session[:fullname], :department => session[:department], :role => session[:userrole], :transaction_type => "Prayer Time", :action_performed => "Activate", :description =>"Activate Prayer Time").save
+			redirect_to customercare_vas_path(:msisdn => msisdn) and return
+
+		elsif params[:deactivate_prayertime]
+
+			Prayer.delete_all(:msisdn => msisdn)
+			Custcarelog.new(:msisdn	=> msisdn, :username => session[:username], :full_name => session[:fullname], :department => session[:department], :role => session[:userrole], :transaction_type => "Prayer Time", :action_performed => "Deactivate", :description =>"Deactivate Prayer Time").save
+			redirect_to customercare_vas_path(:msisdn => msisdn) and return
+
+		elsif params[:activate_boy]
+
+			ifpostpaid = Postpaid.where(msisdn: "220"+msisdn)
+			if ifpostpaid.blank?
+				postpaid = "Prepaid"
+			else
+				postpaid = "Postpaid"
+			end
+			Boy.new(:msisdn => session[:msisdn], :reg_date => Time.now, :end_date => 31.days.from_now, :num_type => postpaid).save
+			Custcarelog.new(:msisdn	=> msisdn, :username => session[:username], :full_name => session[:fullname], :department => session[:department], :role => session[:userrole], :transaction_type => "Boy Service", :action_performed => "Activate", :description =>"Activate Boy Service").save
+			redirect_to customercare_vas_path(:msisdn => msisdn) and return
+
+		elsif params[:deactivate_boy]
+
+			Boy.delete_all(:msisdn => msisdn)
+			Custcarelog.new(:msisdn	=> msisdn, :username => session[:username], :full_name => session[:fullname], :department => session[:department], :role => session[:userrole], :transaction_type => "Boy Service", :action_performed => "Deactivate", :description =>"Deactivate Boy Service").save
+			redirect_to customercare_vas_path(:msisdn => msisdn) and return
+
+		elsif params[:activate_girl]
+
+			ifpostpaid = Postpaid.where(msisdn: "220"+msisdn)
+			if ifpostpaid.blank?
+				postpaid = "Prepaid"
+			else
+				postpaid = "Postpaid"
+			end
+			Girl.new(:msisdn => session[:msisdn], :reg_date => Time.now, :end_date => 31.days.from_now, :num_type => postpaid).save
+			Custcarelog.new(:msisdn	=> msisdn, :username => session[:username], :full_name => session[:fullname], :department => session[:department], :role => session[:userrole], :transaction_type => "Girl Service", :action_performed => "Activate", :description =>"Activate Girl Service").save
+			redirect_to customercare_vas_path(:msisdn => msisdn) and return
+
+		elsif params[:deactivate_girl]
+
+			Girl.delete_all(:msisdn => msisdn)
+			Custcarelog.new(:msisdn	=> msisdn, :username => session[:username], :full_name => session[:fullname], :department => session[:department], :role => session[:userrole], :transaction_type => "Girl Service", :action_performed => "Deactivate", :description =>"Deactivate Girl Service").save
+			redirect_to customercare_vas_path(:msisdn => msisdn) and return
+
+
+		elsif params[:activate_horoscope]
+
+			ifpostpaid = Postpaid.where(msisdn: "220"+msisdn)
+			if ifpostpaid.blank?
+				postpaid = "Prepaid"
+			else
+				postpaid = "Postpaid"
+			end
+			enddate = 31.days.from_now.to_date
+			Horoscope.new(:msisdn => msisdn, :reg_date => Date.today, :end_date => enddate, :num_type => postpaid, :horo_type => params[:horotype]).save
+			#Linkedserver.find_by_sql("INSERT OPENQUERY(KHAVAS_CONTROL,'select msisdn,reg_date,end_date,num_type,horo_type from VAS.dbo.horoscope_sub')SELECT '#{msisdn}','#{Date.today}','#{enddate}','#{postpaid}','#{params[:horotype]}'")
+			Custcarelog.new(:msisdn	=> msisdn, :username => session[:username], :full_name => session[:fullname], :department => session[:department], :role => session[:userrole], :transaction_type => "Horoscope", :action_performed => "Activate", :description =>"Activate Horoscope").save
+			redirect_to customercare_vas_path(:msisdn => msisdn) and return
+
+		elsif params[:deactivate_horoscope]
+
+			Horoscope.delete_all(:msisdn => msisdn)
+			Custcarelog.new(:msisdn	=> msisdn, :username => session[:username], :full_name => session[:fullname], :department => session[:department], :role => session[:userrole], :transaction_type => "Horoscope", :action_performed => "Deactivate", :description =>"Deactivate Horoscope").save
+			redirect_to customercare_vas_path(:msisdn => msisdn) and return
+
+		elsif params[:activate_kolareh]
+
+			Linkedserver.find_by_sql(["EXEC CDN...sp_esme_loyalty_optin '#{msisdn}'"])
+			Custcarelog.new(:msisdn	=> msisdn, :username => session[:username], :full_name => session[:fullname], :department => session[:department], :role => session[:userrole], :transaction_type => "Kolareh", :action_performed => "Activate", :description =>"Activate Kolareh").save
+			redirect_to customercare_vas_path(:msisdn => msisdn) and return
+
+		elsif params[:deactivate_kolareh]
+
+			Linkedserver.find_by_sql(["EXEC CDN...sp_esme_loyalty_optout '#{msisdn}'"])
+			Custcarelog.new(:msisdn	=> msisdn, :username => session[:username], :full_name => session[:fullname], :department => session[:department], :role => session[:userrole], :transaction_type => "Kolareh", :action_performed => "Deactivate", :description =>"Deactivate Kolareh").save
+			redirect_to customercare_vas_path(:msisdn => msisdn) and return
+
+		elsif params[:fix3g]
+
+			Token.connection.execute("EXEC fix_3G_service_web '#{msisdn}','web app'")
+			Custcarelog.new(:msisdn	=> msisdn, :username => session[:username], :full_name => session[:fullname], :department => session[:department], :role => session[:userrole], :transaction_type => "3G", :action_performed => "Activate", :description =>"Fix 3G").save
+			redirect_to customercare_vas_path(:msisdn => msisdn) and return
+
+		elsif params[:consumption]
+
+			date1 = params[:y1]+params[:m1]+params[:d1]
+			date2 = params[:y2]+params[:m2]+params[:d2]
+
+			consumed = Gprsfix.connection.select_all("EXEC Data_Volume_Consumed '#{msisdn}','#{date1}','#{date2}'")
+			consumed.each do |cons|
+				session[:consumption] = cons
+			end
+			Custcarelog.new(:msisdn	=> msisdn, :username => session[:username], :full_name => session[:fullname], :department => session[:department], :role => session[:userrole], :transaction_type => "3G", :action_performed => "Comsumption", :description =>"Check 3G Consumption").save
+			redirect_to customercare_vas_path(:msisdn => msisdn) and return	
+
+		elsif params[:activate_tok]
+
+		  	if msisdn != params[:toknumber]
+				getcos = Tok.find_by_sql("select * from openquery(CDN,'SELECT cos_num FROM dbo.db_subscriber_tbl WHERE subscriber_id = ''#{msisdn}''')")
+				getcos.each do |cosnum|
+					@cosnumber = cosnum.cos_num
+				end
+				activate_tok = Tok.connection.execute("EXEC AddTOKNumber '#{msisdn}','#{params[:toknumber]}'")
+				change_cos =  TokCos.connection.execute("EXEC TOK_COS_UPD '#{msisdn}','#{@cosnumber}'")
+				Custcarelog.new(:msisdn	=> msisdn, :username => session[:username], :full_name => session[:fullname], :department => session[:department], :role => session[:userrole], :transaction_type => "TOK", :action_performed => "Activate", :description =>"Activate TOK").save
+				redirect_to customercare_vas_path(:msisdn => msisdn) and return
+			else 
+				flash[:tokerror] = 'Cannot Activate The Same Number'
+				redirect_to customercare_vas_path(:msisdn => msisdn) and return
+			end
+		end
+
+			respond_to do | format |  
+		    	format.html
+		        format.js #{render :layout => false}  
+		    end
+		
+	end
+
+	def horoscope
+		respond_to do | format |  
+	    	format.html
+	        format.js
+		end
+	end
+
+	def gprs
+		respond_to do | format |  
+	    	format.html
+	        format.js
+		end
+	end
+
+	def tok
+		respond_to do | format |  
+	    	format.html
+	        format.js
+		end
+	end
+
+	def over_scratched
+
+		@serialnumber = params[:serial]
+
+		session[:serial] = params[:serial]
+		session[:msisdn] = params[:msisdn]
+
+		@agent = UserLog.where('description =? and serial =?', "Invalid Scratch cards Recharge", session[:serial])
+
+		@results = Linkedserver.find_by_sql("select * from openquery(CDN,'select * from db_voucher_tbl where serial_num =''#{params[:serial]}''')")
+		Custcarelog.new(:msisdn	=> params[:msisdn], :username => session[:username], :full_name => session[:fullname], :department => session[:department], :role => session[:userrole], :transaction_type => "Over Scratched", :action_performed => "Serial Number Query "+ params[:serial], :description =>"Over Scratched Serial Number Queried").save
+		CustcareRegistration.new(:msisdn => params[:msisdn], :first_name => params[:f_name], :last_name => params[:l_name], :id_type => params[:id_type], :id_number => params[:id_number], :custcare_agent => session[:fullname]).save
+		#log = Logs.new(:user => @session['user'].name, :transaction_type => "Invalid Cards", :name =>session[:name], :description => "Serial Number Queried", :msisdn => session[:msisdn], :ip_address =>@client_ip, :created_at => Time.now, :username => @session['user'].login).save
+
+		session[:resul] = @results
+
+		if @results.blank?
+
+			@getmsisdn = Linkedserver.find_by_sql("select * from openquery(CDN,'select * from db_voucher_used_tbl where serial_num =''#{params[:serial]}''')")
+
+			if @getmsisdn.blank?
+
+				seriesnum1 = params[:serial].to_s[0..3]
+				serialnum1 = params[:serial].to_s[4..11]
+
+				seriesnum = seriesnum1.to_i
+				serialnum = serialnum1.to_i
+
+				@queryoracle = Linkedserver.find_by_sql("select * from openquery(VCHR,'select * from voucher where seriesno=''#{seriesnum}'' and serialno=''#{serialnum}''')")
+				
+					if @queryoracle.blank?
+
+						#log = Logs.new(:user => @session['user'].name, :transaction_type => "Invalid Cards", :name =>session[:name], :description => "Wrong serial Number Inserted", :msisdn => session[:msisdn], :ip_address =>@client_ip, :created_at => Time.now, :username => @session['user'].login).save
+
+						flash[:invalid] = 'WRONG SERIAL NUMBER'
+						redirect_to customercare_invalid_select_path # and return
+					end
+			end
+		else
+			redirect_to customercare_invalid_path #(:msisdn => msisdn) and return
+		end
+	end
+
+	def invalid
+
+		session[:resul].each do |result|
+
+			@hidden_number = result.voucher_num
+
+			hid0 = result.voucher_num.to_s[0..0]
+			hid1 = result.voucher_num.to_s[1..1]
+			hid2 = result.voucher_num.to_s[2..2]
+			hid3 = result.voucher_num.to_s[3..3]
+			hid4 = result.voucher_num.to_s[4..4]
+			hid5 = result.voucher_num.to_s[5..5]
+			hid6 = result.voucher_num.to_s[6..6]
+			hid7 = result.voucher_num.to_s[7..7]
+			hid8 = result.voucher_num.to_s[8..8]
+			hid9 = result.voucher_num.to_s[9..9]
+			hid10 = result.voucher_num.to_s[10..10]
+			hid11 = result.voucher_num.to_s[11..11]
+			hid12 = result.voucher_num.to_s[12..12]
+			hid13 = result.voucher_num.to_s[13..13]
+			hid14 = result.voucher_num.to_s[14..14]
+			hid15 = result.voucher_num.to_s[15..15]
+			
+
+		
+
+			if (hid0 == params[:box1])
+				@compare1 = 1
+			else
+				@compare1 = 0
+			end
+			if (hid1 == params[:box2])
+				@compare2 = 1
+			else
+				@compare2 = 0
+			end
+			if (hid2 == params[:box3])
+				@compare3 = 1
+			else
+				@compare3 = 0
+			end
+			if (hid3 == params[:box4])
+				@compare4 = 1
+			else
+				@compare4 = 0
+			end
+			if (hid4 == params[:box5])
+				@compare5 = 1
+			else
+				@compare5 = 0
+			end
+			if (hid5 == params[:box6])
+				@compare6 = 1
+			else
+				@compare6 = 0
+			end
+			if (hid6 == params[:box7])
+				@compare7 = 1
+			else
+				@compare7 = 0
+			end
+			if (hid7 == params[:box8])
+				@compare8 = 1
+			else
+				@compare8 = 0
+			end
+			if (hid8 == params[:box9])
+				@compare9 = 1
+			else
+				@compare9 = 0
+			end
+			if (hid9 == params[:box10])
+				@compare10 = 1
+			else
+				@compare10 = 0
+			end
+			if (hid10 == params[:box11])
+				@compare11 = 1
+			else
+				@compare11 = 0
+			end
+			if (hid11 == params[:box12])
+				@compare12 = 1
+			else
+				@compare12 = 0
+			end
+			if (hid12 == params[:box13])
+				@compare13 = 1
+			else
+				@compare13 = 0
+			end
+			if (hid13 == params[:box14])
+				@compare14 = 1
+			else
+				@compare14 = 0
+			end
+			if (hid14 == params[:box15])
+				@compare15 = 1
+			else
+				@compare15 = 0
+			end
+			if (hid15 == params[:box16])
+				@compare16 = 1
+			else
+				@compare16 = 0
+			end
+
+		end
+
+		total = @compare1.to_i + @compare2.to_i + @compare3.to_i + @compare4.to_i + @compare5.to_i + @compare6.to_i + @compare7.to_i + @compare8.to_i + @compare9.to_i + @compare10.to_i + @compare11.to_i + @compare12.to_i + @compare13.to_i + @compare14.to_i + @compare15.to_i + @compare16.to_i
+
+
+		
+		if params[:compare_button]
+
+			if (total >= 6)
+
+				Linkedserver.connection.execute("exec CDN...UseVoucher '#{session[:serial]}','#{session[:msisdn]}','invalid'")
+
+				#log = Logs.new(:user => @session['user'].name, :transaction_type => "Invalid Cards", :name =>session[:name], :description => "Invalid Scratch cards Recharge", :msisdn => session[:msisdn], :ip_address =>@client_ip, :created_at => Time.now, :username => @session['user'].login).save
+
+				flash[:done] = "RECHARGE SUCCESSFUL"
+				redirect_to customercare_invalid_select_path
+		
+			else
+			#log = Logs.new(:user => @session['user'].name, :transaction_type => "Invalid Cards", :name =>session[:name], :description => "Not enough correct digits", :msisdn => session[:msisdn], :ip_address =>@client_ip, :created_at => Time.now, :username => @session['user'].login).save
+
+			flash[:cannot] = "CANNOT RECHARGE! NOT ENOUGH CORRECT NUMBERS"
+			redirect_to customercare_invalid_path
+		
+			end
+		end
+	end
+
+	def new_sheet
+
+		customer_name =params[:name].to_s+" "+params[:l_name].to_s
+
+		Custcarelog.new(:msisdn	=> params[:msisdn], :username => session[:username], :customer_name => customer_name, :full_name => session[:fullname], :department => session[:department], :role => session[:userrole], :transaction_type => params[:transaction_type], :description =>params[:description]).save
+		if params[:newsheet]
+			CustcareRegistration.new(:msisdn => params[:msisdn], :first_name => params[:name], :last_name => params[:l_name], :id_type => params[:id_type], :id_number => params[:id_number], :custcare_agent => session[:fullname]).save	
+			redirect_to customercare_vas_path(:msisdn => params[:msisdn]) and return
+		elsif params[:new_sheet]
+			CustcareRegistration.new(:msisdn => params[:msisdn], :first_name => params[:name], :last_name => params[:l_name], :id_type => params[:id_type], :id_number => params[:id_number], :custcare_agent => session[:fullname]).save	
+			flash[:message] = "Work Sheet Saved"
+			redirect_to customercare_new_work_sheet_path and return
+		end
+
+		respond_to do | format |
+	    	format.html
+	        format.js
+		end
+	end
+end

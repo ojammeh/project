@@ -1,0 +1,39 @@
+<div class="container">
+<section>       
+    <div id="container_demo" >
+
+        <div id="wrapper">
+            <div id="login" class="animate form">
+             <center>
+             <font color="green"><%=flash[:success]%></font><font color="red"><%=flash[:danger]%></font><br>
+				<br/><br />
+
+				<table>
+					 <tr>
+					  <th>Bank Name</th>
+					  <th>Bank Address</th>
+					  <th>Account Type</th>
+					  <!-- <th>Delete</th>
+					  <th>Edit</th>
+					  <th>Delete Multiple</th> -->
+					 </tr>
+					  <% @banks.each do |bank| %>
+					<tr>
+					  <td><%= bank.bank_name %></td>
+					  <td><%= bank.bank_address %></td>
+					  <td><%=AccountType.find_by_africell_bank_id(bank.id).account_type %></td>
+					  
+					  <%end%>
+				</table>
+			</center>
+			<input type="submit" name="submit" value="Delete Selected" style="background-color: #337ab7; color: white; border-color: #2e6da4; -webkit-appearance: button; cursor: pointer; width: 15%; margin-left: 550px;"></input>
+			<br><br>
+			<p class="change_link">
+            <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+            </p>
+            </div>
+        </div>
+    </div>  
+</section>
+</div>

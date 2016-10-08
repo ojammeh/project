@@ -1,0 +1,67 @@
+<div class="container">
+  <section>				
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+          
+          <form  action="/customercare/over_scratched" > 
+            <h1>Over Scratched Cards</h1> 
+            <center> <font color="red"> <%= flash[:invalid] %> </font> <br/> </center>
+            <center>        
+              <label for="msisdn"> MSISDN </label>
+              <input id="msisdn" size="8" name="msisdn" required="required" onkeypress="return isNumberKey(event)" maxlength="7" type="text" placeholder="MSISDN"/>
+
+              <label for="name"> Name </label>
+              <input id="name" size="23" name="name" required="required" type="text" placeholder="Full Name"/>
+
+              <label for="serial"> Serial Number </label>
+              <input id="serial" size="20" name="serial" required="required" onkeypress="return isNumberKey(event)" maxlength="15" type="text" placeholder="Serial Number"/>            
+            </center>
+            <p class="login button"> 
+              <input type="submit" value="Submit" name="check_serial" /> 
+						</p>
+          </form>
+
+
+            
+  
+   <form action="/customercare/invalid" method="get">
+
+    
+    <center>
+      <b>
+        1.<input id="box1" name="box1" style="background-color:lightblue; color:black; font-weight:bold;" onkeypress="return isNumberKey(event)" size="1%" type="text" maxlength ="1"/>&#8195;
+        2.<input id="box2" name="box2" style="background-color:lightblue; color:black; font-weight:bold;" onkeypress="return isNumberKey(event)" size="1" type="text" maxlength ="1"/>&#8195;
+        3.<input id="box3" name="box3" onkeypress="return isNumberKey(event)" size="1" style="background-color:lightblue; color:black; font-weight:bold;" type="text" maxlength ="1"/>&#8195;
+        4.<input id="box4" name="box4" style="background-color:lightblue; color:black; font-weight:bold;" onkeypress="return isNumberKey(event)" size="1" type="text" maxlength ="1"/>&#8195;
+        5.<input id="box5" name="box5" style="background-color:lightblue; color:black; font-weight:bold;" onkeypress="return isNumberKey(event)" size="1" type="text" maxlength ="1"/>&#8195;
+        6.<input id="box6" name="box6" style="background-color:lightblue; color:black; font-weight:bold;" onkeypress="return isNumberKey(event)" size="1" type="text" maxlength ="1"/>&#8195;
+        7.<input id="box7" name="box7" style="background-color:lightblue; color:black; font-weight:bold;" onkeypress="return isNumberKey(event)" size="1" type="text" maxlength ="1"/>&#8195;
+        8.<input id="box8" name="box8" style="background-color:lightblue; color:black; font-weight:bold;" onkeypress="return isNumberKey(event)" size="1" type="text" maxlength ="1"/>&#8195;
+        9.<input id="box9" name="box9" style="background-color:lightblue; color:black; font-weight:bold;" onkeypress="return isNumberKey(event)" size="1" type="text" maxlength ="1"/>&#8195;
+        10.<input id="box10" name="box10" style="background-color:lightblue; color:black; font-weight:bold;" onkeypress="return isNumberKey(event)" size="1" type="text" maxlength ="1"/><br><br>
+        11.<input id="box11" name="box11" style="background-color:lightblue; color:black; font-weight:bold;" onkeypress="return isNumberKey(event)" size="1" type="text" maxlength ="1"/>&#8195;
+        12.<input id="box12" name="box12" style="background-color:lightblue; color:black; font-weight:bold;" onkeypress="return isNumberKey(event)" size="1" type="text" maxlength ="1"/>&#8195;
+        13.<input id="box13" name="box13" style="background-color:lightblue; color:black; font-weight:bold;" onkeypress="return isNumberKey(event)" size="1" type="text" maxlength ="1"/>&#8195;
+        14.<input id="box14" name="box14" style="background-color:lightblue; color:black; font-weight:bold;" onkeypress="return isNumberKey(event)" size="1" type="text" maxlength ="1"/>&#8195;
+        15.<input id="box15" name="box15" style="background-color:lightblue; color:black; font-weight:bold;" onkeypress="return isNumberKey(event)" size="1" type="text" maxlength ="1"/>
+        16.<input id="box16" name="box16" style="background-color:lightblue; color:black; font-weight:bold;" onkeypress="return isNumberKey(event)" size="1" type="text" maxlength ="1"/>&#8195;
+        <br>
+      </b>
+      <%= submit_tag "Submit", :name => 'compare_button' %>
+    </center>
+    </form>
+
+
+
+
+
+              <p></p>                      
+              <p class="change_link">
+			       Africell
+		        </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>

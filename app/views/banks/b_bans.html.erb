@@ -1,0 +1,42 @@
+
+<div class="container">
+<section>       
+  <div id="container_demo" >
+    <div id="wrapper">
+      <div id="login" class="animate form">
+      <h1>Add Bban</h1>
+      <center>
+	      	<font color="green"><%=flash[:success]%></font><font color="red"><%=flash[:danger]%></font><br>
+			<form  action="/banks/b_ban" method="post">
+				<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+
+				 
+
+	            <!-- <select name="africell_bank_id" class="form-control">
+	              <option value="null">---Select Account Type---</option>
+	              <% @accType.each do |sup| %>
+	              	<option name="africell_bank_id" value="<%=AccountType.find_by_id(sup.id).africell_bank_id%>"><%= sup.account_type %></option>
+	              <% end %>
+	            </select> -->
+	            <label>Bban Number</label>
+				<input type="text" name="b_ban_number" required></input>
+				<input type="hidden" name="africell_bank_id" value="<%= @accNo.africell_bank_id %>">
+				
+				<input type="hidden" name="account_type_id" value="<%= @accNo.account_type_id%>">
+				<p class="login button"> 
+				<input type="submit" name="submit" value="Save and Continue" class="btn btn-primary"></input>
+				</p>
+				</div>
+				</div>
+			</form>
+		</center>
+			<p></p><br><br>
+			<p class="change_link">
+		      <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2016</font> <br>
+		      <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+		    </p>
+		</div>
+	 </div>
+	</div>
+</section>

@@ -1,0 +1,144 @@
+<%if session[:userrole] == "admin" or session[:userrole] == "technician"%>
+<div class="container">
+  <section>				
+    <div id="container_demo">
+      <div id="wrapper">
+        <div id="login" class="animate form">
+            <h1>GetAccountDetails</h1>
+          <center>
+           <table>
+              <tr>
+                <th>resultText</th>
+                <td><%=@resultText%></td>
+              </tr>
+              <tr>
+                <th>COS</th>
+                <td><%=@COS%></td>
+              </tr>
+              <tr>
+                <th>accountType</th>
+                <td><%=@accountType%></td>
+              </tr>
+              <tr>
+                <th>balance</th>
+                <td><%=@balance%></td>
+              </tr>
+             <tr>
+                <th>cutoffDate</th>
+                <td><%=@cutoffDate%></td>
+              </tr>
+              <tr>
+                <th>deleteDate</th>
+                <td><%=@deleteDate%></td>
+              </tr>
+              <tr>
+                <th>expiryDate</th>
+                <td><%=@expiryDate%></td>
+              </tr>
+              <tr>
+                <th>firstUse</th>
+                <td><%=@firstUse%></td>
+              </tr>
+              <tr>
+                <th>freeData</th>
+                <td><%=@freeData%></td>
+              </tr>
+              <tr>
+                <th>freeDataEndDate</th>
+                <td><%=@freeDataEndDate%></td>
+              </tr>
+              <tr>
+                <th>freeMoney</th>
+                <td><%=@freeMoney%></td>
+              </tr>
+              <tr>
+                <th>freeMoneyEndDate</th>
+                <td><%=@freeMoneyEndDate%></td>
+              </tr>
+              <tr>
+                <th>freeSMS</th>
+                <td><%=@freeSMS%></td>
+              </tr>
+              <tr>
+                <th>freeSMSEndDate</th>
+                <td><%=@freeSMSEndDate%></td>
+              </tr>
+              <tr>
+                <th>freeTime</th>
+                <td><%=@freeTime%></td>
+              </tr>
+              <tr>
+                <th>freeTimeEndDate</th>
+                <td><%=@freeTimeEndDate%></td>
+              </tr>
+              <tr>
+                <th>homezoneChangeDate</th>
+                <td><%=@homezoneChangeDate%></td>
+              </tr>
+              <tr>
+                <th>homezoneName</th>
+                <td><%=@homezoneName%></td>
+              </tr>
+              <tr>
+                <th>languageName</th>
+                <td><%=@languageName%></td>
+              </tr>
+              <tr>
+                <th>lifeCycleState</th>
+                <td><%=@lifeCycleState%></td>
+              </tr>
+              <tr>
+                <th>pin</th>
+                <td><%=@pin%></td>
+              </tr>
+              <tr>
+                <th>previousMSISDN</th>
+                <td><%=@previousMSISDN%></td>
+              </tr>
+              <tr>
+                <th>resultCode</th>
+                <td><%=@resultCode%></td>
+              </tr>
+              <tr>
+                <th>status</th>
+                <td><%=@status%></td>
+              </tr>
+              <tr>
+                <th>stdCharge</th>
+                <td><%=@stdCharge%></td>
+              </tr>
+              <tr>
+                <th>stdChargeDate</th>
+                <td><%=@stdChargeDate%></td>
+              </tr>
+            </table>
+          </center>
+              <p></p>                      
+              <p class="change_link">
+			           <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+		        </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>
+
+<%else%>
+<div class="container">
+  <section>       
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+            <h1><font color="red"> You Do Not have Permission to Access This Page !</font></h1> 
+              <p></p>                      
+              <p class="change_link">
+                <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+            </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>
+ <%end%>

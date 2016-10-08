@@ -1,0 +1,125 @@
+<div class="container">
+  <section>       
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+        
+          <h1>Call History</h1> 
+          <center>
+            <table>
+                <tr>
+                  <th>MSISDN</th>
+                  <th>Call Type</th>
+                  <th>BNumber</th>
+                  <th>Start Balance</th> 
+                  <th>Duration</th>
+                  <th>Credit Used</th>
+                  <th>FreeTime Used</th>
+                  <th>FreeMoney Used</th>
+                  <th>Time</th>
+                </tr>
+                <% @call_history.each do |result|%>
+                <tr>
+                  <td><%=result.accnum%></td> 
+                  <%case result.type
+                     when 15 %><td>MO Local Voice Outgoing</td>
+                  <% when 254 %><td>SMS - Mobile to Mobile</td>
+                  <% when 17 %><td>MT Local Voice Incoming</td>
+                  <% when 18 %><td>MT Local Voice Outgoing</td>
+                  <% when 19 %><td>MF Local Voice Incoming</td>
+                  <% when 20 %><td>MF Local Voice Outgoing</td>
+                  <% when 21 %><td>MO Roamed Voice Incoming</td>
+                  <% when 22 %><td>MO Roamed Voice Outgoing</td>
+                  <% when 23 %><td>MT Roamed Voice Incoming</td>
+                  <% when 24 %><td>MT Roamed Voice Outgoing</td>
+                  <% when 25 %><td>MF Roamed Voice Incoming</td>
+                  <% when 26 %><td>MF Roamed Voice Outgoing</td>
+                  <% when 27 %><td>MO Local Video Incoming</td>
+                  <% when 28 %><td>MO Local Video Outgoing</td>
+                  <% when 29 %><td>MT Local Video Incoming</td>
+                  <% when 30 %><td>MT Local Video Outgoing</td>
+                  <% when 31 %><td>MF Local Video Incoming</td>
+                  <% when 32 %><td>MF Local Video Outgoing</td>
+                  <% when 33 %><td>MO Roamed Video Incoming</td>
+                  <% when 34 %><td>MO Roamed Video Outgoing</td>
+                  <% when 35 %><td>MT Roamed Video Incoming</td>
+                  <% when 36 %><td>MT Roamed Video Outgoing</td>
+                  <% when 37 %><td>MF Roamed Video Incoming</td>
+                  <% when 38 %><td>MF Roamed Video Outgoing</td>
+                  <% when 44 %><td>Homezone Enquiry Call</td>
+                  <% when 49 %><td>Cell Area Enquiry</td>
+                  <% when 100 %><td>SMS Information Manager</td>
+                  <% when 101 %><td>SMS External Interface Message</td>
+                  <% when 102 %><td>SMS Mobile to SMPP</td>
+                  <% when 103 %><td>SMS SMPP Generated</td>
+                  <% when 104 %><td>SMS Distribution List Management</td>
+                  <% when 105 %><td>SMS Distribution List Message</td>
+                  <% when 106 %><td>SMS Future Delivery</td>
+                  <% when 107 %><td>SMS Confirmed Delivery Request</td>
+                  <% when 108 %><td>SMS Confirmed Delivery Response</td>
+                  <% when 109 %><td>SMS Credit Update</td>
+                  <% when 110 %><td>SMS Destination / Service Unavailable/td>
+                  <% when 113 %><td>SMS Account Enquiry</td>
+                  <% when 114 %><td>SMS Final Status Record</td>
+                  <% when 116 %><td>SMS Mobile to Mobile (CLI-R)</td>
+                  <% when 117 %><td>SMS Forward SMS</td>
+                  <% when 118 %><td>SMS Copied Short Message</td>
+                  <% when 119 %><td>SMS Forward / Copy Management</td>
+                  <% when 120 %><td>SMS Charge for forwarding</td>
+                  <% when 121 %><td>SMS MO rejection Message</td>
+                  <% when 122 %><td>SMS Indirect Recharge - Initiator Response</td>
+                  <% when 123 %><td>SMS Indirect Recharge - Target Notification</td>
+                  <% when 124 %><td>SMS Credit Transfer – Confirmation Request</td>
+                  <% when 125 %><td>SMS Credit Transfer – Transfer Failure</td>
+                  <% when 126 %><td>SMS Initiator Notification</td>
+                  <% when 127 %><td>SMS Credit Transfer – Confirmation Failure</td>
+                  <% when 128 %><td>SMS Credit Transfer – Target Notification</td>
+                  <% when 129 %><td>SMS Call Me Back Request</td>
+                  <% when 130 %><td>SMS Call Me Back – Failure Notification</td>
+                  <% when 131 %><td>SMS Call Me Back – Target Notification</td>
+                  <% when 132 %><td>SMS COS Migration –Request Receipt</td>
+                  <% when 133 %><td>SMS COS Migration – Failure Response</td>
+                  <% when 134 %><td>SMS Mobile to SMPP with Delivery Confirmation</td>
+                  <% when 135 %><td>SMS SMPP Delivery Receipt</td>
+                  <% when 139 %><td>SMS SMS to Email</td>
+                  <% when 140 %><td>SMS Email Forwarding</td>
+                  <% when 141 %><td>SMS Wholesale Credit Transfer Request</td>
+                  <% when 142 %><td>SMS Wholesale Transfer Request Failure</td>
+                  <% when 143 %><td>SMS Wholesale Transfer Confirmation Success</td>
+                  <% when 144 %><td>SMS Wholesale Transfer Confirmation Failure</td>
+                  <% when 145 %><td>SMS Wholesale Transfer Target Notification</td>
+                  <% when 146 %><td>SMS Router – Mobile to SMSC</td>
+                  <% when 147 %><td>SMS Router – Mobile to SMPP</td>
+                  <% when 148 %><td>SMS Router – SMPP to SMSC</td>
+                  <% when 149 %><td>SMS Router – SMPP to SMPP</td>
+                  <% when 155 %><td>SMS MT messages received via Home Router function</td>
+                  <% when 157 %><td>SMS SMPP Message sent to SMPP (international gateway)</td>
+                  <% when 158 %><td>SMS Copied to Email client</td>
+                  <% when 159 %><td>SMS 'Flash' == Class 0</td>
+                  <% when 160 %><td>SMS 'Flash' == Class 0 with Delivery Confirmation</td>
+                  <% when 161 %><td>SMS Messages copied to a specific ESME</td>
+                  <% when 250 %><td>Postpaid IP billing</td>
+                  <% when 251 %><td>Roamed Postpaid IP billing</td>
+                  <%end%>
+                  <td><%=result.cparty%></td>
+                  <td><%=result.strtbal%></td>
+                  <td><%=result.chdur%></td>
+                  <td><%=result.debirate1%></td>
+                  <td><%=result.tcredused%></td>
+                  <td><%=result.credused%></td>
+                  <td><%=result.chdate%> <%=result.chtime.to_s[10..18]%></td>
+                </tr>
+                <%end%>
+            </table>
+            
+          </center>
+              <p></p>                      
+              <p class="change_link">
+                 <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+            </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>

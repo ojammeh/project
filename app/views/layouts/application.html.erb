@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head data-no-turbolink="true" >
+  <title>AUP</title>
+  <br /><br />
+  <center><%= image_tag("banner.jpg", size: "150x40", alt: "Africell") %>&nbsp;&nbsp;
+  <font style="font-family:Arial Narrow;" size="4" color="#7E17E4"><strong> UNIVERSAL PORTAL</strong></font></center>
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <%= stylesheet_link_tag    "style", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag "demo.css" %>
+  <%= stylesheet_link_tag "style2.css" %>
+  <%= stylesheet_link_tag "animate-custom.css" %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+
+  <script language="javascript" type="text/javascript">
+    function limitText(limitField, limitCount, limitNum) {
+    if (limitField.value.length > limitNum) {
+        limitField.value = limitField.value.substring(0, limitNum);
+    } else {
+        limitCount.value = limitNum - limitField.value.length;
+    }
+}
+</script>
+</head>
+
+<div class="dwmenu">
+
+    <div id="topBar">
+        &nbsp;&nbsp;&nbsp;&nbsp;Logged in as:&nbsp;&nbsp; <font color="#7E17E4"><strong><%=session[:fullname]%></strong></font>
+    <% if session[:user_id] %>
+       <p align="right"><strong> <%= link_to 'Logout', logout_path, method: :delete %>&#8195;</strong></p>
+    <%end%>
+    </div>
+<%if(session[:userrole] == "admin")%>
+    <ul id="nav">
+        <li><%= link_to 'Admin', admin_url %>
+        </li>
+        <li><a href="#">Data Warehouse</a>
+            <ul>
+                <li><%= link_to 'Track MSISDN', datawarehouse_track_msisdn_path %></li>
+                <li><%= link_to 'Track IMEI', datawarehouse_track_imei_path %></li>
+                <li><%= link_to 'Subscriber Details', datawarehouse_subscriber_records_path %></li>
+                 <li><%= link_to 'Smart Registration', sim_registration_smart_search_path %></li>
+                <li><%= link_to 'Back Office Logs', datawarehouse_back_office_logs_path %></li>
+            </ul>
+        </li>
+
+         <li><a href="#">IN</a>
+            <ul>
+                <!-- <li><%= link_to 'Call Records', in_select_call_history_path %></li> -->
+                <li><%= link_to 'Account History', in_select_account_history_path %></li>
+                <li><%= link_to 'Account Details', soap_account_details_select_path %></li>
+            </ul>
+        </li> 
+        <li><a href="#">Reports</a>
+            <ul>
+                <li><a href="#">BSU Reports</a></li>
+                <li><%= link_to 'CDR Collection', cdr_cdr_select_path %></li>
+                <li><a href="#">Projects</a></li>
+                <li><%= link_to 'CustCare Report', admin_cc_report_select_path %></li>
+            </ul>
+        </li>
+        <li><a href="#">Provisioning</a>
+            <ul>
+                <li><%= link_to 'HLR Provisioning', hlr_hlr_select_path %></li>
+                <li><%= link_to 'Create Subscribers', hlr_create_sub_select_path %></li>
+            </ul>
+        </li>
+        <li><a href="#">Services</a>
+            <ul>
+                <li><%= link_to 'Direct Sales', directsales_input_path %></li>
+                <li><a href="#">IT</a>
+                    <ul>
+                        <li><%= link_to 'IP', it_all_ips_path %></li>
+                        <li><%= link_to 'IT Request', it_new_request_path %></li>
+                        <li><a href="#">Helpdesk</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Help Desk</a>
+                    <ul>
+                        <li><%= link_to 'Agents', customers_index_path, method: :get %></li>
+                        <li><%= link_to 'Customers', customers_select_path, method: :get %></li>
+                    </ul>
+                </li>
+                <li><a href="#">Roaming</a></li>
+                <li><a href="#">Finance</a>
+                    <ul>
+                        <li><%= link_to 'New Receipt', cashier_receipt_path %></li>
+                        <li><%= link_to 'Cashier Admin', cashier_products_path %></li>
+                    </ul>
+                </li>
+                <li><a href="#">CUG</a>
+                    <ul>
+                        <li><%= link_to 'All CUG/BGO', cugs_index_path, method: :get %></li>
+                        <li><%= link_to 'Add New CUG', cugs_home_path,  method: :post %></li>
+                    </ul>
+                </li>  
+                <li><a href="#">Shops</a>
+                    <ul>
+                        <li><%= link_to 'All Shops', shops_show_path, method: :get %></li>
+                        <li><%= link_to 'Add New Shop', shops_new_data_path, method: :post %></li>
+                    </ul>
+            </li>   
+            </ul>
+            
+        </li>
+        <li><a href="#">Customer Care</a>
+            <ul>
+                <li><%= link_to 'VAS', customercare_vas_select_path %></li>
+                <li><%= link_to 'CYN', cyn_cyn_select_path %></li>
+                <li><%= link_to 'Complaints', complaints_pending_path %></li>
+                <li><%= link_to 'Sim Registration', sim_registration_search_path %></li>
+                <li><%= link_to 'Smart List', sim_registration_list_smart_path %></li>
+                <li><%= link_to 'Change Of SIM', cos_cos_select_path %></li>
+                <li><%= link_to 'Over Scratched', customercare_invalid_select_path %></li>
+                <li><%= link_to 'PUK', puk_search_path %></li>
+                <li><%= link_to 'New Manual Sheet', customercare_new_work_sheet_path %></li>
+                <li><%= link_to 'Create Sim', cos_create_sim_select_path %></li>
+                <li><%= link_to 'Unblock Registered Subs', sim_registration_unblock_select_path %></li>
+            </ul>
+        </li>
+        
+        <%if(session[:evc_role] == 1 or session[:evc_role] == 2)%>
+            <li><%= link_to 'EVC', evc_evc_select_path %></li>
+        <%end%>
+        <%if(session[:report_role] == "super")%>
+        <li><%= link_to 'EVC Print Out', printout_evc_select_path %></li>
+        <li><a href="#">Users</a>
+            <ul>
+                <li><%= link_to 'All Users', users_path %></li>
+                <li><%= link_to 'Add User', new_user_path %></li>
+            </ul>
+        </li>
+        <%end%>
+    </ul>
+<%end%>
+<%if(session[:userrole] == "printout")%>
+        <ul id="nav">
+            <li><%= link_to 'Track MSISDN', datawarehouse_track_msisdn_path %></li>
+            <li><%= link_to 'Track IMEI', datawarehouse_track_imei_path %></li>
+        </ul>
+<%end%>
+<%if(session[:report_role] == "shop" or session[:shop_role] == 1)%>
+        <ul id="nav">
+            <li><%= link_to 'All Shops', shops_show_path, method: :get %></li>
+            <li><%= link_to 'Add New Shop', shops_new_data_path, method: :post %></li>
+            <li><%= link_to 'Sim Registration', sim_registration_search_path %></li>
+        </ul>
+<%end%>
+
+<%if(session[:report_role] == "stock")%>
+        <ul id="nav">
+            <li><%= link_to 'Add Item', stocks_home_path, method: :get %></li>
+            <li><%= link_to 'All Stocks', stocks_all_stock_path, method: :get %></li>
+            <li><%= link_to 'Add Category', stocks_add_category_path, method: :get %></li>
+        </ul>
+<%end%>
+
+<% if (session[:shop_role] == 4)%>
+        <ul id="nav">
+        <li><%= link_to 'Sim Registration', sim_registration_search_path %></li>
+        </ul>
+<%end%>
+<%if(session[:bank_role] == 1)%>
+<!-- <ul id="nav">
+<li><a href="#">Supplier</a>
+        <ul>
+            <li><%= link_to 'Add Supplier', banks_add_supplier_path %></li>
+            <li><%= link_to 'Add Supplier Bank', banks_supplier_bank_path %></li>
+            <li><%= link_to 'Add Supplier Acc No', banks_supplier_accounts_path %></li>
+        </ul>
+</li>
+<li><a href="#">Africell Banks</a>
+        <ul>
+            <li><%= link_to 'Add Bank', banks_africell_banks_path %></li>
+            <li><%= link_to 'Add Account Type', banks_account_types_path %></li>
+            <li><%= link_to 'Add Acc No', banks_account_numbers_path %></li>
+            <li><%= link_to 'Add Bban', banks_b_bans_path %></li>
+            <li><%= link_to 'Add Signatory', banks_signatory_path %></li>
+        </ul>
+</li> -->
+<ul id="nav">
+            <li><%= link_to 'Add Supplier', banks_add_supplier_path %></li>
+            <li><%= link_to 'Add Bank', banks_africell_banks_path %></li>
+            <li><%= link_to 'All Banks', banks_list_bank_path %></li>
+            <li><%= link_to 'All Supplier', banks_list_supplier_path %></li>
+</ul>
+
+<%end%>
+
+<%if session[:bank_role] == 2 %>
+    <ul id="nav">
+            <li><%= link_to 'All Banks', banks_list_bank_path %></li>
+            <li><%= link_to 'All Supplier', banks_list_supplier_path %></li>
+    </ul>        
+<%end%>
+<%if(session[:userrole] == "sub_details")%>
+        <ul id="nav">
+            <li><%= link_to 'Subscriber Details', datawarehouse_subscriber_records_path %></li>
+        </ul>
+<%end%>
+<%if(session[:userrole] == "reports")%>
+    <ul id="nav">
+        <li><%= link_to 'CDR Collection', cdr_cdr_select_path %></li>
+    </ul>
+<%end%>
+<%if(session[:userrole] == "sales")%>
+    <ul id="nav">
+        <li><%= link_to 'Sales', custcaresales_list_items_path %></li>
+    </ul>
+<%end%>
+
+<%if(session[:userrole] == "mainhall")%>
+    <ul id="nav">
+        <li><%= link_to 'VAS', customercare_vas_select_path %></li>
+        <li><%= link_to 'CYN', cyn_cyn_select_path %></li>
+        <li><%= link_to 'Complaints', complaints_search_path %></li>
+        <li><%= link_to 'Sim Registration', sim_registration_search_path %></li>
+        <%if session[:report_role] == "corporate" %>
+        	<li><a href="#">CUG</a>
+                    <ul>
+                        <li><%= link_to 'All CUG/BGO', cugs_index_path %></li>
+                        <li><%= link_to 'Add New CUG', cugs_home_path,  method: :post %></li>
+                        <li><%= link_to 'Change Of SIM', cos_create_sim_select_path %></li>
+                    </ul>
+            </li>	
+        <%else%>
+        	<li><%= link_to 'Change Of SIM', cos_cos_select_path %></li>
+        <%end%>
+        <li><a href="#">Others</a>
+            <ul>
+                <li><%= link_to 'Over Scratched', customercare_invalid_select_path %></li>
+                <li><%= link_to 'PUK', puk_search_path %></li>
+                <li><%= link_to 'Unblock Registered Subs', sim_registration_unblock_select_path %></li>
+                <%if(session[:report_role] == "mainhall_supervisor" or session[:report_role] == "mainhall_super")%>
+                <li><%= link_to 'EVC Print Out', printout_evc_select_path %></li>
+                <%end%>
+            </ul>
+        </li>
+        <li><%= link_to 'Work Sheet', customercare_new_work_sheet_path %></li>
+        <%if session[:desk_role] != 1 %>
+            <li><%= link_to @count.to_s+'  Pending', customers_select_path, method: :get %></li>
+        <%end%>
+        <%if session[:desk_role] == 1 %>
+            <li><%= link_to 'Agents', customers_index_path, method: :get %></li>
+        <%end%>
+        <%if @free_agent != 'free'%>
+            <li><%= link_to 'Done', customers_update_path, method: :post %></li>
+        <%end%>
+    <%if(session[:report_role] == "callcenter_supervisor")%>
+        <li><%= link_to 'Report', admin_cc_report_select_path %></li>
+    <%end%>
+    <%if(session[:report_role] == "mainhall_supervisor" or session[:report_role] == "mainhall_super")%>
+    <li><a href="#">Report</a>
+        <ul>
+            <li><%= link_to 'Worsheet Report', admin_cc_report_select_path %></li>
+            <li><%= link_to 'Manifest Report', admin_manifest_report_select_path %></li>
+            <%if(session[:username] == "atarawally" or session[:username] == "mtrinn")%>
+                <li><%= link_to 'Sales', custcaresales_list_items_path %></li>
+            <%end%>
+        </ul>
+    </li>
+
+        <%end%>
+
+    </ul>
+
+<%end%>
+<%if(session[:userrole] == "callcenter")%>
+    <ul id="nav">
+        <li><%= link_to 'VAS', customercare_vas_select_path %></li>
+        <li><%= link_to 'Complaints', complaints_search_path %></li>
+        <li><%= link_to 'Over Scratched', customercare_invalid_select_path %></li>
+        <li><%= link_to 'PUK', puk_search_path %></li>
+        <li><%= link_to 'Work Sheet', customercare_new_work_sheet_path %></li>
+    <%if(session[:report_role] == "callcenter_report" or session[:username] == "kkeita")%>
+         <li><%= link_to 'Report', admin_cc_report_select_path %></li>
+    <%end%>
+    <%if session[:report_role] == "callcenter_supervisor" %>
+        <li><a href="#">Users</a>
+            <ul>
+                <li><%= link_to 'All Users', users_path %></li>
+                <li><%= link_to 'Add User', new_user_path %></li>
+            </ul>
+        </li>
+    <%end%>
+    <%if(session[:username] == "kkeita")%>
+         <li><%= link_to 'Sim Reg User', controller: 'users', action: 'new' %></li>
+         <li><%= link_to 'Registration Count', sim_registration_reg_count_select_path %></li>
+    <%end%>
+    </ul>
+<%end%>
+<%if(session[:userrole] == "outlet")%>
+    <ul id="nav">
+        <li><%= link_to 'VAS', customercare_vas_select_path %></li>
+        <li><%= link_to 'CYN', cyn_cyn_select_path %></li>
+        <li><%= link_to 'Complaints', complaints_search_path %></li>
+        <li><%= link_to 'Sim Registration', sim_registration_search_path %></li>
+        <li><%= link_to 'Change Of SIM', cos_cos_select_path %></li>
+        <li><a href="#">Others</a>
+            <ul>
+                <li><%= link_to 'Over Scratched', customercare_invalid_select_path %></li>
+                <li><%= link_to 'PUK', puk_search_path %></li>
+                <li><%= link_to 'Unblock Already Registered', sim_registration_unblock_select_path %></li>
+            </ul>
+        </li>
+        <li><%= link_to 'Work Sheet', customercare_new_work_sheet_path %></li>
+    <%if(session[:report_role] == "outlet")%>
+        <li><%= link_to 'Receipt', cashier_receipt_path %></li>
+    <%end%>
+    <%if(session[:report_role] == "outlet_supervisor")%>
+        <li><%= link_to 'Report', admin_cc_report_select_path %></li>
+    <%end%>
+    <li><%= link_to 'Sales', custcaresales_list_items_path%></li>
+    </ul>
+<%end%>
+<%if(session[:userrole] == "cashier")%>
+    <ul id="nav">
+        <li><%= link_to 'New Receipt', cashier_receipt_path %></li>
+        <li><%= link_to 'Other Receipts', cashier_other_receipt_path %></li>
+    </ul>
+<%end%>
+<%if(session[:userrole] == "cashier_report")%>
+    <ul id="nav">
+        <li><%= link_to 'Cashier Report', cashier_report_path %></li>
+    </ul>
+<%end%>
+<%if(session[:userrole] == "cashier_admin")%>
+    <ul id="nav">
+        <li><%= link_to 'New Receipt', cashier_receipt_path %></li>
+        <li><%= link_to 'Other Receipts', cashier_other_receipt_path %></li>
+        <li><%= link_to 'Cashier Products', cashier_products_path %></li>
+        <li><%= link_to 'Cashier Report', cashier_report_path %></li>
+        <li><%= link_to 'All Banks', banks_list_bank_path %></li>
+        <li><%= link_to 'All Supplier', banks_list_supplier_path %></li>
+    </ul>
+<%end%>
+<%if(session[:userrole] == "technician")%>
+    <ul id="nav">
+        <li><%= link_to 'Complaints', complaints_pending_path %></li>
+        <li><%= link_to 'VAS', customercare_vas_select_path %></li>
+        <li><%= link_to 'PUK', puk_search_path %></li>
+        <li><%= link_to 'Account Details', soap_account_details_select_path %></li>
+        <li><%= link_to 'Account History', in_select_account_history_path %></li>
+        <!-- <li><%= link_to 'Call Records', in_select_call_history_path %></li> -->
+        <li><%= link_to 'Unblock Registered Subs', sim_registration_unblock_select_path %></li>
+        <%if(session[:evc_role] == 2)%>
+            <li><%= link_to 'EVC', evc_evc_select_path %></li>
+        <%end%>
+    </ul>
+<%end%>
+<%if(session[:userrole] == "direct_sales")%>
+    <ul id="nav">
+        <li><%= link_to 'New Entry', directsales_input_path %></li>
+        <li><%= link_to 'List Entries', directsales_list_path %></li>
+        <li><%= link_to 'Add Team', directsales_add_team_path %></li>
+        <li><%= link_to 'List Teams', directsales_list_teams_path %></li>
+    </ul>
+<%end%>
+<%if(session[:userrole] == "callcenter_dialout")%>
+    <ul id="nav">
+        <li><%= link_to 'Pending Dial Out', complaints_pending_dialout_path %></li>
+        <li><%= link_to 'All Complaint Status', complaints_status_path %></li>
+    </ul>
+<%end%>
+<%if(session[:userrole] == "it")%>
+    <ul id="nav">
+        <li><%= link_to 'New IT Request', it_new_request_path %></li>
+        <li><%= link_to 'Pending IT Requests', it_pending_requests_path %></li>
+        <li><%= link_to 'IP', it_all_ips_path %></li>
+    </ul>
+<%end%>
+<%if(session[:userrole] == "it-request")%>
+    <ul id="nav">
+        <li><%= link_to 'New IT Request', it_new_request_path %></li>
+    </ul>
+<%end%>
+<%if(session[:userrole] == "sim_reg")%>
+    <ul id="nav">
+        <li><%= link_to 'Sim Registration', sim_registration_search_path %></li>
+    </ul>
+<%end%>
+<%if(session[:userrole] == "arpu")%>
+    <ul id="nav">
+        <li><%= link_to 'ARPU Offer', arpu_index_path %></li>
+    </ul>
+<%end%>
+<%if(session[:userrole] == "smart")%>
+    <ul id="nav">
+        <li><%= link_to 'Registration Details', sim_registration_smart_search_path %></li>
+        <li><%= link_to 'Validation List', sim_registration_list_smart_path %></li>
+    </ul>
+<%end%>
+
+<%if(session[:userrole] == "registration_main")%>
+    <ul id="nav">
+        <li><%= link_to 'Sim Registration', sim_registration_search_reg_path %></li>
+        <li><%= link_to 'Smart Registration', sim_registration_smart_search_path %></li>
+        <li><%= link_to 'Smart List', sim_registration_list_smart_path %></li>
+    </ul>
+<%end%>
+<%if(session[:userrole] == "cug")%>
+    <ul id="nav">
+        <li><%= link_to 'All CUG/BGO', cugs_index_path, method: :get %></li>
+        <li><%= link_to 'Add New CUG', cugs_home_path, method: :post %></li>
+    </ul>
+<%end%>
+</div>
+
+<body data-no-turbolink="true" bgcolor="white">
+<%if session[:userrole] == "mainhall" %>
+<center>
+    <%=session[:desk_msisdn]%>&nbsp;
+    <%=session[:desk_first_name]%>&nbsp;
+    <%=session[:desk_last_name]%>&nbsp;
+    <%=session[:desk_id_type]%>&nbsp;
+    <%=session[:desk_id_number]%>&nbsp;
+    <%=session[:desk_address]%>
+</center>
+<%end%>
+<%= yield %>
+
+
+</body>
+</html>

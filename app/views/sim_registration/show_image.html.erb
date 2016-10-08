@@ -1,0 +1,47 @@
+<div class="container">
+  <section>				
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+            <h1>Sim Registration</h1>
+            <%if @regg == 1%> 
+            <%= image_tag(@personalpic, size: "300x300", alt: "Not Available") %>&#8195;<%= image_tag(@frontpic, size: "300x300", alt: "Not Available") %>&#8195;<%= image_tag(@backpic, size: "300x300", alt: "Not Available") %>&#8195;
+            <table>
+              <tr>
+                <th>First Name</th> 
+                <th>Middle Name</th>  
+                <th>Last Name</th>
+                <th>Gender</th>
+                <th>DOB</th>
+                <th>Nationality</th>
+                <th>ID Type</th>
+                <th>ID Number</th>
+                 <th>Status</th>
+              </tr>
+              <tr>
+                <td><%=@sub.FirstName%></td>
+                <td><%=@sub.MiddleName%></td>
+                <td><%=@sub.lastName%></td>
+                <td><%=@sub.Gender%></td>
+                <td><%=@sub.DateOfBirth%></td>
+                <td><%=@sub.Nationality%></td>
+                <td><%=@sub.IdType%></td>
+                <td><%=@sub.RefNumber%></td>
+                <td><%=@sub.flag%></td>
+              </tr>
+        </table>
+        <%else%>
+              <h3>Not Registered on Smart</h3>
+        <%end%>
+          </center>
+        
+              <p></p>                      
+              <p class="change_link">
+			<font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+		        </p>
+          </div>
+        </div>
+      </div> 
+    </section>
+ </div>

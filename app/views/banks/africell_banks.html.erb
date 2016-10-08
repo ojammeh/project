@@ -1,0 +1,58 @@
+
+<div class="container">
+<section>       
+  <div id="container_demo" >
+    <div id="wrapper">
+      <div id="login" class="animate form">
+      <h1>Add Bank</h1>
+      <center>
+      	<font color="green"><%=flash[:success]%></font><font color="red"><%=flash[:danger]%></font><br>
+		<form  action="/banks/africell_bank" method="post">
+			<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+
+			
+              	
+			<label>Bank Name</label>
+			<select name="bank_name" required="required">
+				<option value="0" disabled selected>Bank Name</option>
+				<option value="Access Bank Gambia">Access Bank Gambia</option>
+				<option value="Arab Gambia Islamic Bank">Arab Gambia Islamic Bank</option>
+				<option value="Banque Sahélo-Saharienne pour l'Investissement et le Commerce">Banque Sahélo-Saharienne pour l'Investissement et le Commerce</option>
+				<option value="Ecobank Gambia">Ecobank Gambia</option>
+				<option value="First Bank Nigeria (Gambia) Limited">First Bank Nigeria (Gambia) Limited</option>
+				<option value="FiBank Limited">FiBank Limited</option>
+				<option value="Guaranty Trust Bank Gambia">Guaranty Trust Bank Gambia</option>
+				<option value="MegaBank Gambia Limited">MegaBank Gambia Limited</option>
+				<option value="Skye Bank Gambia">Skye Bank Gambia</option>
+				<option value="Standard Chartered Bank">Standard Chartered Bank</option>
+				<option value="Trust Bank Gambia Limited">Trust Bank Gambia Limited</option>
+				<option value="Zenith Bank Gambia Limited">Zenith Bank Gambia Limited</option>
+			</select>
+
+
+			<label>Bank Address</label>
+			<input type="text" name="bank_address" required></input>
+
+			<label>Addressee</label>
+			<input type="text" name="addressee"  required></input>
+			<br>
+			<label>Designation</label>
+			<input type="text" name="designation" required></input>
+
+			<p class="login button"> 
+			<input type="submit" name="submit" value="Save and Continue" class="btn btn-primary"></input>
+			</p>
+			</div>
+			</div>
+		</form>
+	</center>
+			<p></p><br><br>
+			<p class="change_link">
+		      <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2016</font> <br>
+		      <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+		    </p>
+		</div>
+	 </div>
+	</div>
+</section>

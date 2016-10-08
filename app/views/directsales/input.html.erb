@@ -1,0 +1,140 @@
+<div class="container">
+  <section>       
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+          &#8195;&#8195;<%= link_to 'List Entries', directsales_list_path %> | <%= link_to 'New Sim Entry', directsales_input_path %> | <%= link_to 'List Teams', directsales_list_teams_path %> | <%= link_to 'Add Team', directsales_add_team_path %>
+          <form  action="/directsales/insert" method="post" > 
+            <h1>Direct Sales New Entry</h1> 
+            <center> <font color="red"> <%= flash[:error] %> </font><font color="green"> <%= flash[:success] %> </font> <br/> </center>
+            <center> 
+
+            <label for="month">Date:</label>
+              <select size="1" name="month" id="month">
+                <option value="01-">Jan</option>
+                <option value="02-">Feb</option>
+                <option value="03-">Mar</option>
+                <option value="04-">Apr</option>
+                <option value="05-">May</option>
+                <option value="06-">Jun</option>
+                <option value="07-">Jul</option>
+                <option value="08-">Aug</option>
+                <option value="09-">Sep</option>
+                <option value="10-">Oct</option>
+                <option value="11-">Nov</option>
+                <option value="12-">Dec</option>
+              </select>
+              <select size="1" name="day" id="day">
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+              </select>
+              <select size="1" name="year" id="year">
+                <option value="2015-">2015</option>
+                <option value="2016-">2016</option>
+              </select>
+
+            <label for="dcode">Dealer Code:</label>
+              <select size="1" name="dcode" id="dcode">
+                <option value="CC">CC</option>
+                <option value="CD">CD</option>
+                <option value="CM">CM</option>
+                <option value="HN">HN</option>
+                <option value="MM">MM</option>
+                <option value="DS">DS</option>
+                <option value="PH">PH</option>
+                <option value="SC">SC</option>
+                <option value="SCU">SCU</option>
+                <option value="ARM">ARM</option>
+                <option value="AGB">AGB</option>
+                <option value="FRA">FRA</option>
+                <option value="RLG">RLG</option>
+                <option value="DS2">DS2</option>
+              </select>&#8195;
+
+            <label for="dname">Dealer Name:</label>
+              <select size="1" name="dname" id="dname">
+                <option value="Customer Care">Customer Care</option>
+                <option value="Commercial Department">Commercial Department</option>
+                <option value="Complimentary">Complimentary</option>
+                <option value="Hassan Njie">Hassan Njie</option>
+                <option value="Marimoo">Marimoo</option>
+                <option value="Direct Sales">Direct Sales</option>
+                <option value="Phones">Phones</option>
+                <option value="Schools">Schools</option>
+                <option value="Schools Upcountry">Schools Upcountry</option>
+                <option value="Army">Army</option>
+                <option value="Army Greater Banjul">Army Greater Banjul</option>
+                <option value="Franchise">Franchise</option>
+                <option value="RLG">RLG</option>
+                <option value="Direct Sales 2">Direct Sales 2</option>
+              </select>&#8195;
+
+              <label for="teamid"> Team ID </label>
+              <select name ="teamid" required="required">
+                    <option value="" disabled selected>Select Team ID</option>
+                    <% @teams.each do |team| %>
+                          <option value="<%= team.team_id %>"><%= team.team_id%> (<%= team.team_leader%>)</option> 
+                    <%end%>
+              </select>  <br><br> 
+
+              <label for="teamtno">Team Transport Number: </label>
+              <input id="teamtno" size="20" name="teamtno" required="required" type="text" placeholder="Transport Number"/>&#8195;
+
+              <label for="destination">Destination: </label>
+              <input id="destination" size="20" name="destination" required="required" type="text" placeholder="Destination"/>&#8195;
+
+              <label for="ssno">Start Serial Number: </label>
+              <input id="ssno" size="20" name="ssno" required="required" type="text" placeholder="Start Serial"/>&#8195;
+              &#8195;<br><br> 
+
+              <label for="esno">End Serial Number: </label>
+              <input id="esno" size="20" name="esno" required="required" type="text" placeholder="End Serial"/>&#8195;
+              &#8195;
+
+              <label for="quantity">Sim Quantity: </label>
+              <input id="quantity" size="7" name="quantity" required="required" onkeypress="return isNumberKey(event)" type="text" placeholder="Quantity"/>&#8195;
+
+            </center>
+            <p class="login button"> 
+              <input type="submit" value="Save Entry" /> 
+            </p>
+          </form>
+              <p></p>                      
+              <p class="change_link">
+                 <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+            </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>

@@ -1,0 +1,7 @@
+<label for="date"> Date </label>
+<select name ="date" required="required">
+      <option value="" disabled selected>Select Month</option>
+      <% result.each do |month| %>
+            <option value="<%= month.month_year %>"><%= month.month_year%></option> 
+      <%end%>
+</select>  

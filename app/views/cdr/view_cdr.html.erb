@@ -1,0 +1,429 @@
+<%if(session[:userrole] == "admin" or session[:userrole] == "reports")%>
+<div class="container">
+  <section>				
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+          <form  action="/cdr/view_cdr" method="get" > 
+            <h1>CDR Collection</h1> 
+            <center> <font color="red"> <%= flash[:error] %> </font><font color="green"> <%= flash[:success] %> </font> <br/> </center>
+            <center>
+            <label for="sdate"><b>Select Single Date</b></label><br>
+              <select size="1" name="month" id="month">
+                <option value="01-">Jan</option>
+                <option value="02-">Feb</option>
+                <option value="03-">Mar</option>
+                <option value="04-">Apr</option>
+                <option value="05-">May</option>
+                <option value="06-">Jun</option>
+                <option value="07-">Jul</option>
+                <option value="08-">Aug</option>
+                <option value="09-">Sep</option>
+                <option value="10-">Oct</option>
+                <option value="11-">Nov</option>
+                <option value="12-">Dec</option>
+              </select>
+    
+              <select size="1" name="day" id="day">
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+              </select>
+
+              <select size="1" name="year" id="year">
+                <option value="2014-">2014</option>
+                <option value="2015-">2015</option>
+              </select>
+             
+
+            <p class="login button"> 
+              <%= submit_tag 'Generate Data', :name => 'single_date' %>
+			</p>
+          </form>
+          
+
+          <form action="/cdr/view_cdr" method="get">
+         
+            <label for="dater"><b>Select Date Range</b></label><br>
+            <label for="from">From:</label>
+              <select size="1" name="month1" id="month1">
+                <option value="01-">Jan</option>
+                <option value="02-">Feb</option>
+                <option value="03-">Mar</option>
+                <option value="04-">Apr</option>
+                <option value="05-">May</option>
+                <option value="06-">Jun</option>
+                <option value="07-">Jul</option>
+                <option value="08-">Aug</option>
+                <option value="09-">Sep</option>
+                <option value="10-">Oct</option>
+                <option value="11-">Nov</option>
+                <option value="12-">Dec</option>
+              </select>
+        
+              <select size="1" name="day1" id="day1">
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+              </select>
+
+              <select size="1" name="year1" id="year1">
+                <option value="2014-">2014</option>
+                <option value="2015-">2015</option>
+              </select>&#8195;&#8195;
+
+                To:
+                <select size="1" name="month2" id="month2">
+                    <option value="01-">Jan</option>
+                    <option value="02-">Feb</option>
+                    <option value="03-">Mar</option>
+                    <option value="04-">Apr</option>
+                    <option value="05-">May</option>
+                    <option value="06-">Jun</option>
+                    <option value="07-">Jul</option>
+                    <option value="08-">Aug</option>
+                    <option value="09-">Sep</option>
+                    <option value="10-">Oct</option>
+                    <option value="11-">Nov</option>
+                    <option value="12-">Dec</option>
+                </select>
+        
+                <select size="1" name="day2" id="day2">
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                </select>
+
+                <select size="1" name="year2" id="year2">
+                    <option value="2014-">2014</option>
+                    <option value="2015-">2015</option>
+                </select>
+            <p class="login button"> 
+              <%= submit_tag 'Generate Data', :name => 'date_range' %>
+            </p>
+          </form></center><br>
+    <%if session[:date_type] == "single_date" %><h2><%=@description%></h2>
+    <center>
+        <table>
+          <tr>
+            <th width="150">Source</th>
+            <th width="150">Range</th> 
+            <th width="150"><p align="center">Count</p></th>
+            <th width="150"><p align="center">Missing</p></th>
+            <%if session[:userrole] == "admin"%>
+            <th width="70"><p align="center">Edit</p></th>
+            <%end%>
+          </tr>
+
+          <% if session[:userrole] == "reports"%>
+            <% @cdrcount.each do |cdr| %>
+            <tr>
+                <td><b><%= cdr.source %></b></td>
+                <td><%= cdr.file_range %></td>
+                <td><%= cdr.file_count %></td>
+                <td><%= cdr.file_missing %></td>
+            </tr>
+          <%end%>
+
+          <%elsif session[:userrole] == "admin"%>
+            <% @cdrcount.each do |cdr| %>
+            <tr>
+                <td><b><%= cdr.source %></b></td>
+                <td><%= cdr.file_range %></td>
+                <td><%= cdr.file_count %></td>
+                <td><%= cdr.file_missing %></td>
+                <td><b><%= link_to "Edit", :action =>'edit', :id => cdr.id %></b></td>
+            </tr>
+             <%end%>
+          <%end%>
+        </table>
+
+
+    <% elsif session[:date_type] == "date_range" %>
+        <h2><%=@description%></h2>
+    <center>
+        <div style="width:900px;height:auto;position:relative; overflow: auto;" align="center">
+
+            <table width="2000" border="0" align="left" cellpadding="0" cellspacing="0">
+                <td>
+                    <table width="95" border="0" align="left" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th><p align="center">Date</p></th>
+                        </tr>
+                      <% @huawei.each do |cdr| %>
+                        <tr>
+                            <td><b><%= cdr.date.to_date %></b></td>   
+                        </tr>
+                      <%end%>
+                    </table>
+
+                    <table width="115" border="0" align="left" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th><p align="center">Huawei</p></th>
+                        </tr>
+                      <% @huawei.each do |cdr| %>
+                        <tr>
+                            <td><%= cdr.file_range %> (<b><%= cdr.file_count.to_i %></b>)</td>   
+                        </tr>
+                      <%end%>
+                    </table>
+
+                    <table width="115" border="0" align="left" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th><p align="center">HW Billing</p></th>
+                        </tr>
+                      <% @hwbilling.each do |cdr| %>
+                        <tr>
+                            <td><%= cdr.file_range %> (<b><%= cdr.file_count.to_i %></b>)</td>
+                        </tr>
+                      <%end%>
+                    </table>
+
+                    <table width="115" border="0" align="left" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th><p align="center">HW DTWH</p></th>
+                        </tr>
+                      <% @hwdtwh.each do |cdr| %>
+                        <tr>
+                            <td><%= cdr.file_range %> (<b><%= cdr.file_count.to_i %></b>)</td>
+                        </tr>
+                      <%end%>
+                    </table>
+
+                    <table width="115" border="0" align="left" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th><p align="center">HW HQ</p></th>
+                        </tr>
+                      <% @hwhq.each do |cdr| %>
+                        <tr>
+                            <td><%= cdr.file_range %> (<b><%= cdr.file_count.to_i %></b>)</td>
+                        </tr>
+                      <%end%>
+                    </table>
+
+                    <table width="115" border="0" align="left" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th><p align="center">Roaming Files</p></th>
+                        </tr>
+                      <% @roamingfiles.each do |cdr| %>
+                        <tr>
+                            <td><%= cdr.file_range %> (<b><%= cdr.file_count.to_i %></b>)</td>
+                        </tr>
+                      <%end%>
+                    </table>
+
+                    <table width="170" border="0" align="left" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th><p align="center">HW SGSN</p></th>
+                        </tr>
+                      <% @hwsgsn.each do |cdr| %>
+                        <tr>
+                            <td><%= cdr.file_range %> (<b><%= cdr.file_count.to_i %></b>)</td>
+                        </tr>
+                      <%end%>
+                    </table>
+
+                    <table width="170" border="0" align="left" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th><p align="center">Data Billing</p></th>
+                        </tr>
+                      <% @databilling.each do |cdr| %>
+                        <tr>
+                            <td><%= cdr.file_range %> (<b><%= cdr.file_count.to_i %></b>)</td>
+                        </tr>
+                      <%end%>
+                    </table>
+
+                    <table width="170" border="0" align="left" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th><p align="center">Data Warehouse</p></th>
+                        </tr>
+                      <% @datawarehouse.each do |cdr| %>
+                        <tr>
+                            <td><%= cdr.file_range %> (<b><%= cdr.file_count.to_i %></b>)</td>
+                        </tr>
+                      <%end%>
+                    </table>
+
+                    <table width="115" border="0" align="left" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th><p align="center">IN ACC DTWH</p></th>
+                        </tr>
+                      <% @inaccdtwh.each do |cdr| %>
+                        <tr>
+                            <td><%= cdr.file_range %></td>
+                        </tr>
+                      <%end%>
+                    </table>
+
+                    <table width="105" border="0" align="left" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th><p align="center">IN ACC HQ</p></th>
+                        </tr>
+                      <% @inacchq.each do |cdr| %>
+                        <tr>
+                            <td><%= cdr.file_range %></td>
+                        </tr>
+                      <%end%>
+                    </table>
+
+                    <table width="135" border="0" align="left" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th><p align="center">IN ACC HST DTWH</p></th>
+                        </tr>
+                      <% @inacchstdtwh.each do |cdr| %>
+                        <tr>
+                            <td><%= cdr.file_range %></td>
+                        </tr>
+                      <%end%>
+                    </table>
+
+                    <table width="115" border="0" align="left" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th><p align="center">IN ACC HST HQ</p></th>
+                        </tr>
+                      <% @inacchsthq.each do |cdr| %>
+                        <tr>
+                            <td><%= cdr.file_range %></td>
+                        </tr>
+                      <%end%>
+                    </table>
+
+                    <table width="115" border="0" align="left" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th><p align="center">IN CDR DTWH</p></th>
+                        </tr>
+                      <% @incdrdtwh.each do |cdr| %>
+                        <tr>
+                            <td><%= cdr.file_range %> (<b><%= cdr.file_count.to_i %></b>)</td>
+                        </tr>
+                      <%end%>
+                    </table>
+
+                    <table width="115" border="0" align="left" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th><p align="center">IN CDR HQ</p></th>
+                        </tr>
+                      <% @incdrhq.each do |cdr| %>
+                        <tr>
+                            <td><%= cdr.file_range %> (<b><%= cdr.file_count.to_i %></b>)</td>
+                        </tr>
+                      <%end%>
+                    </table>
+                </td>
+            </table>
+        </div>
+    </center>
+<%end%>
+              <p></p>                      
+              <p class="change_link">
+			       Africell Gambia
+		        </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+</div>
+
+<%else%>
+<div class="container">
+  <section>       
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+            <h1><font color="red"> You Do Not have Permission to Access This Page !</font></h1> 
+              <p></p>                      
+              <p class="change_link">
+             Africell
+            </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>
+ <%end%>
+    

@@ -1,0 +1,2 @@
+module PukHelper
+end

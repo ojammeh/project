@@ -1,0 +1,37 @@
+<div class="container">
+  <section>       
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+        <center>
+          <form  action="/customercare/new_sheet" method="post" > 
+
+            <input id="msisdn" name="msisdn" required="required" onkeypress="return isNumberKey(event)" maxlength="7" type="text" placeholder="MSISDN"/>
+
+            <input id="name" name="name" required="required" type="text" placeholder="Customer Name"/>
+
+            <select width="2" name ="transaction_type" required="required">
+                  <option value="" disabled selected>Transaction Type</option>
+                  <option value="CRBT">CRBT</option>
+                <option value="Horoscope">Horoscope</option>
+                <option value="Jazeera">Jazeera</option>
+                <option value="Other">Other</option>
+              </select><br />
+
+            <label for="description"> Reason of Call</label><br/>
+            <textarea id="description" name="description" rows="2" cols="30" type="text" ></textarea>
+
+            <p class="login button"> 
+                <input type="submit" value="Save" name="new_sheet" />
+            </p>
+          </form>
+          </center>
+              <p></p>                      
+              <p class="change_link">
+             Africell
+            </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>

@@ -1,0 +1,73 @@
+<div class="container">
+<section>
+    <div id="container_demo" >
+
+        <div id="wrapper">
+            <div id="login" class="animate form">
+              <center>
+                <h1><%=@cug_name%></h1>
+                <font color="green"><%=flash[:success]%></font><font color="red"><%=flash[:danger]%></font><br>
+                <table>
+                  <tr>
+                    <th>Company Name</th>
+                    <th>Monthly Charge</th>
+                    <th>Type</th>
+                    <th>Comments</th>
+                    <th>Date Created</th>
+                    <th>Delete CUG / BGO</th>
+                  </tr>
+                  <tr>
+                    <td><%= @cugdetails.name %></td>
+                    <td><%= @cugdetails.monthly_charge %></td>
+                    <td><%= @cugdetails.phone %></td>
+                    <td><%= @cugdetails.comments %></td>
+                    <td><%= @cugdetails.date_created %></td>
+                    <td><%= link_to image_tag("delete.gif", alt: "delete"), {:controller => 'cugs', :action => 'destroy_cug', :id => @cugdetails.id }, :method => :delete, data: { confirm: "Are you sure You want to delete?" } %></td>
+                  </tr>
+
+                  <tr>
+                    <th>Numbers</th>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Delete Number</th>
+                    <th>Delete Multiple</th>
+                  </tr>
+                  <% @numbers.each do |number| %>
+                  <tr>
+                    <td><%= number.number %></td>
+                    <td><%= number.type.name %></td>
+                    <td><%= number.comments %></td>
+                    <td><%= link_to image_tag("delete.gif", alt: "delete"), {:controller => 'cugs', :action => 'destroy_number', :id => number.id}, :method => :post, data: { confirm: "Are you sure You want to delete?" } %></td>
+
+                    <form  action="/cugs/destroy_multiple" method="post">
+
+                      <input type="hidden" name="id" value="<%= number.id%>">
+                      <td><input type="checkbox" name="nums[]" value="<%= number.number%>"></input></td>
+
+                  </tr>
+                  <% end %>
+                  <font color="green"><%=flash[:success]%></font><font color="red"><%=flash[:danger]%></font><br>
+
+                </table>
+                <input type="submit" name="submit" value="Delete Selected" style="background-color: #337ab7; color: white; border-color: #2e6da4; -webkit-appearance: button; cursor: pointer; width: 15%; margin-left: 300px;"></input>
+                    </form>
+              </center>
+
+              <form action="/cugs/addnumber" method="post" >
+              <div id="TextBoxContainer">
+                <input id="btnAdd" type="button" value="Add More Numbers" style="background-color: #337ab7; color: white; border-color: #2e6da4; -webkit-appearance: button; cursor: pointer; width: 15%; margin-left: 90px;" /><br /><br />
+                  <input type="hidden" name="id" value="<%=@cugdetails.id%>"></input>
+                  <b>Number:</b><input type="text" id="number" id ="txtNumericInput" onkeypress="return isNumberKey(event)" name="cug[numbers]"  maxlength="7" style="width: 15%; margin-left: 38px;" required=""></input>
+              </div><br />
+                    <input type="submit" name="submit" id="sendButton" value="Save" style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);margin-left: 90px;padding: 3px 25px; width:40px;"></input>
+
+                  </form>
+            <p class="change_link">
+            <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+            </p>
+            </div>
+        </div>
+    </div>
+</section>
+ </div>

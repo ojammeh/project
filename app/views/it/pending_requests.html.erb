@@ -1,0 +1,45 @@
+<div class="container">
+  <section>       
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+        <%= link_to 'New IT Request', it_new_request_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+        <h1>Pending IT Requests</h1>
+        <center>
+          <table>
+                <tr>
+                  <th>#</th>
+                  <th>Full Name</th>
+                  <th>Department</th>
+                  <th>Requested By</th>
+                  <th>Item Category</th> 
+                  <th>Item Description</th> 
+                  <th>Quantity</th>
+                  <th>Reason</th> 
+                  <th>Deliver Item</th>
+                </tr>
+                <% @pending.each do |result|%>
+                <tr>
+                  <td><%=result.id%></td>
+                  <td><%=result.user%></td>
+                  <td><%=result.department%></td>
+                  <td><%=result.name%></td>
+                  <td><%=result.item_category%></td>
+                  <td><%=result.description%></td>
+                  <td><%=result.quantity%></td>
+                  <td><%=result.reason%></td>
+                  <td><%= link_to "Deliver", {:action=> "deliver_request", :controller => "it", :id => result.id} %></td>
+                </tr>
+              <%end%>
+            </table>
+          </center>
+              <p></p>                      
+              <p class="change_link">
+                <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+            </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>

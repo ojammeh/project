@@ -1,0 +1,109 @@
+<table>
+              <tr>
+                <th>Table</th>
+                <th>MSISDN</th>
+                <th>Subscriber Name</th>
+                <th>Receipt/ID Number</th>     
+                <th>ID Type / Desc.</th>
+                <th>Address</th>
+                <th>Date Received</th>
+                <th>Attendant</th>
+              </tr> 
+        <% if @reg == "true" %>
+            <% for row in @sim_registration.each do %>
+              <tr>
+                <td>Sim Registraion</td>
+                <td><%= row.phone %></td>
+                <td><%= row.first_name %> <%=row.family_name %></td>
+                <td><%= row.id_number %></td>
+                <td><%= row.id_type %></td>
+                <td><%= row.address %></td>
+                <td><%= row.created_at %></td>
+                <td><%= row.sales_person %></td>
+              </tr>
+            <%end%>
+        <%else%>
+              <tr>
+                <td>Sim Registraion</td>
+                <td><%= @msisdn %></td>
+                <td><%= @name %></td>
+                <td><%= @id_number %></td>
+                <td><%= @id_type %></td>
+                <td><%= @address %></td>
+                <td><%= @created_at %></td>
+                <td><%= @sales_person %></td>
+              </tr>
+        <%end%>
+            <% for row in @subscriber_registration.each do %>
+              <tr>
+                <td>Subscriber Registration(Old)</td>
+                <td><%= row.phone %></td>
+                <td><%= row.first_name %> <%=row.family_name %></td>
+                <td><%= row.id_number %></td>
+                <td><%= row.id_type %></td>
+                <td><%= row.address %></td>
+                <td><%= row.created_at %></td>
+                <td><%= row.sales_person %></td>
+              </tr>
+            <%end%>
+            <% for row in @recycled.each do %>
+              <tr>
+                <td>Recycled</td>
+                <td><%= row.phone %></td>
+                <td><%= row.first_name %> <%=row.family_name %></td>
+                <td><%= row.id_number %></td>
+                <td><%= row.id_type %></td>
+                <td><%= row.address %></td>
+                <td><%= row.created_at %></td>
+                <td><%= row.sales_person %></td>
+              </tr>
+            <%end%>
+            <% for row in @receipts.each do %>
+              <tr>
+                <td>Cashier Receipts</td>
+                <td><%= row.msisdn %></td>
+                <td><%= row.customer %></td>
+                <td><%= row.id %></td>
+                <td><%= row.product %></td>
+                <td></td>
+                <td><%= row.created_at %></td>
+                <td><%= row.cashier %></td>
+              </tr>
+            <%end%>
+            <% for row in @complaints.each do %>
+              <tr>
+                <td>CustCare Complaints</td>
+                <td><%= row.anumber %></td>
+                <td><%= row.customer_name %></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><%= row.time_in %></td>
+                <td><%= row.custcare_user %></td>
+              </tr>
+            <%end%>
+            <% for row in @cos.each do %>
+              <tr>
+                <td>COS / CYN</td>
+                <td><%= row.msisdn %></td>
+                <td><%=row.first_name%> <%=row.last_name%></td>
+                <td><%= row.id_number %></td>
+                <td><%= row.id_type %></td>
+                <td></td>
+                <td><%= row.created_at %></td>
+                <td><%= row.agent %></td>
+              </tr>
+            <%end%>
+            <% for row in @invalid.each do %>
+              <tr>
+                <td>Invalid Scratch Cards</td>
+                <td><%= row.msisdn %></td>
+                <td><%= row.name %></td>
+                <td></td>
+                <td><%= row.description %></td>
+                <td></td>
+                <td><%= row.created_at %></td>
+                <td><%= row.user %></td>
+              </tr>
+            <%end%>
+            </table>

@@ -1,0 +1,71 @@
+
+<div class="container">
+<section>       
+    <div id="container_demo" >
+
+        <div id="wrapper">
+            <div id="login" class="animate form">
+            <%if(session[:userrole] == "admin" or session[:userrole] == "outlet" or session[:userrole] == "sales" or session[:username] == "atarawally" or session[:username] == "mtrinn")%>
+             <%= link_to 'Add Sales', custcaresales_stock_out_select_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+           | <%= link_to 'List Sales', custcaresales_list_transactions_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+           | <%= link_to 'List Items', custcaresales_list_items_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+           | <%= link_to 'Added Stock', custcaresales_stock_in_list_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+           | <%= link_to 'Banked', custcaresales_list_banked_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+           | <%= link_to 'Damaged Items', custcaresales_damaged_list_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+           <%end%>
+           <%if(session[:username] == "atarawally" or session[:username] == "mtrinn" or session[:userrole] == "sales")%>
+           | <%= link_to 'Add Item', custcaresales_add_item_select_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+           | <%= link_to 'Add Stock', custcaresales_add_stock_select_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+           | <%= link_to 'Bank Money', custcaresales_bank_money_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+           | <%= link_to 'Add Damaged', custcaresales_damaged_select_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+           <%end%>
+           <br><br>
+              <center>
+                <form  action="/custcaresales/bank" method="post" > 
+                    <h1>Bank Money</h1> 
+                     <%=flash[:success]%><br/>
+
+                        <select name ="item" required="required">
+                        <option value="" disabled selected>Select Item</option>
+                          <% @items.each do |item| %>
+                            <option value="<%= item.name %>"><%= item.name %></option>
+                          <% end %>
+                        </select>&#8195;&#8195;
+
+                        <label for="amount"> Amount(GMD) </label>
+                        <input id="amount" size="15" name="amount" required="required" type="text" placeholder="Amount"/>&#8195;&#8195;
+
+                        <select name ="username" required="required">
+                            <option value="" disabled selected>Select Outlet</option>
+                            <option value="Mam Mbye Cham">Mam Outlet</option>
+                            <option value="Head Office Outlet">Head Office Outlet</option>
+                            <option value="Brikama Outlet">Brikama Outlet</option>
+                            <option value="Banjul Outlet">Banjul Outlet</option>
+                            <option value="Brusubi Outlet">Brusubi Outlet</option>
+                            <option value="Sukuta Outlet">Sukuta Outlet</option>
+                            <option value="Airport Outlet">Airport Outlet</option>
+                            <option value="Senegambia Outlet">Senegambia Outlet</option>
+                            <option value="Bundung Outlet">Bundung Outlet</option>
+                            <option value="Farafenni Outlet">Farafenni Outlet</option>
+                            <option value="Basse Outlet">Basse Outlet</option>
+                            <option value="Serrekunda Outlet">Serrekunda Outlet</option>
+                            <option value="Bansang Outlet">Bansang Outlet</option>
+                            <option value="Tanji Outlet">Tanji Outlet</option>
+                            <option value="Soma Outlet">Soma Outlet</option>
+                        </select>&#8195;&#8195;
+              </center>
+                    <p class="login button"> 
+                        <input type="submit" value="Bank Money"/> 
+          </p>
+
+                    <p></p>
+                </form>
+                    <p class="change_link">
+            <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+          </p>
+            </div>
+        </div>
+    </div>  
+</section>
+ </div>

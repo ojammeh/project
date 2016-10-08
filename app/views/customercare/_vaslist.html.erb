@@ -1,0 +1,336 @@
+
+<font color = "red"><%=flash[:low_credit]%></font><br>
+<table>
+    <tr>
+        <th>Sevice Name</th>
+        <th>Status</th>
+        <th>Description</th>
+        <th>Subscription Date</th>
+        <th>Action</th>
+    </tr>
+
+    <tr>
+        <td>Fun Ring</td>
+       <% if @crbt_status == "Inactive" %>
+        <td><%= image_tag("thumbs_down.png", size: "15x15", alt: "Inactive") %></td>
+       <% else %>
+        <td><%= image_tag("thumbs_up.gif", size: "15x15", alt: "Active") %><form action="/customercare/vas_actions" method="post" > <div id="deact_funring"> <input type="submit" value="Deactivate" name="deactivate_crbt" size="4" /></div> </form></td>
+       <% end %>
+        <td>Funring Service</td>
+        <td><%= @sub_date %></td>
+        <td><%= button_to "Activate/Change", customercare_vas_actions_path, :remote => true, :style=>'background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:80px' %></td>
+      </tr>
+
+    <tr>
+       <td colspan = "5"> <div id="addcrbt"></div></td>
+    </tr>
+
+    <!-- <tr>
+        <td>Jazeera</td>
+       <% if @jazeera_status == "Inactive" %>
+        <td><%= image_tag("thumbs_down.png", size: "15x15", alt: "Inactive") %></td>
+       <%else%>
+        <td><%= image_tag("thumbs_up.gif", size: "15x15", alt: "Active") %></td>
+       <%end%>
+        <td>Aljazeera Service (D1.50)</td>
+        <td><%= @jazeera_date %></td>
+       <% if @jazeera_status == "Inactive" %>
+        <td><form action="/customercare/vas_actions" method="post" > <div id="active_jazeera"> <input type="submit" value="Activate" name="activate_jazeera" size="4" style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:80px" /></div> </form></td>
+       <% else %>
+        <td><form action="/customercare/vas_actions" method="delete" > <div id="deact_jazeera"> <input type="submit" value="Deactivate" name="deactivate_jazeera" size="4"  style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:80px" /></div> </form></td>
+       <% end %>
+    </tr> -->
+<!--
+    <tr>
+        <td>Sports</td>
+       <% if @sport_status == "Inactive" %>
+        <td><%= image_tag("thumbs_down.png", size: "15x15", alt: "Inactive") %></td>
+       <%else%>
+        <td><%= image_tag("thumbs_up.gif", size: "15x15", alt: "Active") %></td>
+       <%end%>
+        <td>Sport Service (D1.50)</td>
+        <td><%= @sport_date %></td>
+       <% if @sport_status == "Inactive" %>
+        <td><form action="/customercare/vas_actions" method="post" > <div id="active_sport"> <input type="submit" value="Activate" name="activate_sport" size="4" style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:80px"/></div> </form></td>
+       <% else %>
+        <td><form action="/customercare/vas_actions" method="delete" > <div id="deact_sport"> <input type="submit" value="Deactivate" name="deactivate_sport" size="4" style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:80px" /></div> </form></td>
+       <% end %>
+    </tr>
+    -->
+ <!--
+   <tr>
+        <td>99 Names of Allah</td>
+       <% if @names_status == "Inactive" %>
+        <td><%= image_tag("thumbs_down.png", size: "15x15", alt: "Inactive") %></td>
+       <%else%>
+        <td><%= image_tag("thumbs_up.gif", size: "15x15", alt: "Active") %></td>
+       <%end%>
+        <td>99 Names of Allah</td>
+        <td><%= @names_date %></td>
+       <% if @names_status == "Inactive" %>
+        <td><form action="/customercare/vas_actions" method="post" > <div id="active_names"> <input type="submit" value="Activate" name="activate_names" size="4" style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:80px"/></div> </form></td>
+       <% else %>
+        <td><form action="/customercare/vas_actions" method="delete" > <div id="deact_names"> <input type="submit" value="Deactivate" name="deactivate_names" size="4" style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:80px" /></div> </form></td>
+       <% end %>
+    </tr>
+-->
+    <tr>
+        <td>Prayer Time</td>
+       <% if @prayertime_status == "Inactive" %>
+        <td><%= image_tag("thumbs_down.png", size: "15x15", alt: "Inactive") %></td>
+       <%else%>
+        <td><%= image_tag("thumbs_up.gif", size: "15x15", alt: "Active") %></td>
+       <%end%>
+        <td>Prayer Time (D1)</td>
+        <td><%= @prayertime_date %></td>
+        <% if @prayertime_status == "Inactive" %>
+        <td><form action="/customercare/vas_actions" method="post" > <div id="active_prayertime"> <input type="submit" value="&#8195;&#8195;Activate&#8195;&#8195;" name="activate_prayertime" size="4" style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:80px" /></div> </form></td>
+       <% else %>
+        <td><form action="/customercare/vas_actions" method="delete" > <div id="deact_prayertime"> <input type="submit" value="Deactivate" name="deactivate_prayertime" size="4" style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:80px" /></div> </form></td>
+       <% end %>
+    </tr>
+
+    <tr>
+        <td>TOK</td>
+       <% if @tok_status == "Inactive" %>
+        <td><%= image_tag("thumbs_down.png", size: "15x15", alt: "Inactive") %></td>
+       <%else%>
+        <td><%= image_tag("thumbs_up.gif", size: "15x15", alt: "Active") %>&#8195; <%= (@call_duration-1000).abs %> Minutes Remains</td>
+       <%end%>
+        <td>TOK<% if @tok_status == "Active" and @alreadyactive == "true" %> Number: <%=@tok_number %><%end%></td>
+       <% if @tok_status == "Active" %>
+        <td>Start:&#8195; <%= @tok_start_date %><br>End:&#8195;&nbsp; <%= @tok_end_date %></td>
+       <%else%>
+        <td></td>
+       <%end%>
+       <% if @active_faf == "true" and @alreadyactive != "true" %>
+        <td><div id="activate_tok"><%= button_to "Activate", customercare_tok_path, :remote => true, :style=>'background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:80px' %></div></td>
+       <%else%>
+        <td></td>
+       <%end%>
+    </tr>
+    <tr>
+       <td colspan = "5"> <div id="addtok"></div></td>
+    </tr>
+
+    <tr>
+        <td>Horoscope</td>
+       <% if @horoscope_status == "Inactive" %>
+        <td><%= image_tag("thumbs_down.png", size: "15x15", alt: "Inactive") %></td>
+       <%else%>
+        <td><%= image_tag("thumbs_up.gif", size: "15x15", alt: "Active") %></td>
+       <%end%>
+        <td>Horoscope (D1)</td>
+        <td><%= @horoscope_date %></td>
+       <% if @horoscope_status == "Inactive" %>
+        <td><div id="show_horoscope"><%= button_to "Activate", customercare_horoscope_path, :remote => true, :style=>'background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:80px' %></div></td>
+       <% else %>
+        <td><form action="/customercare/vas_actions" method="delete" > <div id="deact_horoscope"> <input type="submit" value="Deactivate" name="deactivate_horoscope" size="4" style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:80px" /></div> </form></td>
+       <% end %>
+    </tr>
+    <tr>
+       <td colspan = "5"> <div id="addhoroscope"></div></td>
+    </tr>
+
+    <tr>
+        <td>Kolareh</td>
+       
+        <td></td>
+       
+        <td>Kolareh Loyalty Service</td>
+        <td></td>
+        <!--<% if @kolareh_status == "Inactive" %>
+        <td><form action="/customercare/vas_actions" method="post" > <div id="active_kolareh"> <input type="submit" value="Activate" name="activate_kolareh" size="4" style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:80px" /></div> </form></td>
+       <% else %>-->
+        <td><form action="/customercare/vas_actions" method="delete" > <div id="deact_kolareh"> <input type="submit" value="Deactivate" name="deactivate_kolareh" size="4" style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:80px" /></div> </form></td>
+       <% end %>
+    </tr>
+
+    <tr>
+      <!-- <td>3G Service</td>
+      <td><%=@token%> MB<br>Expiry: <%=@expiry%></td> -->
+
+ 
+    <tr>
+      <td>3G Service</td>
+      <td><%=@token%> MB <br>Expiry: <%=@expiry%> <br> <%= link_to "Consumption", customercare_gprs_path, :remote => true %></td>
+      <!-- <td><br>Expiry: <%=@expiry%></td> -->
+      <!-- <td><center><b>Amount Purchased:</b></center>
+        <%if !@purchased.blank? %>
+          <%@purchased.each do |purchase|%>
+            <%=(purchase.datapass)%>MB&#8195;<%=purchase.purchase_date%><br>
+          <%end%>
+        <%end%>
+          <br> -->
+          <td><center><b>Amount Purchased:</b></center>
+        <!--<%if !@purchased.blank? %>
+          <%@purchased.each do |purchase|%>
+            <%=(purchase.datapass)%>MB&#8195;<%=purchase.purchase_date%><br>
+          <%end%>
+        <%end%>-->
+
+          <%@purchased.each do |purchase|%>
+          
+          <% case purchase.datapass%>
+                      <%when 1%>
+                       <%=20%>MB<br>
+                       <%when 2%>
+                       <%=50%>MB<br>
+                      <%when 3%>
+                       <%=100%>MB<br>
+                      <%when 4%>
+                       <%=200%>MB<br>
+                      <%when 5%>
+                       <%=500%>MB<br>
+                      <%when 6%>
+                       <%=1%>GB<br> 
+                      <%when 7%>
+                       <%=2%>GB<br> 
+                      <%when 8%>
+                       <%=4%>GB<br>
+                      <%when 9%>
+                       <%=12%>GB<br>
+                       <%end%>
+                       <%end%>
+          <br>
+          <center><b>From Other Number:</b></center>
+          <%if !@extra.blank? %>
+            <%@extra.each do |purchase|%>
+             <!-- <%=(purchase.datapass)%>MB&#8195;<%=purchase.purchase_date%><br>-->
+            <% case purchase.datapass%>
+                      <%when 1%>
+                       <%=20%>MB<br>
+                       <%when 2%>
+                       <%=50%>MB<br>
+                      <%when 3%>
+                       <%=100%>MB<br>
+                      <%when 4%>
+                       <%=200%>MB<br>
+                      <%when 5%>
+                       <%=500%>MB<br>
+                      <%when 6%>
+                       <%=1%>GB<br> 
+                      <% when 7%>
+                       <%=2%>GB<br> 
+                      <%when 8%>
+                       <%=4%>GB<br>
+                      <%when 9%>
+                       <%=12%>GB<br>
+                       <%end%>
+            <!--<%end%>-->
+          <%end%>
+      </td>
+      <td><%if @purchasedd == "true" %>
+            <center><b>Amount Purchased (GMD):</b></center>
+            <% @account_history.each do |result| %>
+              D<%=result.amount.abs%>&#8195;<%=result.time%><br>
+            <%end%>
+          <%end%>
+
+      </td>
+
+      <%=session[:consumption].to_i%> MB
+      </td>
+    </tr>
+    <tr>
+       <td colspan = "5"> <div id="gprsdetails"></div></td>
+    </tr>
+        <tr>
+        <td>Boy Service</td>
+       <% if @boy_status == "Active" %>
+        <td><%= image_tag("thumbs_up.gif", size: "15x15", alt: "Active") %></td>
+       <%else%>
+        <td><%= image_tag("thumbs_down.png", size: "15x15", alt: "Inactive") %></td>
+       <%end%>
+        <td>Boy Service (D1)</td>
+        <td><%= @boy_date %></td>
+       <% if @boy_status == "Inactive" %>
+        <td><form action="/customercare/vas_actions" method="post" > <div id="active_boy"> <input type="submit" value="Activate" name="activate_boy" size="4" style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:80px" /></div> </form></td>
+       <% else %>
+        <td><form action="/customercare/vas_actions" method="delete" > <div id="deact_boy"> <input type="submit" value="Deactivate" name="deactivate_boy" size="4" style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:80px"/></div> </form></td>
+       <% end %>
+    </tr>
+
+        <tr>
+        <td>Girl Service</td>
+       <% if @girl_status == "Active" %>
+        <td><%= image_tag("thumbs_up.gif", size: "15x15", alt: "Active") %></td>
+       <%else%>
+        <td><%= image_tag("thumbs_down.png", size: "15x15", alt: "Inactive") %></td>
+       <%end%>
+        <td>Girl Service (D1)</td>
+        <td><%= @girl_date %></td>
+        <% if @girl_status == "Inactive" %>
+        <td><form action="/customercare/vas_actions" method="post" > <div id="active_girl"> <input type="submit" value="Activate" name="activate_girl" size="4" style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:80px" /></div> </form></td>
+       <% else %>
+        <td><form action="/customercare/vas_actions" method="delete" > <div id="deact_girl"> <input type="submit" value="Deactivate" name="deactivate_girl" size="4" style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:80px" /></div> </form></td>
+       <% end %>
+    </tr>
+
+
+    <tr>
+        <td>SMS Class</td>
+       <% if @smsclass_status == "Active" %>
+        <td><%= image_tag("thumbs_up.gif", size: "15x15", alt: "Active") %></td>
+       <%else%>
+        <td><%= image_tag("thumbs_down.png", size: "15x15", alt: "Inactive") %></td>
+       <%end%>
+        <td>SMS Class Of Service</td>
+        <td><%= @smsclass_date %></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>ICLIP</td>
+       <% if @iclip_status == "Inactive" %>
+        <td><%= image_tag("thumbs_down.png", size: "15x15", alt: "Inactive") %></td>
+       <%else%>
+        <td><%= image_tag("thumbs_up.gif", size: "15x15", alt: "Active") %></td>
+       <%end%>
+        <td>1 Month ICLIP (D5)</td>
+        <td><% if @iclip_status == "Active" %><%= @iclip_date %><%end%></td>
+       <% if @iclip_status == "Inactive" %>
+        <td><% if(@postpaid !="Postpaid") %> <%if @credit >= 5 %> <form action="/customercare/vas_actions" method="post" > <div id="active_iclip"> <input type="submit" value="Activate" name="activate_iclip" size="4" style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:80px"/></div> </form><%end%><%end%>
+        <% if(@postpaid =="Postpaid") %><form action="/customercare/vas_actions" method="post" > <div id="active_iclip"> <input type="submit" value="Activate" name="activate_iclip" size="4" style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:80px"/></div> </form><%end%></td>
+       <% else %>
+        <td><form action="/customercare/vas_actions" method="delete" > <div id="deact_iclip"> <input type="submit" value="Deactivate" name="deactivate_iclip" size="4" style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:80px" /></div> </form></td>
+       <% end %>
+    </tr>
+
+    <% if @postpaid =="Prepaid" %>
+      <tr>
+          <td>Validity</td>
+         <% if @validity_status == "Inactive" %>
+          <td><%= image_tag("thumbs_down.png", size: "15x15", alt: "Inactive") %></td>
+         <%else%>
+          <td><%= image_tag("thumbs_up.gif", size: "15x15", alt: "Active") %></td>
+         <%end%>
+          <td>1 Year Validity (D10)</td>
+          <td><% if @validity_status == "Active" %>Expiry Date: <%= @validity_date %><%end%></td>
+         <% if @validity_status == "Inactive" %>
+          <td><% if(@credit >= 10 and @postpaid =="Prepaid") %><form action="/customercare/vas_actions" method="post" > <div id="active_validity"> <input type="submit" value="Activate" name="activate_validity" size="4" style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:80px"/></div> </form><%end%></td>
+         <% else %>
+          <td><form action="/customercare/vas_actions" method="delete" > <div id="deact_validity"> <input type="submit" value="Deactivate" name="deactivate_validity" size="4" style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:80px" /></div> </form></td>
+         <% end %>
+      </tr>
+
+       <tr>
+          <td>Roaming</td>
+         <% if @roaming_status == "Active" %>
+          <td><%= image_tag("thumbs_up.gif", size: "15x15", alt: "Active") %></td>
+         <%else%>
+          <td><%= image_tag("thumbs_down.png", size: "15x15", alt: "Inactive") %></td>
+         <%end%>
+          <td>1 Year Roaming</td>
+          <td><% if @roaming_status == "Active" %>Expiry Date: <%= @roaming_date %><%end%></td>
+         <% if @roaming_status == "Inactive" %>
+          <td><form action="/customercare/vas_actions" method="post" > <div id="active_roaming"> <input type="submit" value="Activate" name="activate_roaming" size="4" style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:80px" /></div> </form></td>
+         <% else %>
+          <td><form action="/customercare/vas_actions" method="delete" > <div id="deact_roaming"> <input type="submit" value="Deactivate" name="deactivate_roaming" size="4" style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:80px"/></div> </form></td>
+         <% end %>
+       </tr>
+      <% end %>
+
+   <font size="2.5px"> <%= @credit_balance %></font>
+    <font color="red"> <%=flash[:tokerror]%></font>
+</table>

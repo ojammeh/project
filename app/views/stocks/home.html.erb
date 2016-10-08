@@ -1,0 +1,70 @@
+<!-- <div class="center jumbotron">
+<h1>Welcome</h1>
+<h2> -->
+<!-- This is the home page for the
+<a href="http://www.railstutorial.org/">Ruby on Rails Tutorial</a>
+sample application. -->
+<!-- </h2>
+
+</div> -->
+<head>
+  <meta charset="utf-8">
+  <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css"> -->
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  </script>
+</head>
+<div class="container">
+<section>       
+  <div id="container_demo" >
+    <div id="wrapper">
+      <div id="login" class="animate form">
+      
+      <h1>Add Item</h1>
+      <font color="green"><%=flash[:success]%></font><font color="red"><%=flash[:danger]%></font><br>
+	<form action="/stocks/new_item" method="post" >
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<label>Date</label>
+				<input type="text" name="date" id="datepicker" placeholder="Date" required />
+				<label>Item Name</label>
+				<input type="text" name="item_name" placeholder="Item Name" required />
+				<label>Part Number</label>
+				<input type="text" name="part_number" placeholder="Part Number" required />
+				<label>Description</label>
+					<input type="textarea" name="description"  placeholder="Description" required />
+					<br><br>
+				<label> Category </label>
+
+				<select name="category"  class="form-control">
+                <option value="null">---Select Category---</option>
+                <% @cats.each do |cat| %>
+                <option><%= cat.category_name %></option>
+                <% end %>
+                </select>
+              	
+				<label>Stock Amount</label>
+					<input type="text" name="initial_amount"  placeholder="Stock Amount" required />
+				<!-- <label>IN</label>
+					<input type="text" name="in" class="form-control" placeholder="IN" required />
+				<label>OUT</label>
+					<input type="text" name="out"   class="form-control" placeholder="OUT" required /> -->
+
+				<input type="submit" name="submit" id="submit" value="Save" size="4" style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 20px; width:40px" />
+			</div>
+		</div>							
+	</form>
+<p class="change_link">
+      <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+      <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+    </p>
+    </div>
+    </div>
+  </div>  
+</section>
+</div>

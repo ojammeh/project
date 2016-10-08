@@ -1,0 +1,145 @@
+<div class="container">
+  <section>       
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+        
+          <h1>Account History</h1> 
+          <center>
+            <table>
+                <tr>
+                  <th>accnum</th>
+                  <th>Type</th>
+                  <th>OP ID</th> 
+                  <th>Amount</th>
+                  <th>Start Bal</th>
+                  <th>End Bal</th>
+                  <th>Card Num</th>
+                  <th>Start FM</th>
+                  <th>End FM</th>
+                  <th>Start FT</th>
+                  <th>End FT</th>
+                  <th>Time</th>
+                </tr>
+                <% @account_history.each do |result|%>
+                <tr>
+                  <td><%=result.accnum%></td>
+                  <%case result.ssrtype
+                     when 1 %><td>Local terminal operator account creation or credit update</td>
+                  <% when 2 %><td>CSI credit update</td>
+                  <% when 3 %><td>Voucher recharge</td>
+                  <% when 4 %><td>Auto created account</td>
+                  <% when 8 %><td>Card activation initial balance</td>
+                  <% when 9 %><td>Free money reset process</td>
+                  <% when 10 %><td>Manual change of account status to ‘locked’</td>
+                  <% when 11 %><td>Subscriber locked – too many PIN attempts</td>
+                  <% when 12 %><td>Card unlocked using ODBC interface</td>
+                  <% when 15 %><td>Recharge bonus</td>
+                  <% when 16 %><td>Manual change of account status to ‘normal’</td>
+                  <% when 17 %><td>Manual change of account status to ‘closed’</td>
+                  <% when 18 %><td>CoS Migration</td>
+                  <% when 19 %><td>Service Charge</td>
+                  <% when 20 %><td>Standing charge</td>
+                  <% when 21 %><td>Expired</td>
+                  <% when 22 %><td>Cut-off</td>
+                  <% when 23 %><td>Deleted after cut-off</td>
+                  <% when 24 %><td>COS change by local terminal operator</td>
+                  <% when 25 %><td>COS change by CSI</td>
+                  <% when 26 %><td>CSI created account</td>
+                  <% when 27 %><td>CSI deleted account</td>
+                  <% when 28 %><td>Local terminal operator deleted account</td>
+                  <% when 29 %><td>Scheduled  CoS Change</td>
+                  <% when 30 %><td>COS Migration with Roaming disable</td>
+                  <% when 31 %><td>CSI COS Migration with Roaming enable</td>
+                  <% when 32 %><td>CSI COS Migration with Roaming disable</td>
+                  <% when 33 %><td>Subscriber Credit Transfer: Debit</td>
+                  <% when 34 %><td>Subscriber Credit Transfer: Credit</td>
+                  <% when 35 %><td>Inbound Call Bonus</td>
+                  <% when 36 %><td>External Bonus Update</td>
+                  <% when 39 %><td>Wholesale Credit Transfer: Debit</td>
+                  <% when 40 %><td>Wholesale Credit Transfer: Credit</td>
+                  <% when 41 %><td>CSI Locked Account</td>
+                  <% when 42 %><td>CSI Unlocked Account</td>
+                  <% when 43 %><td>Reconnected</td>
+                  <% when 44 %><td>Reactivated</td>
+                  <% when 45 %><td>Free SMS Added via CSI Screens</td>
+                  <% when 46 %><td>Account Re-opened via CSI Screens</td>
+                  <% when 47 %><td>Free Credits Expired</td>
+                  <% when 48 %><td>External reward update</td>
+                  <% when 49 %><td>Subscriber change by CSI</td>
+                  <% when 50 %><td>JDBC modify balance</td>
+                  <% when 51 %><td>JDBC modify free time</td>
+                  <% when 60 %><td>JDBC add Friends & Family number</td>
+                  <% when 61 %><td>JDBC delete Friends & Family number</td>
+                  <% when 62 %><td>JDBC delete Friends & Family type</td>
+                  <% when 70 %><td>JDBC create a SMS distribution list</td>
+                  <% when 71 %><td>JDBC add phone number to a SMS distribution list</td>
+                  <% when 72 %><td>JDBC delete phone number from a SMS distribution list</td>
+                  <% when 73 %><td>JDBC delete a SMS distribution list</td>
+                  <% when 74 %><td>JDBC buy free credits</td>
+                  <% when 80 %><td>General JDBC Transaction</td>
+                  <% when 81 %><td>MMS Point-to-Point</td>
+                  <% when 82 %><td>MMS Mobile to Email</td>
+                  <% when 83 %><td>MMS Email to Mobile</td>
+                  <% when 84 %><td>MMS Portal to Mobile</td>
+                  <% when 90 %><td>Overdraft Granted</td>
+                  <% when 91 %><td>eVoucher Dealer transferred credit</td>
+                  <% when 92 %><td>eVoucher Dealer received credit</td>
+                  <% when 93 %><td>eVoucher Dealer created</td>
+                  <% when 94 %><td>eVoucher Dealer deleted</td>
+                  <% when 95 %><td>eVoucher Dealer balance changed</td>
+                  <% when 96 %><td>eVoucher Dealer PIN changed</td>
+                  <% when 97 %><td>Credited from eVoucher</td>
+                  <% when 100 %><td>Batch Provisioning Account Create</td>
+                  <% when 101 %><td>Batch Provisioning Account Delete</td>
+                  <% when 102 %><td>Batch Provisioning Modify Balance</td>
+                  <% when 103 %><td>Batch Provisioning Account Resynchronisation</td>
+                  <% when 104 %><td>CSI Create and Enrol a Flex Account</td>
+                  <% when 105 %><td>CSI Create and Enrol a Corporate Flex Account</td>
+                  <% when 106 %><td>Pre-expiry</td>
+                  <% when 107 %><td>Pre-cut-off</td>
+                  <% when 111 %><td>Batch payment - Cash</td>
+                  <% when 112 %><td>Batch payment - Cheque</td>
+                  <% when 113 %><td>Batch payment - Credit Card</td>
+                  <% when 121 %><td>Batch refund - Cash</td>
+                  <% when 122 %><td>Batch refund - Cheque</td>
+                  <% when 123 %><td>Batch refund - Credit Card</td>
+                  <% when 151 %><td>PIN Changed</td>
+                  <% when 153 %><td>Voucher used by off-net MSISDN</td>
+                  <% when 154 %><td>Voucher reset</td>
+                  <% when 165 %><td>Total Usage Counter has been reached</td>
+                  <% when 166 %><td>Total Recharge counter has been reached</td>
+                  <% when 167 %><td>Voucher used on external Voucher Management System</td>
+                  <% when 168 %><td>Subscriber has been imported</td>
+                  <% when 169 %><td>Subscriber was exported and deleted</td>
+                  <% when 200 %><td>CSI Add Subscriber DDS Campaign</td>
+                  <% when 201 %><td>CSI Delete Subscriber DDS Campaign</td>
+                  <% when 202 %><td>CSI Add Subscriber Credit Token</td>
+                  <% when 203 %><td>CSI Delete Subscriber Credit Token</td>
+                  <% when 204 %><td>CSI Modify Subscriber Credit Token</td>
+                  <%end%> 
+                  <td><%=result.opid%></td>
+                  <td><%=result.amount%></td>
+                  <td><%=result.strtbal%></td>
+                  <td><%=result.endbal%></td>
+                  <td><%=result.cardnum%></td>
+                  <td><%=result.strtfm%></td>
+                  <td><%=result.endfm%></td>
+                  <td><%=result.strtft%></td>
+                  <td><%=result.endft%></td>
+                  <td><%=result.time%></td>
+                </tr>
+                <%end%>
+            </table>
+            
+          </center>
+              <p></p>                      
+              <p class="change_link">
+                 <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+            </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>

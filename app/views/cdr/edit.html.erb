@@ -1,0 +1,61 @@
+<%if(session[:userrole] == "admin" or session[:userrole] == "reports")%>
+<div class="container">
+  <section>             
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+          
+          <form action="/cdr/update" method ="post" > 
+            <h1>Edit CDR Collection</h1> 
+            <center> <font color="red"> <%= flash[:invalid] %> </font><font color="green"> <%= flash[:done] %> </font> <br/> </center>
+            <center>
+
+                <label for="id"> ID: </label>
+                <input id="<%= @cdr.id%>" size="5" name="id" readonly required="required" type="text" value="<%=@cdr.id%>" />&#8195;
+
+                <label for="source"> Source: </label>
+                <input id="<%= @cdr.id%>" size="18" name="source" required="required" type="text" value="<%=@cdr.source%>" />&#8195;
+
+                <label for="range"> Range: </label>
+                <input id="<%= @cdr.id%>" size="18" name="range" required="required" type="text" value="<%=@cdr.file_range%>" />&#8195;
+
+                <label for="count"> Count: </label>
+                <input id="<%= @cdr.id%>" size="18" name="count" required="required" type="text" value="<%=@cdr.file_count%>" />&#8195;
+
+                <label for="missing"> Missing: </label>
+                <input id="<%= @cdr.id%>" size="18" name="missing" required="required" type="text" value="<%= @cdr.file_missing %>" />&#8195;
+
+            </center>
+            <p class="login button"> 
+              <input type="submit" value="Save & Update"/> 
+            </p>
+          </form>
+              <p></p>                      
+              <p class="change_link">
+                   <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+                </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>
+
+ <%else%>
+<div class="container">
+  <section>       
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+            <h1><font color="red"> You Do Not have Permission to Access This Page !</font></h1> 
+              <p></p>                      
+              <p class="change_link">
+              <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+            </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>
+ <%end%>

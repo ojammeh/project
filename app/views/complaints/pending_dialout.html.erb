@@ -1,0 +1,52 @@
+<div class="container">
+  <section>				
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+        <%if(session[:userrole] == "admin")%>
+            <%= link_to 'New Complaint', complaints_search_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+           | <%= link_to 'Complaint Status', complaints_status_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+           | <%= link_to 'Pending Dialout', complaints_pending_dialout_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+           <%end%>
+          <h1>Customer Care Complaints</h1> 
+          <h2>Pending Dial Out</h2>
+          <center>
+          <div id="notsatisfied"></div>
+            <table>
+                <tr>
+                  <th width="300px">#</th>
+                  <th width="300px">MSISDN</th>
+                  <th width="300px">Complaint</th>
+                  <th width="300px">Feedback</th>
+                  <th width="300px">Time Launched</th>
+                  <th width="300px">Time Completed</th>
+                  <th width="300px">Customer</th>
+                  <th width="300px">Technician</th>
+                  <th width="300px">Agent</th>
+                </tr>
+                <% @pending.each do |result|%>
+                <tr>
+                  <td><%=result.id%></td>
+                  <td><%=result.anumber%><br/><font color="red"><b>Pending Dialout...</b></font></td>
+                  <td><%=result.complaint%><br><%= link_to "Dismiss", {:action=> "dismiss_dialout", :controller => "complaints", :id => result.id} %></td>
+                  <td><font color="red"><b><u><%=result.not_satisfied%></u></b></font> <br/><%=result.technical_comments%></td>
+                  <td><%=result.time_in%></td>
+                  <td><%=result.time_out%></td>
+                  <td><%=result.customer_name%></td>
+                  <td><%=result.technical_user%></td>
+                  <td><%=result.custcare_user%></td>
+                </tr>
+                <%end%>
+            </table>
+            
+          </center>
+              <p></p>                      
+              <p class="change_link">
+			         <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+		        </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>

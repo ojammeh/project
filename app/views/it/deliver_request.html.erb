@@ -1,0 +1,33 @@
+<br/> <center><%= image_tag("banner.jpg", size: "150x40", alt: "Africell") %>&nbsp;&nbsp;
+ <b> IT Delivery Note
+ <br/> <br/>
+
+ Date Raised: <%= @delivery.created_at.strftime("%B %d, %Y")%><br/>
+..........................................................................................................................................................................................</b><br/> <br/>
+ <table style="font-weight: bold;font-size:18px">
+    <tr> <td>Full Name: </td> <td><%= @delivery.user %></td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr> <td>Department: </td> <td> <%= @delivery.department %> </td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr> <td>Requested By:  </td> <td> <%= @delivery.name %> </td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr> <td>Item Category: </td> <td> <%= @delivery.item_category %> </td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr> <td>Item Description: </td> <td><%= @delivery.description%> </td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr> <td>Quantity: </td> <td> <%= @delivery.quantity%> </td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr> <td>Reason: </td> <td> <%= @delivery.reason%> </td></tr>
+    <tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr>
+   <tr><td>Signature:............................................</td><td>&nbsp;</td></tr>
+   <tr><td>&nbsp;</td></tr>
+   <tr> <td>Delivered By: </td> <td> <%= session[:fullname]%> </td></tr>
+    <tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr>
+   <tr><td>Signature:............................................</td><td>&nbsp;</td></tr>
+   <tr><td>&nbsp;</td></tr><tr><td> Date Delivered: <%= @delivery.updated_at.strftime("%B %d, %Y")%></td></tr>
+   <tr><td>&nbsp;</td></tr>
+ </table>
+&nbsp; Your Request has been successfully Delivered.<br/>
+&nbsp; Please print, sign and return this request form to the IT Department
+<br/><br/>
+&nbsp; <b>AITBF 001 - Delivery Note</b>

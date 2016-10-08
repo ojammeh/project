@@ -1,0 +1,53 @@
+<%if session[:userrole] == "admin"%>
+<div class="container">
+  <section>				
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+          
+          <form  action="/datawarehouse/office_logs" > 
+            <h1>Back Office Logs</h1> 
+            <center>             
+              <label for="user"> User </label>
+                  <select name ="user" required="required">
+                      <option value="" disabled selected>Select User</option>
+                    <% @users.each do |user| %>
+                      <option value="<%=user.full_name%>"><%=user.full_name%> / <%=user.name%> /<%=user.department%></option> 
+                      <%end%>
+                  </select> 
+                          
+            </center>
+            <p class="login button"> 
+              <input type="submit" value="Generate" /> 
+						</p>
+          </form>
+          <%= render 'logs' %>
+              <p></p>                      
+              <p class="change_link">
+			           <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+		        </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>
+
+ <%else%>
+<div class="container">
+  <section>       
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+            <h1><font color="red"> You Do Not have Permission to Access This Page !</font></h1> 
+              <p></p>                      
+              <p class="change_link">
+                <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+            </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>
+ <%end%>

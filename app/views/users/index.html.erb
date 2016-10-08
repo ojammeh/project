@@ -1,0 +1,58 @@
+<div class="container">
+  <section>       
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+            <h1> User Management - Users</h1> 
+            <center>
+              <table>
+                <tr>
+                  <th>Username</th>
+                  <th>Full Name</th>
+                  <th>Department</th>
+                  <th>User Role</th>
+                  <th>Other Role</th>
+                  <th>Date Created</th>
+                  <th>Date Updated</th>
+                  <th></th>
+                  <th></th>
+                  </tr>
+                <% @users.each do |user| %>
+                <tr>
+                  <td><%= user.name %></td>
+                  <td><%= user.full_name %></td>
+                  <td><%= user.department %></td>
+                  <td><%= user.role %></td>
+                  <td><%= user.report_role %></td>
+                  <td><%= user.created_at %></td>
+                  <td><%= user.updated_at %></td>
+                  <td><%= link_to 'Edit', edit_user_path(user) %></td>
+                  <td><%= link_to 'delete', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+                <% end %>
+              </table>
+            </center>
+              
+              <p></p>                      
+              <p class="change_link">
+              <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+            </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>
+
+
+
+
+
+
+
+
+
+
+<br>
+
+<%= link_to 'New User', new_user_path %>

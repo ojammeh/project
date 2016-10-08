@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head data-no-turbolink="true" >
+  <title>AUP</title>
+  <br /><br />  
+  <center><%= image_tag("banner.jpg", size: "150x40", alt: "Africell") %>&nbsp;&nbsp;
+  <font style="font-family:Arial Narrow;" size="4" color="#7E17E4"><strong> UNIVERSAL PORTAL</strong></font></center>
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <%= stylesheet_link_tag    "style", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag "demo.css" %>
+  <%= stylesheet_link_tag "style_cdr.css" %>
+  <%= stylesheet_link_tag "animate-custom.css" %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %> 
+  <%= csrf_meta_tags %>
+</head>
+
+<div class="dwmenu">
+
+    <div id="topBar">
+        &nbsp;&nbsp;&nbsp;&nbsp;Logged in as:&nbsp;&nbsp; <font color="#7E17E4"><strong><%=session[:fullname]%></strong></font>
+    <% if session[:user_id] %>
+       <p align="right"><strong> <%= link_to 'Logout', logout_path, method: :delete %>&#8195;</strong></p>
+    <%end%>
+    </div>
+<%if(session[:userrole] == "admin")%>
+    <ul id="nav">
+        <li><%= link_to 'Admin', admin_url %>  
+        </li>
+        <li><a href="#">Data Warehouse</a>
+            <ul>
+                <li><%= link_to 'Track MSISDN', datawarehouse_track_msisdn_path %></li>
+                <li><%= link_to 'Track IMEI', datawarehouse_track_imei_path %></li>
+                <li><%= link_to 'Subscriber Details', datawarehouse_subscriber_records_path %></li>
+                <li><%= link_to 'Back Office Logs', datawarehouse_back_office_logs_path %></li>
+            </ul>
+        </li>
+        <li><a href="#">Reports</a>
+            <ul>
+                <li><a href="#">BSU Reports</a></li>
+                <li><%= link_to 'CDR Collection', cdr_cdr_select_path %></li>
+                <li><a href="#">Projects</a></li>
+                <li><%= link_to 'CustCare Report', admin_cc_report_select_path %></li>
+            </ul>
+        </li>
+        <li><a href="#">Provisioning</a>
+            <ul>
+                <li><%= link_to 'HLR Provisioning', hlr_hlr_select_path %></li>
+                <li><%= link_to 'Create Subscribers', hlr_create_sub_select_path %></li>
+            </ul>
+        </li>
+        <li><a href="#">Services</a>
+            <ul>
+                <li><%= link_to 'Direct Sales', directsales_input_path %></li>
+                <li><a href="#">IT</a>
+                    <ul>
+                        <li><a href="#">IP</a></li>
+                        <li><a href="#">Helpdesk</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Roaming</a></li>
+                <li><a href="#">Finance</a>
+                    <ul>
+                        <li><%= link_to 'New Receipt', cashier_receipt_path %></li>
+                        <li><%= link_to 'Cashier Admin', cashier_products_path %></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><a href="#">Customer Care</a>
+            <ul>
+                <li><%= link_to 'VAS', customercare_vas_select_path %></li>
+                <li><%= link_to 'CYN', cyn_cyn_select_path %></li>
+                <li><%= link_to 'Complaints', complaints_pending_path %></li>
+                <li><%= link_to 'Sim Registration', sim_registration_search_path %></li>
+                <li><%= link_to 'Change Of SIM', cos_cos_select_path %></li>
+                <li><%= link_to 'Over Scratched', customercare_invalid_select_path %></li>
+                <li><%= link_to 'PUK', puk_search_path %></li>
+                <li><%= link_to 'New Manual Sheet', customercare_new_work_sheet_path %></li>
+            </ul>
+        </li>
+        <%if(session[:report_role] == "super")%>
+        <li><a href="#">Users</a>
+            <ul>
+                <li><%= link_to 'All Users', users_path %></li>
+                <li><%= link_to 'Add Users', new_user_path %></li>
+            </ul>
+        </li>
+        <%end%>
+    </ul>
+<%end%>
+<%if(session[:userrole] == "reports")%>
+    <ul id="nav"> 
+        <li><%= link_to 'CDR Collection', cdr_cdr_select_path %></li>         
+    </ul>
+<%end%>
+</div>
+
+<body data-no-turbolink="true" bgcolor="white">
+
+<%= yield %>
+
+
+</body>
+</html>

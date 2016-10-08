@@ -1,0 +1,36 @@
+<%if session[:userrole] == "admin" or session[:username] == "kkeita" or session[:reoirt_role] == "mainhall_super" or session[:report_role] == "callcenter_supervisor"%>
+<div class="container">
+  <section>       
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+          <h1>Add Users</h1>
+          <center>
+			<%= render 'form' %>
+		  </center>
+              <p></p>                      
+              <p class="change_link">
+             Africell
+            </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>
+<%else%>
+<div class="container">
+  <section>       
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+            <h1><font color="red"> You Do Not have Permission to Access This Page !</font></h1> 
+              <p></p>                      
+              <p class="change_link">
+             Africell
+            </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>
+ <%end%>

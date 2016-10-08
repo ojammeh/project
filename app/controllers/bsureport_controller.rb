@@ -1,0 +1,2 @@
+class BsureportController < ApplicationController
+end

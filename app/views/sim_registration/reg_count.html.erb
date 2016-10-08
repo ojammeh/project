@@ -1,0 +1,30 @@
+<div class="container">
+  <section>                   
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+            <h1>Agent Registration Count</h1> 
+          
+            <table>
+                  <tr>
+                        <th>Agent Name</th>
+                        <th> Registration Count</th>
+                  </tr>
+                  <% @regcount.each do |reg| %>           
+                  <tr>
+                  <td><%=reg.sales_person%></td>
+                  <td><%=reg.amount%></td>
+                  </tr> 
+                  <%end%>    
+            </table>
+         
+              <p></p>                      
+              <p class="change_link">
+                      <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+                  </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+</div>

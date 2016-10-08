@@ -1,0 +1,47 @@
+<div class="container">
+  <section>				
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+        
+          <h1>All IP Addresses</h1> 
+          <center>
+          <div id="notsatisfied"></div>
+            <table>
+                <tr>
+                  <th>#</th>
+                  <th>IP Address</th>
+                  <th>MAC Address</th> 
+                  <th>User</th>
+                  <th>Department</th>
+                  <th>Added By</th>
+                  <th>Date</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+                <% @ips.each do |result|%>
+                <tr>
+                  <td><%=result.id%></td> 
+                  <td><%=result.ip%></td>
+                  <td><%=result.mac%></td>
+                  <td><%=result.user%></td>
+                  <td><%=result.comments%></td>
+                  <td><%=result.added_by%></td>
+                  <td><%=result.created_at%></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <%end%>
+            </table>
+            
+          </center>
+              <p></p>                      
+              <p class="change_link">
+			           <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+		        </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>

@@ -1,0 +1,50 @@
+<%if session[:userrole] == "admin" or session[:userrole] == "printout"%>
+<div class="container">
+  <section>				
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+          
+          <form  action="/datawarehouse/msisdn_tracker" > 
+            <h1>Track MSISDN</h1> 
+            <center>             
+              <label for="msisdn" > MSISDN </label>
+              <input id="msisdn" size="8" name="msisdn" required="required" type="text" placeholder="MSISDN"/>            
+              <%= render 'msisdn_month', result: @dates %>          
+            </center>
+            <p class="login button"> 
+              <input type="submit" value="Generate" /> 
+						</p>
+          </form>
+          <center>
+          <%= render 'msisdn' %>
+          </center>
+              <p></p>                      
+              <p class="change_link">
+			           <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+		        </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>
+
+ <%else%>
+<div class="container">
+  <section>       
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+            <h1><font color="red"> You Do Not have Permission to Access This Page !</font></h1> 
+              <p></p>                      
+              <p class="change_link">
+                <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+            </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>
+ <%end%>

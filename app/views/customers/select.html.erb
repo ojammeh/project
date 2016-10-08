@@ -1,0 +1,43 @@
+<div class="container">
+<section>       
+  <div id="container_demo" >
+    <div id="wrapper">
+      <div id="login" class="animate form">
+        <center>
+            <% @customers.each do |customer| %>
+              <form action="/customers/customer_details" method="get" >
+                <div class="row">
+                  <div class="col-md-6 col-md-offset-3">
+                    
+                    <input type="hidden" name="id" value="<%= customer.id%>" class="form-control" readonly> </input>
+                    <label>First Name</label>
+                    <input type="text" name="fname" value="<%= customer.first_name %>" class="form-control" readonly> </input>
+                    <label>Last Name</label>
+                    <input type="text" name="lname" value="<%= customer.last_name %>" class="form-control" readonly> </input>
+                    <label>Number</label>
+                    <input type="text" name="number" value="<%= customer.msisdn %>" class="form-control" readonly> </input>
+                    <input type="hidden" name="user_id" value="<%= customer.user_id %>"  class="form-control" placeholder="User ID" required />
+                    <input type="hidden" name="status" value="1"  class="form-control" placeholder="User ID" required />
+                    <p class="login button"> 
+                    <input type="submit" name="submit" id="submit" value="Attend" />
+                    </p>
+                    <hr>
+                    <br><br>
+                    </div>
+                </div>              
+              </form>
+             <% end %>
+
+             </center>
+                </form>
+                <p></p><br><br>
+                <p class="change_link">
+                  <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2016</font> <br>
+                  <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+                </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+ 

@@ -1,0 +1,26 @@
+<table border="1">
+     <tr>
+      <th>Receipt Nubmer</th>
+      <th>MSISDN</th>
+      <th>Customer Name</th>     
+      <th>Amount/Price</th>
+      <th>VAT</th>
+      <th>Cheque No</th>
+      <th>Date</th>
+      <th>Product</th>
+      <th>Cashier</th>
+    </tr>
+  <% @result.each do |row| %>
+    <tr>
+      <td><%= row.id %></td>
+      <td><%= row.msisdn %></td>
+      <td><%= row.customer %></td>
+      <td><%= row.amount %></td>
+      <td><%= row.vat %></td>
+      <td><%= row.cheque_number %></td>
+      <td><%= row.created_at %></td>
+      <td><%= row.product %></td>
+      <td><%= row.cashier %></td>
+    </tr>
+<%end%>
+</table>

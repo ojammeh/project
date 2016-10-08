@@ -1,0 +1,59 @@
+<head>
+<script type='text/javascript'>
+function Validate(objForm) {
+    var v1 = objForm.elements['initial_amount'].value;
+    var v2 = objForm.elements['outs'].value;
+    if (Math.abs(+v1 <= +v2)) {
+        alert("Stock cannot be over exceeded");
+        return false;
+    }
+    // alert('no duplicate, submit the form');
+    return true;
+}
+</script>
+</head>
+<div class="container">
+<section>       
+  <div id="container_demo" >
+    <div id="wrapper">
+      <div id="login" class="animate form">
+      
+      <h1>Stock Out</h1>
+      <font color="green"><%=flash[:success]%></font><font color="red"><%=flash[:danger]%></font><br>
+
+<form action="/stocks/update_stock" method="post" onsubmit="javscript:return Validate(this);">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<input type="hidden" name="id" value="<%= @edititems.id%>"></input>
+				<label>Date</label>
+				<input type="text" name="date" id="datepicker" value="<%= @edititems.add_date%>"  placeholder="Date" required />
+				<label>Part Number</label>
+				<input type="text" name="part_number"  value="<%= @edititems.part_no %>" placeholder="Part Number" required />
+				<label>Description</label>
+					<input type="textarea" name="description"  value="<%= @edititems.description%>" placeholder="Description" required />
+				<label>Stock Amount</label>
+					<input type="text" name="initial_amount"   value="<%= @edititems.initial_amount%>" placeholder="Stock Amount" required />
+				<label>Site</label>
+					<input type="text" name="site"  value="<%= @edititems.site%>" placeholder="Site" required />
+				<label>IN</label>
+					<input type="text" name="in"  value="<%= @edititems.item_in%>" placeholder="IN" required  readonly/>
+				<label>Stock Out</label>
+					<input type="text" name="out"   value="<%= @edititems.item_out%>" placeholder="OUT"  readonly/>
+				<label>Balance</label>
+					<input type="text" name="bal"  value="<%= @edititems.balance%>" placeholder="IN" readonly />
+				<label>OUT</label>
+					<input type="text" name="outs"     placeholder="OUT" required />
+					
+				<input type="submit" name="submit" id="submit" value="Item Out" size="4" style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 20px; width:40px" />
+			</div>
+		</div>							
+	</form>
+<p class="change_link">
+      <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+      <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+    </p>
+    </div>
+    </div>
+  </div>  
+</section>
+</div>

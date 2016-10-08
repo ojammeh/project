@@ -1,0 +1,25 @@
+<div class="container">
+  <section>				
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+          <form  action="/sim_registration/search_result" > 
+            <h1>PUK</h1> 
+            <center> 
+            <font color="green"> <%=flash[:registered]%></font><br/>       
+              <label for="msisdn" >MSISDN / IMSI</label>
+              <input id="msisdn" size="12" name="msisdn" required="required" onkeypress="return isNumberKey(event)" maxlength="7" type="text" />            
+            </center>
+            <p class="login button"> 
+              <input type="submit" value="Submit" /> 
+						</p>
+          </form>
+              <p></p>                      
+              <p class="change_link">
+			       Africell
+		        </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>

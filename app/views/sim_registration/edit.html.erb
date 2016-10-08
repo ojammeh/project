@@ -1,0 +1,29 @@
+<div class="container">
+<section>       
+  <div id="container_demo" >
+    <div id="wrapper">
+      <div id="login" class="animate form">
+		<% provide(:title, "Edit") %>
+			<h1>Update</h1>
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3">
+					 <font color="green"><%=flash[:success]%></font><font color="red"><%=flash[:danger]%></font><br>
+					<%= form_for(@editreg, :url => {:action => 'update', :id => @editreg.id}) do |f| %>
+						<%= f.label :ID_Type %>
+						<%= f.select :id_type, ['biometric', 'drivers_license', 'voter_card', 'passport', 'residence_permit', 'foreign_passport', 'foreign_id_card', 'alien_card', 'non_gam_biometric_id']%>
+						<%= f.label :ID_Number %>
+						<%= f.text_field :id_number %>
+						<%= f.submit "Save changes", style: 'background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:60px' %>
+					<% end %>
+					</div>
+				</div>	
+
+			<p class="change_link">
+		      <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+		      <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+		    </p>
+
+		</div>
+	</div>
+ </div>
+</section>

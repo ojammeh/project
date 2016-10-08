@@ -1,0 +1,40 @@
+<table>
+              <tr>
+                <th>Call Type</th>
+                <th>A Number</th>     
+                <th>B Number</th>
+                <th>IMEI</th>
+                <th>Duration</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Cellida</th>
+              </tr>
+        <% for row in @result.each do %>
+          <tr>
+            <td><%=row.CallTransactionType%></td>
+          <% if (row.Anumber.to_s[0..3] == "2207" or row.Anumber.to_s[0..3] == "2202") %>
+            <td><%= link_to row.Anumber, datawarehouse_sub_details_path(:msisdn => row.Anumber.to_s[3..9]),:onclick=>"window.open(this.href,'subscriber_details', 'height=700, width=1200');return false;"%></td>
+          <%else%>
+            <td><%=row.Anumber %></td>
+          <%end%>
+          <% if (row.Bnumber.to_s[0..3] == "2207" or row.Bnumber.to_s[0..3] == "2202") %>
+            <td><%= link_to row.Bnumber, datawarehouse_sub_details_path(:msisdn => row.Bnumber.to_s[3..9]),:onclick=>"window.open(this.href,'subscriber_details', 'height=650, width=1000');return false;" %></td>
+            <%else%>
+            <td><%=row.Bnumber %></td>
+          <%end%>
+            <td><%=row.ServedIMEI %></td>
+            <td><%=row.CallDuration %></td>
+            <td><%=row.StartDate %></td>
+            <td><%=row.StartTime[0..7] %></td>
+          <% if (!(row.CellIdA.blank?) and (!Site2g3g.find_by_sql("select * from Sites2g3g where CELLID = '#{row.CellIdA}'").blank?)) %>
+            <%@cells = Site2g3g.find_by_sql("select CELLNAME as cellname from Sites2g3g where CELLID = '#{row.CellIdA}' order by CELLNAME")%>
+            <%@cells.each do |cell|%>
+                <td><%=cell.cellname%></td>
+            <%end%>
+          <%else%>
+            <td><%=row.CellIdA %></td>
+          <%end%>
+          </tr>
+          <%end%>
+</table>
+          

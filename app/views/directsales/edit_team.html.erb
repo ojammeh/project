@@ -1,0 +1,33 @@
+<div class="container">
+  <section>				
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+          &#8195;&#8195;<%= link_to 'List Entries', directsales_list_path %> | <%= link_to 'New Sim Entry', directsales_input_path %> | <%= link_to 'List Teams', directsales_list_teams_path %> | <%= link_to 'Add Team', directsales_add_team_path %>
+          <form  action="/directsales/update_team" method="post"> 
+            <h1>Direct Sales</h1> 
+            <center> <font color="red"> <%= flash[:error] %> </font><font color="green"> <%= flash[:success] %> </font> <br/> </center>
+            <center> <input name="id" type="hidden" value="<%=@team.id%>" />
+
+              <label for="teamid"> Team ID </label>
+              <input id="teamid" size="20" name="teamid" required type="text" value="<%=@team.team_id%>"/>&#8195;
+
+
+              <label for="tleader">Team Leader: </label>
+              <input id="tleader" size="20" name="tleader" required type="text" value="<%=@team.team_leader%>"/>&#8195;
+
+            </center>
+            <p class="login button"> 
+              <input type="submit" value="Save & Update" /> 
+						</p>
+          </form>
+              <p></p>                      
+              <p class="change_link">
+			           <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+		        </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>

@@ -1,0 +1,17 @@
+
+<table>
+  <tr>
+    <th>IMEI</th>
+    <th>MSISDN</th>     
+    <th>Date</th>
+    <th>Time</th>
+  </tr>
+<% @result.each do |row| %>
+  <tr>
+    <td><%= row.servedimei %></td>
+    <td><%= row.servedmsisdn %></td>
+    <td><%= row.startofchargingdate %></td>
+    <td><%= row.tmstamp.to_s[10..18] %></td>
+  </tr>
+<%end%>
+</table>

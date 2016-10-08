@@ -1,0 +1,40 @@
+<div class="container">
+  <section>				
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+        <%if(session[:userrole] == "admin" or session[:userrole] == "outlet")%>
+          <%= link_to 'Other Receipts', cashier_other_receipt_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+          <%end%>
+          <form  action="/cashier/new_receipt" > 
+            <h1>New Receipt</h1> 
+
+            <center>        
+            
+              <label for="name">Received From:</label>
+              <input id="name" size="30" name="name" required="required" type="text" placeholder="Name"/>&#8195;
+
+              <label for="number">Number:</label>
+              <input id="number" size="12" name="number" required="required" onkeypress="return isNumberKey(event)" type="text" placeholder="Number"/> &#8195;
+
+              <select size="1" name="being" id="being">
+                 <% for product in @products do%>
+                   <option value="<%= product.id%>"><%= product.name.to_s+" "+" (GMD "+product.price.to_s+")" %></option>
+                 <% end %>
+              </select>
+
+            </center>
+            <p class="login button"> 
+              <input type="submit" value="Generate" name="new_receipt" /> 
+						</p>
+          </form>
+              <p></p>                      
+              <p class="change_link">
+			         <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+		        </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>

@@ -1,0 +1,2 @@
+module CustcaresalesHelper
+end

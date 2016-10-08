@@ -1,0 +1,110 @@
+<div class="container">
+<section>				
+    <div id="container_demo" >
+
+        <div id="wrapper">
+            <div id="login" class="animate form">
+            <%if(session[:userrole] == "admin" or session[:userrole] == "outlet" or session[:userrole] == "sales" or session[:username] == "atarawally" or session[:username] == "mtrinn")%>
+             <%= link_to 'Add Sales', custcaresales_stock_out_select_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+           | <%= link_to 'List Sales', custcaresales_list_transactions_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+           | <%= link_to 'List Items', custcaresales_list_items_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+           | <%= link_to 'Added Stock', custcaresales_stock_in_list_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+           | <%= link_to 'Banked', custcaresales_list_banked_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+           | <%= link_to 'Damaged Items', custcaresales_damaged_list_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+           <%end%>
+           <%if(session[:username] == "atarawally" or session[:username] == "mtrinn" or session[:userrole] == "sales")%>
+           | <%= link_to 'Add Item', custcaresales_add_item_select_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+           | <%= link_to 'Add Stock', custcaresales_add_stock_select_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+           | <%= link_to 'Bank Money', custcaresales_bank_money_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+           | <%= link_to 'Add Damaged', custcaresales_damaged_select_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+           <%end%>
+           <br><br>
+              <center>
+                <form  action="/custcaresales/stock_out" method="post" > 
+                    <h1>Sales</h1> 
+                    <%=flash[:success]%><br/>
+                        <select name ="item" required="required">
+                        <option value="" disabled selected>Select Item</option>
+                          <% @items.each do |item| %>
+                            <option value="<%= item.name %>"><%= item.name %> <%= item.price %></option>
+                          <% end %>
+                        </select>&#8195;&#8195;
+
+                        <label for="amount"> Amount </label>
+                        <input id="amount" size="8" name="amount" required="required" type="text" placeholder="Amount"/>&#8195;&#8195;
+
+                          <label for="date">Date:</label>
+                            <select size="1" name="month1" id="month1" required="required">
+                            <option value="" disabled selected>Month</option>
+                              <option value="01-">Jan</option>
+                              <option value="02-">Feb</option>
+                              <option value="03-">Mar</option>
+                              <option value="04-">Apr</option>
+                              <option value="05-">May</option>
+                              <option value="06-">Jun</option>
+                              <option value="07-">Jul</option>
+                              <option value="08-">Aug</option>
+                              <option value="09-">Sep</option>
+                              <option value="10-">Oct</option>
+                              <option value="11-">Nov</option>
+                              <option value="12-">Dec</option>
+                            </select>
+                      
+                            <select size="1" name="day1" id="day1" required="required">
+                            <option value="" disabled selected>Day</option>
+                              <option value="01">01</option>
+                              <option value="02">02</option>
+                              <option value="03">03</option>
+                              <option value="04">04</option>
+                              <option value="05">05</option>
+                              <option value="06">06</option>
+                              <option value="07">07</option>
+                              <option value="08">08</option>
+                              <option value="09">09</option>
+                              <option value="10">10</option>
+                              <option value="11">11</option>
+                              <option value="12">12</option>
+                              <option value="13">13</option>
+                              <option value="14">14</option>
+                              <option value="15">15</option>
+                              <option value="16">16</option>
+                              <option value="17">17</option>
+                              <option value="18">18</option>
+                              <option value="19">19</option>
+                              <option value="20">20</option>
+                              <option value="21">21</option>
+                              <option value="22">22</option>
+                              <option value="23">23</option>
+                              <option value="24">24</option>
+                              <option value="25">25</option>
+                              <option value="26">26</option>
+                              <option value="27">27</option>
+                              <option value="28">28</option>
+                              <option value="29">29</option>
+                              <option value="30">30</option>
+                              <option value="31">31</option>
+                            </select>
+
+                            <select size="1" name="year1" id="year1" required="required">
+                            <option value="" disabled selected>Year</option>
+                              <option value="2016-">2016</option>
+			                        <option value="2015-">2015</option>
+                            </select>&#8195;&#8195;
+
+
+              </center>
+                    <p class="login button"> 
+                        <input type="submit" value="      Save     "/> 
+					                </p>
+
+                    <p></p>
+                </form>
+                    <p class="change_link">
+						<font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+					</p>
+            </div>
+        </div>
+    </div>  
+</section>
+ </div>

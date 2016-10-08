@@ -1,0 +1,55 @@
+<div class="container">
+  <section>       
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+        <%= link_to 'Pending Requests', it_pending_requests_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+        <h1>New IT Request</h1>
+        <center>
+          <form  action="/it/new_it_request" > 
+          <font color="green"> <%=flash[:message]%></font><br/> 
+
+            <label for="name" > Requested By: </label>
+            <input id="name" name="name" required="required" type="text" placeholder="Name"/>&#8195;
+
+            <label for="item_category" > Item Category: </label>
+            <select name="item_category" id="item_category">
+                <option value="Catridge">Catridge</option>
+                <option value="Desktop">Desktop</option>
+                <option value="Hardware">Hardware</option>
+                <option value="Hard Disk">Hard Disk</option>
+                <option value="Laptop">Laptop</option>
+                <option value="Printer">Printer</option>
+                <option value="Scanner">Scanner</option>
+                <option value="Screen">Screen</option>
+                <option value="Switch">Switch</option>
+                <option value="Others">Others</option>
+            </select>&#8195;
+
+            <label for="quantity" > Quantity: </label>
+            <input id="quantity" name="quantity" required="required" onkeypress="return isNumberKey(event)" maxlength="5" type="text" placeholder="Quantity"/><br/><br/>
+
+            <label for="description"> Item Description </label>
+            <textarea id="description" name="description" rows="2" cols="30" type="text" ></textarea>&#8195;
+
+            
+
+            <label for="reason"> Reason For Request</label>
+            <textarea id="reason" name="reason" rows="2" cols="30" type="text" ></textarea><br/><br/>
+
+            <p class="login button"> 
+                <input type="submit" value="Submit" name="new_request" />
+                
+            </p>
+          </form>
+          </center>
+              <p></p>                      
+              <p class="change_link">
+                <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+            </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>

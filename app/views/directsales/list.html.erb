@@ -1,0 +1,58 @@
+<div class="container">
+  <section>				
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+            &&#8195;&#8195;<%= link_to 'List Entries', directsales_list_path %> | <%= link_to 'New Sim Entry', directsales_input_path %> | <%= link_to 'List Teams', directsales_list_teams_path %> | <%= link_to 'Add Team', directsales_add_team_path %>
+            <h1>Direct Sales List of Entries</h1> 
+            <%= paginate @list %>
+            <center>
+              <table>
+                <tr>
+                  <th>Date</th>
+                  <th>Dealer Code</th>
+                  <th>Dealer Name</th>
+                  <th>Team ID</th>
+                  <th>Team Telephone No</th>
+                  <th>Destination</th>
+                  <th>Team Leader</th>
+                  <th>SIM Quantity</th>
+                  <th>Start Serial No</th>
+                  <th>End Serial No</th>
+                  <th>Start IMSI Range</th>
+                  <th>End IMSI Range</th>
+                  <th>Delete</th>
+                </tr>
+
+                <% @list.each do |lists| %>
+                <tr>
+                  <td><%=lists.date%></td>
+                  <td><%=lists.Dealer_Code%></td>
+                  <td><%=lists.Dealer_Name%></td>
+                  <td><%=lists.Team_ID%></td>
+                  <td><%=lists.Team_T_No%></td>
+                  <td><%=lists.Destination%></td>
+                  <td><%=lists.Team_Leader%></td>
+                  <td><%=lists.SIM_Quantity%></td>
+                  <td><%=lists.Start_Serial_No%></td>
+                  <td><%=lists.End_Serial_No%></td>
+                  <td><%=lists.Start_IMSI_Range%></td>
+                  <td><%=lists.End_IMSI_Range%></td>
+                  <td><%= link_to "delete", { :controller => 'directsales', :action => 'delete', :id => lists.id }, :confirm => "Are you sure You want to delete this record?", :method => :post %></td>
+                  
+                </tr>
+                <%end%>
+              </table>
+            </center>
+
+
+              <p></p>                      
+              <p class="change_link">
+			           <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+		        </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>

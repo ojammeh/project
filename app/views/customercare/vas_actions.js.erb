@@ -1,0 +1,8 @@
+$( "#addcrbt" ).html( "<%= escape_javascript( render 'activate_crbt' ) %>" );
+
+    $('#activate_tone').click(function() { 
+        $.blockUI({ 
+            message: '<h1>Activating FunRing...</h1>', 
+            timeout: 30000 
+        }); 
+    }); 

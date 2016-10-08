@@ -1,0 +1,49 @@
+<!-- <meta http-equiv="refresh" content="5"> -->
+<div class="container">
+<section>       
+  <div id="container_demo" >
+    <div id="wrapper">
+      <div id="login" class="animate form">
+      <h1>All Agents</h1>
+      <center>
+      		<table>
+				 <tr>
+				<th>Full Name</th>
+				<th>Agents ID</th>
+				<th>Status</th>
+        		<th>Transactions Per Day</th>
+				</tr>
+			<% @users.each do |user| %>
+
+				<tr>
+					<td><%=user.full_name%></td>
+					<td><%=user.name%></td>
+					<% if current_user.desk_role? && !current_user?(user) %>
+			  		<td>
+					 <% if @counts[user.id] %>
+				   		<%= link_to "assign", {:controller => "customers", :action => "assign", :id => user.id}, :method => :get %>
+					 <b style="color: red;"><%=  @counts[user.id] %></b> <strong>Customer</strong>
+	         		</td>
+					 <% else %>
+						 <%= link_to "assign", {:controller => "customers", :action => "assign", :id => user.id}, :method => :get %>
+						 <%= image_tag('free.png', :alt => "Active", :border => 0)%>
+					 <% end %>
+
+					<% end %>
+         <b> <td style="color:  red;"><%= @totals[user.id] %></td></b>
+			<% end %>
+
+			</tr>
+			</table>
+				</center>
+				</form>
+				<p></p><br><br>
+				<p class="change_link">
+			      <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2016</font> <br>
+			      <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+			    </p>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>

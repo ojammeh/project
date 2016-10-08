@@ -1,0 +1,32 @@
+<div class="container">
+  <section>				
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+            <%if(session[:userrole] == "admin")%>
+            <%= link_to 'New Complaint', complaints_search_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+           <%end%>
+           | <%= link_to 'Complaint Status', complaints_status_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+           <%if(session[:report_role] == "callcenter_supervisor" or session[:userrole] == "admin")%>
+           | <%= link_to 'Pending Dialout', complaints_pending_dialout_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %>
+           <%end%>
+          <form  action="/complaints/search_result" > 
+            <h1>Customer Care Complaints</h1> 
+            <center>             
+              <label for="msisdn" > MSISDN </label>
+              <input id="msisdn" size="8" name="msisdn" required="required" onkeypress="return isNumberKey(event)" maxlength="7" type="text" placeholder="MSISDN"/>            
+            </center>
+            <p class="login button"> 
+              <input type="submit" value="Submit" /> 
+						</p>
+          </form>
+              <p></p>                      
+              <p class="change_link">
+			         <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+		        </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>

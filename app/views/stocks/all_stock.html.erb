@@ -1,0 +1,61 @@
+<style type="text/css">
+	.hide{
+
+visibility: hidden
+
+}
+
+</style>
+
+<div class="container">
+<section>       
+  <div id="container_demo" >
+    <div id="wrapper">
+      <div id="login" class="animate form">
+      
+      <h1>All Stocks</h1>
+      <font color="green"><%=flash[:success]%></font><font color="red"><%=flash[:danger]%></font><br>
+<center>
+<table>
+	<tr>
+		<th>Date</th>
+		<th>Item Name</th>
+		<th>Part Number</th>
+		<th>Description</th>
+		<th>Category</th>
+		<th>Initial Amount</th>
+		<th></th>
+		<th>OUT</th>
+		<th>Balance</th>
+		<th>Site</th>
+		<th>Edit</th>
+		<th>Delete</th>
+	</tr>
+	<% @itemz.each do |item| %>
+	<tr>
+		<td><%= item.add_date %></td>
+		<td><%= item.item_name %></td>
+		<td><%= item.part_no %></td>
+		<td><%= item.description %></td>
+		<td><%= item.category %></td>
+		<td><%= item.initial_amount %></td>
+		<td class="hide"><%= item.item_in %></td>
+		<td><%= item.item_out %></td>
+		<td><%= item.balance %></td>
+		<td><%= item.site %></td>
+		<td> <%= link_to 'Stock Out', {:controller => 'stocks', :action => 'edit', :id => item.id }, :method => :get%></td>
+		<td><%= link_to image_tag("delete.gif", alt: "delete"), {:controller => 'stocks', :action => 'destroy', :id => item.id}, :method => :delete, data: { confirm: "Are you sure You want to delete?" } %></td>
+		<%end%>
+	</tr>
+	</table>
+	</center>        
+    <p class="change_link">
+      <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+      <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+    </p>
+    </div>
+    </div>
+  </div>  
+</section>
+</div>
+

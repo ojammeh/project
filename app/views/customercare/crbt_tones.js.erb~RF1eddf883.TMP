@@ -1,0 +1,1 @@
+$( "#addcrbt" ).html( "<%= escape_javascript( render :partial => "activate_crbt" ) %>" );

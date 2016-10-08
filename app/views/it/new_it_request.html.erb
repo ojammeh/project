@@ -1,0 +1,31 @@
+<br/> <center><%= image_tag("banner.jpg", size: "150x40", alt: "Africell") %>&nbsp;&nbsp;
+ <b> IT Request Form
+ <br/> <br/>
+
+ Date: <%= @request.created_at.strftime("%B %d, %Y")%><br/><br/> <br/>
+..........................................................................................................................................................................................</b><br/> <br/>
+ <table style="font-weight: bold;font-size:18px">
+    <tr> <td>Full Name: </td> <td><%= @request.user %></td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr> <td>Department: </td> <td> <%= @request.department %> </td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr> <td>Requested By:  </td> <td> <%= @request.name %> </td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr> <td>Item Category: </td> <td> <%= @request.item_category %> </td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr> <td>Item Description: </td> <td><%= @request.description%> </td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr> <td>Quantity: </td> <td> <%= @request.quantity%> </td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr> <td>Reason: </td> <td> <%= @request.reason%> </td></tr>
+    <tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr>
+    <tr><td>Requested By Signature:............................................</td><td>&nbsp;</td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr><td>Dept Head Name:...............................................................</td><td>&nbsp;</td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr><td>Dept Head Signature:.....................................................</td><td>&nbsp;</td></tr>
+    <tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr>
+
+ </table>
+&nbsp; Your Request has been successfully submitted.<br/>
+&nbsp; Please print, sign and send this request form to IT the Department

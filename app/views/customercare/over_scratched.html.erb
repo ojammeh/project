@@ -1,0 +1,54 @@
+<div class="container">
+  <section>				
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+           <%= link_to(image_tag("back.jpg", size: "70x30", alt: "Inactive"), customercare_invalid_select_path) %>
+
+            <h1>Over Scratched Cards</h1> 
+            <center> <font color="red"> <%= flash[:invalid] %> </font><font color="green"> <%= flash[:done] %> </font> <br/> </center>
+            <center>       <b>Already Used</b>
+            <table>
+            <% if @results.blank? %>
+                <tr>
+                  <th>Used By</th>
+                  <th>Serial Number</th>
+                  <th>Date Used</th>
+                 <%if !@agent.blank? %>
+                  <th>Agent Name</th>
+                  <th>Customer Name</th>
+                 <%end%>
+                </tr>
+                <% @getmsisdn.each do |getms| %>
+                  <td><%=getms.subscriber_id%></td>
+                  <td><%=@serialnumber%></td>
+                  <td><%=getms.allocated_time%></td>
+                <%end%>
+
+              <%if @getmsisdn.blank? %>
+                <% @queryoracle.each do |ora| %>
+                  <td><%=ora.MSISDN%></td>
+                  <td><%=@serialnumber%></td>
+                  <td><%=ora.DATEUSED%></td>
+                <%end%>
+              <%end%>
+              <%if !@agent.blank? %>
+                <% @agent.each do |name| %>
+                  <td><%=name.user%></td>
+                  <td><%=name.name%></td>
+                <%end%>
+              <%end%>
+
+            <%end%>
+            </table>
+            </center>
+              <p></p>                      
+              <p class="change_link">
+			         <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+		        </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>

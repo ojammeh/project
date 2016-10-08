@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head data-no-turbolink="true" >
+  <title>AUP</title>
+  <center><%= image_tag("banner.jpg", size: "200x60", alt: "Africell") %>&nbsp;&nbsp;
+  <font style="font-family:Arial Narrow;" size="5" color="#7E17E4"><strong> UNIVERSAL PORTAL</strong></font></center>
+  <%= stylesheet_link_tag    "style", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag "demo.css" %>
+  <%= stylesheet_link_tag "style2.css" %>
+  <%= stylesheet_link_tag "animate-custom.css" %>
+  <!--  <%= javascript_include_tag "application", "data-turbolinks-track" => true %> -->
+  <%= csrf_meta_tags %>
+</head>
+
+<body bgcolor="white">
+
+<%= yield %>
+
+</body>
+</html>

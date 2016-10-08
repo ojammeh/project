@@ -1,0 +1,57 @@
+<div class="container">
+  <section>				
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+          
+          <form  action="/cashier/new_product" method="post"> 
+            <h1>Products</h1> 
+            <center>             
+              <label for="product">Product Name: </label>
+              <input id="product" size="20" name="product" required="required" type="text" placeholder="Product Name"/>
+                              
+              <label for="amount">Amount: </label>
+              <input id="amount" size="20" name="amount" required="required" type="text" placeholder="Product Amount (GMD)"/>
+
+            </center>
+            <p class="login button"> 
+              <input type="submit" value="Create Product" /> 
+						</p>
+          </form>
+          <center>
+          <font color="green"> <%=flash[:success]%></font>
+          <font color="red"> <%=flash[:error]%></font>
+          <table>
+              <tr>
+                <th>Product Name</th>
+                <th>Amount</th>     
+                <th>Created By</th>
+                <th>Date Created</th>
+                <th>Updated By</th>
+                <th>Date Updated</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            <% @products.each do |product| %>
+              <tr>
+                <td><%= product.name %></td>
+                <td><%= product.price %></td>
+                <td><%= product.created_at%></td>
+                <td><%= product.by %></td>
+                <td><%= product.updated_at %></td>
+                <td><%= product.by %></td>
+                <td><%= link_to "Edit" , { :controller => 'cashier', :action => 'edit_product', :id => product.id }, :method => :post%></td>
+                <td><%= link_to "Delete" , { :controller => 'cashier', :action => 'delete_product', :id => product.id }, :confirm => "Are you sure you want to delete this Product?", :method => :post%></td>
+              </tr>
+            <%end%>
+          </table>
+          </center>
+              <p></p>                      
+              <p class="change_link">
+			       Africell
+		        </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>

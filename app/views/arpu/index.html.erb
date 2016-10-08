@@ -1,0 +1,74 @@
+
+<script type="text/javascript">    
+  setTimeout(function(){
+  window.location.reload(1);
+  }, 300000);
+</script>
+
+<%if session[:userrole] == "admin" or session[:userrole] == "arpu"%>
+<div class="container">
+  <section>				
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+            <h1>High ARPU Offer</h1>
+                   <%=flash[:processed]%>
+                   <%= paginate @numbers %>   
+          <center>
+           <table>
+              <tr>
+                <th></th>
+                <th>MSISDN</th>
+                <th>1 GB Data</th>
+                <th>1 Hour Africell Minutes</th>
+                <th>None</th>
+                <th>Action</th>
+              </tr>
+            <% for row in @numbers.each do %>
+              <tr>
+                <td><%= row.id %></td>
+                <td><%= row.msisdn %></td>
+                <form action="/arpu/update">
+                <td><input type="checkbox" name="data" value="1" /></td>
+                <td><input type="checkbox" name="call" value="1" /></td>
+                <td><input type="checkbox" name="none" value="1" /></td>
+                <input type="hidden" name="id" value="<%=row.id%>">
+                <input type="hidden" name="msisdn" value="<%=row.msisdn%>">
+                <td><input type="submit" value="Submit" size="4"  style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:80px" /></td>
+                <td><%=session[:game]%></td>
+
+                </form>
+              </tr>
+            <%end%>
+            
+            </table>
+          </center>
+              <p></p>                      
+              <p class="change_link">
+			           <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+		        </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>
+
+ <%else%>
+<div class="container">
+  <section>       
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+            <h1><font color="red"> You Do Not have Permission to Access This Page !</font></h1> 
+              <p></p>                      
+              <p class="change_link">
+                <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+            </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>
+ <%end%>

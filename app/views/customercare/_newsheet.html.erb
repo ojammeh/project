@@ -1,0 +1,117 @@
+<form  action="/customercare/new_sheet" > 
+
+  <label for="msisdn" > MSISDN: </label>
+	<input id="msisdn" name="msisdn" required="required" onkeypress="return isNumberKey(event)" maxlength="7" type="text" placeholder="MSISDN"/>&#8195;
+
+  <label for="name" > First Name: </label>
+	<input id="name" name="name" required="required" type="text" placeholder="Customer First Name"/>&#8195;
+
+  <label for="l_name" > Last Name: </label>
+  <input id="l_name" name="l_name" required="required" type="text" placeholder="Customer Last Name"/><br/><br/>
+
+  <label for="id_type">ID Type: </label>
+    <select name ="id_type">
+      <option value="0" disabled selected>ID Type</option>
+      <option value="biometric">Biometric ID</option>
+      <option value="drivers_license">Driver's License</option>
+      <option value="voter_card">Voter's Card</option>
+      <option value="passport">National Passport</option>
+      <option value="residence_permit">Residence Permit</option>
+      <option value="foreign_passport">Foreign Passport</option>
+      <option value="foreign_id_card">Foreign ID Card</option>
+      <option value="alien_card">Alien Card</option>
+      <option value="non_gam_biometric_id">Non-Gambian Biometric ID</option> 
+    </select>&#8195;
+
+  <label for="id_number" > ID Number: </label>
+  <input id="id_number" size="15" name="id_number" type="text" placeholder="ID Number"/>&#8195;
+
+  <label for="transaction_type" > Transaction Type: </label>
+	     <select width="2" name ="transaction_type" required="required">
+        <option value="" disabled selected>Transaction Type</option>
+        <option value="3G Service">3G Service 120</option>
+        <option value="99 Names of Allah">99 Names of Allah</option>
+        <option value="Advance I-CLIP">Advance I-CLIP 127</option>
+        <option value="Jazeera">Al-Jazeera Service 7272</option>
+        <option value="BBC Sports">BBC Sports 3121</option>
+        <option value="Black List">Black List</option>
+        <option value="Boy Service">Boy Service 7001</option>
+        <option value="Call Divert">Call Divert +220</option>
+        <option value="Change of Language">Change of Language</option>
+        <option value="Complements">Complements</option>
+        <option value="Clir D1000">Clir D1000</option>
+        <option value="Complements">Complements</option>
+        <option value="Country Code">Country Code</option>
+        <option value="Credit Entry">Credit Entry</option>
+        <option value="Credit Transfer">Credit Transfer 141/6171</option>
+        <option value="CYN 222">CYN 222</option>
+        <option value="EVC">EVC 1661</option>
+        <option value="Exchange Rate">Exchange Rate 2132</option>
+       	<option value="Facebook By SMS">Facebook By SMS</option>
+        <option value="Fun Ring">Fun Ring 139/138</option>
+        <option value="Girl Service">Girl Service 7002</option>
+       	<option value="Hajj Offer">Hajj Offer</option>
+        <option value="Horoscope">Horoscope 7151</option>
+        <option value="Incoming and Outgoing Calls">Incoming and Outgoing Calls</option>
+       	<option value="Intelligent Clip">Intelligent Clip</option>     
+        <option value="International Access">International Access</option>
+        <option value="Invalid Scratch Cards">Invalid Scratch Cards</option>
+        <option value="Kolareh">Kolareh 152</option>
+        <option value="Lost and Block">Lost and Block</option>
+        <option value="Lost of Credit">Lost of Credit</option>
+        <option value="Love Message">Love Message 7115</option>
+        <option value="Love Meter">Love Meter 7114</option>
+        <option value="Network Complaint">Network Complaint</option>
+        <option value="Own Number Enquiry">Own Number Enquiry 2111</option>
+        <option value="Prayer Time">Prayer Time 7120</option>
+       	<option value="Phone Enq">Phone Enq</option>
+       	<option value="Predict & Win">Predict & Win</option>
+  	    <option value="Prepaid Roaming">Prepaid Roaming 1001</option>
+        <option value="Print Out">Print Out</option>
+  	    <option value="Postpaid Roaming">Postpaid Roaming 170</option>
+        <option value="PUK">PUK</option>
+       	<option value="Ringtone & Logo">Ringtone & Logo</option>
+        <option value="Self Service">Self Service 111</option>
+       	<option value="Send me Credit">Send me Credit</option>
+        <option value="Sim Registration">Sim Registration</option>
+        <option value="Sim Replacement">Sim Replacement</option>
+        <option value="SMS">SMS</option>
+        <option value="SMS Express">Sms Express 7050</option>
+       	<option value="SMS to TV / Email">SMS to TV 7181 / Email 7191</option>
+        <option value="Sports Update">Sports Update 7070</option>
+        <option value="Star Match">Star Match 7116</option>
+        <option value="Surprise SMS">Surprise SMS</option>
+       	<option value="Tarrif Enq">Tarrif Enquiry</option>
+       	<option value="Tobaski Promo 1010">Tobaski Promo 1010</option>
+        <option value="TOK">TOK 135</option>
+       	<option value="Valentine Offer">Valentine Offer</option>
+  	    <option value="Validity Extension">Validity Extension</option>
+  	    <option value="Voicemail">Voicemail</option>
+        <option value="Voice Message">Voice Message 151</option>
+        <option value="Wohma Service">Wohma Service 7140</option>
+        <%if session[:department] == "Customer Care" or session[:userrole] == "admin"%>
+                <option value="IMEI Printout">IMEI Printout</option>
+                <option value="Mobile Configuration">Mobile Configuration</option>
+                <option value="Number Barred">Number Barred</option>
+                <option value="Phones Enq">Phones Enq</option>
+                <option value="Phones Sale">Phones Sale</option>
+                <option value="Pre-numbered Sim">Pre-numbered Sim</option>
+                <option value="Prepaid Itemized">Prepaid Itemized</option>
+                <%end%>
+
+        <%if session[:department] == "Call Center" or session[:userrole] == "admin"%>
+                <option value="Silent Call">Silent Call</option>
+                <option value="Call Drop">Call Drop</option>
+                <option value="False Call">False Call</option>
+                <option value="Kids Playing">Kids Playing</option>
+                <%end%>
+  	    <option value="Other">Other</option>
+      </select><br /><br/>
+
+ 	<label for="description"> Reason of Call</label><br/>
+	<textarea id="description" name="description" rows="2" cols="30" type="text" ></textarea>
+
+	<p class="login button"> 
+	    <input type="submit" value="Save" name="newsheet" />
+	</p>
+</form>

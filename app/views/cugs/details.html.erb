@@ -1,0 +1,91 @@
+<style type="text/css">
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #510269;
+    color: white;
+}
+
+</style>
+
+
+<fieldset>
+<legend>Add New Number To CUG</legend>
+
+<form  action="/cugs/addnumber" method="post" name="" >
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+
+
+<!-- <input type="hidden" name="id" value="<%=@cug.id%>" class="form-control"></input>
+<label>Number</label>
+<input type="text" name="number" class="form-control"></input>
+
+<label>Name</label>
+<input type="text" name="Name" class="form-control"></input>
+
+<input type="submit" name="submit" value="Add Number" class="btn btn-primary"></input> -->
+<%= form_for :number, :action => :addnumber, :id => @cug.id do |f| %>
+<%= f.label :Number %>
+<%= f.text_field :number, class: 'form-control' %>
+<%= f.label :Name %>
+<%= f.text_field :name, class: 'form-control' %>
+
+<%= f.submit "Add Number", class: "btn btn-primary" %>
+<% end %>
+</div>
+</div>
+</form>
+<br/><br />
+<table border = 1>
+  <tr>
+  <th>Company Name</th>
+  <th>Monthly Charge</th>
+  <th>Type</th>
+  <th>Comments</th>
+  <th>Date Created</th>
+  </tr>
+
+<tr>
+  <td><%= @cug.name %></td>
+  <td><%= @cug.monthly_charge %></td>
+  <td><%= @cug.phone %></td>
+  <td><%= @cug.comments %></td>
+  <td><%= @cug.date_created %></td>
+</tr>
+
+</table><br><br>
+
+<h3>List of Numbers</h3>
+<table width =0>
+  <tr>
+    <th>Numbers</th>
+    <th>Type</th> 
+    <th>Name</th> 
+    <th>Delete Number</th>
+  </tr>
+
+    <% @numbers.each do |number| %>
+  <tr>
+    <td><%= number.number %></td>
+    <td><%= number.type.name %></td>
+    <td><%= number.comments %></td>
+    <td><%= link_to "delete", @cug, method: :delete,
+                data: { confirm: "You sure?" } %></td>
+  </tr>
+
+    <% end %>
+</table>
+
+</fieldset>

@@ -1,0 +1,60 @@
+<div class="container">
+  <section>				
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+          
+          <form  action="/hlr/hlr_output" > 
+            <h1>HLR Provisioning</h1> 
+            <center> <font color="red"> <%= flash[:invalid] %> </font><font color="green"> <%= flash[:done] %> </font> <br/> </center>
+            <center>        
+              
+              <label for="command">Select Command:</label>
+                <select name ="command">
+                  <option value="DISPLAY">Display All Data</option>
+                  <option value="DISPDYN">Display Dynamic Data</option>
+                  <option value="DISPLAYKI">Display KI</option>
+                  <option value="BARIC">Bar Incoming</option>
+                  <option value="UBARIC">Un-bar Incoming</option>
+                  <option value="BAROC">Bar Outgoing</option>
+                  <option value="UBAROC">un-bar Outgoing</option>
+                  <option value="BAROAM">Bar Roaming</option>
+                  <option value="UBAROAM">un-bar Roaming</option>
+                  <option value="PROVGPRS">Activate GPRS Service</option>
+                  <option value="PROVCF">Activate Call Forward Service</option>
+                  <option value="UPROVCF">Bar Call Forward Service</option>
+                  <option value="DISPLAYGPRS">Display GPRS Data</option>
+                  <option value="DISPLAYGPRSTPL">Display GPRS Templates</option>
+                  <option value="LOCK">Lock Subscriber state</option>
+                  <option value="UNLOCK">UNLock Subscriber state</option>
+                  <option value="CLIRTEMP">Add Temporary CLIR</option>
+                  <option value="CLIRPERM">Add Permanent CLIR</option>
+                  <option value="CLIRREM">Remove CLIR</option>
+                  <option value="REMOVESUB">Remove Sub</option>
+                  <option value="REMOVEGPRS">Remove GPRS</option>
+                  <option value="MODROGPRS">Modify Roaming GPRS</option>
+                </select>&#8195;
+
+              <label for="msisdn"> MSISDN: </label>
+              <input id="msisdn" size="15" name="msisdn" required="required" onkeypress="return isNumberKey(event)" maxlength="10" type="text" placeholder="MSISDN"/>&#8195;
+
+            </center>
+            <p class="login button"> 
+              <input type="submit" value="Submit" /> 
+						</p>
+          </form><br>
+
+          <center> 
+          <h2>HLR Output: <%=@builtCommand%></h2>
+              <textarea readonly cols ="70" id="hlr_output" name="hlr_output" rows="22" wrap="virtual"></textarea>
+          </center>
+              <p></p>                      
+              <p class="change_link">
+			           <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+		        </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>

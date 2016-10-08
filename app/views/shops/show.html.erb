@@ -1,0 +1,48 @@
+<div class="container">
+<section>       
+    <div id="container_demo" >
+
+        <div id="wrapper">
+            <div id="login" class="animate form">
+             <center>
+             <font color="green"><%=flash[:success]%></font><font color="red"><%=flash[:danger]%></font><br>
+				<br/><br />
+
+				<table>
+					 <tr>
+					  <th>Number</th>
+					  <th>Full Name</th>
+					  <th>Location</th>
+					  <th>Delete</th>
+					  <th>Edit</th>
+					  <th>Delete Multiple</th>
+					 </tr>
+					  <% @shops.each do |shop| %>
+					<tr>
+					  <td><%= shop.msisdn %></td>
+					  <td><%= shop.name %></td>
+					  <td><%= shop.area %></td>
+					  <td><%= link_to image_tag("delete.gif", alt: "delete"), {:controller => 'shops', :action => 'destroy_data', :id => shop.id }, :method => :post, data: { confirm: "Are you sure You want to delete?" } %></td>
+        			  <td> <%= link_to image_tag("pencil.png", alt: "edit"), {:controller => 'shops', :action => 'edit', :id => shop.id }, :method => :get%></td>
+					<form  action="/shops/destroy_multiple" method="post">
+                    
+                    <td><input type="checkbox" name="id[]" value="<%= shop.id%><"></input></td>
+                    
+                  </tr>
+                  <% end %>
+                  <font color="green"><%=flash[:success]%></font><font color="red"><%=flash[:danger]%></font><br>
+                  
+				</table>
+			</center>
+			<input type="submit" name="submit" value="Delete Selected" style="background-color: #337ab7; color: white; border-color: #2e6da4; -webkit-appearance: button; cursor: pointer; width: 15%; margin-left: 550px;"></input>
+                    </form>
+<br><br>
+			<p class="change_link">
+            <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+            </p>
+            </div>
+        </div>
+    </div>  
+</section>
+</div>

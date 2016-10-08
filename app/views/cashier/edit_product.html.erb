@@ -1,0 +1,33 @@
+<div class="container">
+  <section>				
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+          
+          <form  action="/cashier/update_product" method="post"> 
+            <h1>Update Product (<%=@product.name%>)</h1> 
+            <center>   
+              <label for="productid">Product ID: </label>
+              <input id="productid" size="3" name="productid" required="required" readonly type="text" value="<%=@product.id%>"/><br/><br/>
+
+              <label for="product">Product Name: </label>
+              <input id="<%=@product.id%>" size="20" name="product" required="required" type="text" value="<%=@product.name%>"/>
+                              
+              <label for="amount">Amount: </label>
+              <input id="amount" size="20" name="amount" required="required" type="text" value="<%=@product.price%>"/>
+
+            </center>
+            <p class="login button"> 
+              <input type="submit" value="Update Product" /> 
+						</p>
+          </form>
+              <p></p>                      
+              <p class="change_link">
+			         <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+		        </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>

@@ -1,0 +1,45 @@
+<div class="container">
+<section>       
+  <div id="container_demo" >
+    <div id="wrapper">
+      <div id="login" class="animate form">
+      
+      <h1>All Cugs</h1>
+      <font color="green"><%=flash[:success]%></font><font color="red"><%=flash[:danger]%></font><br>
+      <form action="/cugs/search" method="post" >
+        <input type="text" name ="numbers" style="width: 180px; margin-left: 0px;" placeholder="Search Number or CUG" class="form-control" required></input>
+        <input type="submit" value="Search" name="search" size="4" style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:40px" />         
+      </form>
+    <center>
+    <table>
+      <tr>
+        <th>Company Name</th>
+        <th>Monthly Charge</th>
+        <th>Type</th>
+        <th>Comments</th>
+        <th>Date Created</th>
+        <th>Delete CUG / BGO</th>
+        <th>Edit CUG / BGO</th>
+      </tr>
+      <% @cugs.each do |cug| %>
+      <tr>
+        <td><%= link_to cug.name, {:controller => 'cugs', :action => 'show', :id => cug.id}, :method => :get%></td>
+        <td><%= cug.monthly_charge %></td>
+        <td><%= cug.phone %></td>
+        <td><%= cug.comments %></td>
+        <td><%= cug.date_created %></td>
+        <td><%= link_to image_tag("delete.gif", alt: "delete"), {:controller => 'cugs', :action => 'destroy_cug', :id => cug.id }, :method => :post, data: { confirm: "Are you sure You want to delete?" } %></td>
+        <td> <%= link_to image_tag("pencil.png", alt: "edit"), {:controller => 'cugs', :action => 'edit', :id => cug.id }, :method => :get%></td>
+      </tr>
+      <% end %>
+    </table>
+    </center>        
+    <p class="change_link">
+      <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+      <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+    </p>
+    </div>
+    </div>
+  </div>  
+</section>
+</div>

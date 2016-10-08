@@ -1,0 +1,19 @@
+      <table>
+		  <% @supplier.each do |sup| %>
+		<tr>
+		  <td><%= sup.name %></td>
+		  <td><%= sup.address %></td>
+		  <td><%=SupplierBank.find_by_supplier_id(sup.id).bank_name %></td>
+		  <td><%=SupplierBank.find_by_supplier_id(sup.id).bank_address %></td>
+		  <td><%=SupplierBank.find_by_supplier_id(sup.id).swift_code %></td>
+		  <td><%=SupplierAccountNumber.find_by_supplier_id(sup.id).account_number %></td>
+		  <td><%=SupplierAccountNumber.find_by_supplier_id(sup.id).account_type %></td>
+		  <td> <%= link_to image_tag("pencil.png", alt: "edit"), {:controller => 'banks', :action => 'publish', :sup_id => sup.id, bank_id: @bank_id }, :method => :get%></td>
+		  <!-- <form action="/banks/publish" method="post">
+		  <td><input type="text" name="huminize"></td>
+		  </form> -->
+		  <%end%>
+
+		  
+
+	</table>

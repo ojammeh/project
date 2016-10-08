@@ -1,0 +1,8 @@
+$( "#addhoroscope" ).html( "<%= escape_javascript( render 'activate_horoscope' ) %>" );
+
+$('#activate_horo').click(function() { 
+        $.blockUI({ 
+            message: '<h1>Activating Horoscope...</h1>', 
+            timeout: 25000 
+        }); 
+    }); 

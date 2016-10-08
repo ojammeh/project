@@ -1,0 +1,119 @@
+<!-- <h1><%=@afri_bank_id.id%></h1> -->
+<script type="text/javascript">
+function adjustWidth(obj) {
+
+    obj.style.width = (obj.value.length) * 7.3 + "px";
+}
+</script>
+<style type="text/css">
+	#pub{
+		margin-left: 50px;
+		padding: 18px;
+		font-size: 20px;
+		/*line-height:20%;*/
+	}
+input:focus {
+    outline:none;
+}
+@media print {
+input{border: 0px
+}
+/*@media print
+{ */   
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+/*}*/
+}
+.topright {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 18px;
+}
+h5, h6{
+    margin:0;
+    padding:0;
+}
+input[type="text"]
+{
+    font-family: " Times New Roman"; "
+    
+}
+input {
+ font-size: 12pt; 
+
+}
+</style>
+<!-- <div class="topright">
+	<h6>43 Kairaba Avenue</h6>
+	<h6>P.O Box 2140 Banjul</h6>
+	<h6>The Gambia</h6>
+	<h6>T 220 7400000</h6>
+	<h6>F 220 4376066</h6>
+	<h6 style="color: #7E17E4;">www.africell.gm</h6>
+</div> --><!-- 
+<%= image_tag("banner.jpg", size: "150x40", alt: "Africell") %>&nbsp;&nbsp; 
+<font style="font-family:Garamond" size="4" color="black"><strong> gambia </strong></font> -->
+<form action="/banks/print_log" method="post">
+<div id="pub">
+
+<br><br><br><br>
+<h5 style="font-weight: normal;"><input type="hidden" name="designation" value="<%=@afri_bank_id.designation%>"><%=@afri_bank_id.designation%></h5>
+<h5 style="font-weight: normal;"><input type="hidden" name="bank_name" value="<%=@afri_bank_id.bank_name%>"><%=@afri_bank_id.bank_name%></h5>
+<h5 style="font-weight: normal;"><input type="hidden" name="bank_address" value="<%=@afri_bank_id.bank_address%>"><%=@afri_bank_id.bank_address%></h5>
+<br>
+<h5 style="font-weight: normal;">Ref:<input type="text" name="ref_no" value="(F) FMD/<%=@reference%><%=@refs%>" onkeypress="adjustWidth(this)" placeholder="Enter Ref:" style="margin-right: 200px;"></h5>
+<br>
+<%= Date.today.to_s(:long)%>
+<br><br>
+<h5 style="font-weight: normal;">Dear Sir,</h5>
+<br>
+<strong><u>ATTENTION: <%=@afri_bank_id.addressee%></u></strong>
+<br><br>
+
+
+<h5 style="line-height:20%;"><b style="font-weight: normal; font-size: 12pt;	font-family: " Times New Roman"; ">By debiting our <strong><input type="hidden" name="account_type" value="<%=AccountType.find_by_africell_bank_id(@afri_bank_id.id).account_type %>"> <%=AccountType.find_by_africell_bank_id(@afri_bank_id.id).account_type %></strong>
+account no. </b><strong><input type="hidden" name="account_number" value="<%=AccountNumber.find_by_africell_bank_id(@afri_bank_id.id).account_number%>"> <%=AccountNumber.find_by_africell_bank_id(@afri_bank_id.id).account_number%></strong>
+<b style="font-weight: normal;">bearing</b> <strong>Bban no. <p><input type="hidden" name="b_ban_number" value="<%=BBan.find_by_africell_bank_id(@afri_bank_id.id).b_ban_number%>"> <%=BBan.find_by_africell_bank_id(@afri_bank_id.id).b_ban_number%></strong>
+
+<b style="font-weight: normal;">with your good self, please transfer the sum of  
+<% if AccountType.find_by_africell_bank_id(@afri_bank_id.id).account_type == "Dollar"%>
+	<td><%= "$" %></td>
+	<% elsif AccountType.find_by_africell_bank_id(@afri_bank_id.id).account_type == "Euro"%>
+		<td><%= "€" %></td>
+	<% elsif AccountType.find_by_africell_bank_id(@afri_bank_id.id).account_type == "Pound"%>
+		<td><%= "£" %></td>
+	<% elsif AccountType.find_by_africell_bank_id(@afri_bank_id.id).account_type == "Dallasi"%>
+		<td><%= "GMD" %></td>
+	<%else%>
+<%end%> 
+
+ </b><strong> <input type="text" name="amount_numbers" onkeypress="adjustWidth(this)" placeholder="Enter Amount "></strong></p> <b style="font-weight: normal;"> (<input type="text" size="80" onkeypress="adjustWidth(this)" name="amount_words" placeholder="Amount In Words" value="<%=  @bank_id%>">) to.</b></h5>
+<br>
+<h5><u style="font-weight: normal;">Name of Beneficiary:</u> <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="hidden" name="supplier_name" value="<%=@supplier_id.name%>"> <%=@supplier_id.name%></h5></strong>
+
+<h5><u style="font-weight: normal;">Name of Bank:</u> <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="hidden" name="supplier_bank_name" value="<%=SupplierBank.find_by_supplier_id(@supplier_id.id).bank_name %>"> <%=SupplierBank.find_by_supplier_id(@supplier_id.id).bank_name %></h5></strong>
+
+<h5><u style="font-weight: normal;">Account No:</u> <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="hidden" name="supplier_account_number" value="<%=SupplierAccountNumber.find_by_supplier_id(@supplier_id.id).account_number %>"> <%=SupplierAccountNumber.find_by_supplier_id(@supplier_id.id).account_number %></h5></strong>
+
+<h5><u style="font-weight: normal;">Address:</u> <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="hidden" name="supplier_bank_address" value="<%=SupplierBank.find_by_supplier_id(@supplier_id.id).bank_address %>"> <%=SupplierBank.find_by_supplier_id(@supplier_id.id).bank_address %></h5></strong>
+
+<h5><u style="font-weight: normal;">Swift Code:</u> <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="hidden" name="supplier_swift_code" value="<%=SupplierBank.find_by_supplier_id(@supplier_id.id).swift_code %>"> <%=SupplierBank.find_by_supplier_id(@supplier_id.id).swift_code %></h5></strong>
+<br>
+<h5 style="font-weight: normal;">Yours Sincerely,</h5>
+<br>
+
+<h5><input type="text" name="name_1" placeholder="Name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="name_2" placeholder="Name"></h5>
+
+<h5><input type="text" name="designation_1" placeholder="Designation">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <input type="text" name="designation_2" placeholder="Designation"></h5><br>
+
+<!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+<!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+<input type="text" name="name_3" placeholder="Name"><br>
+<input type="text" name="designation_3" placeholder="Designation"><br><br>
+<h5 style="font-weight: normal;">Ccfile</h5>
+</div>
+<input type="submit" name="submit" value="Print" class='no-print' onclick='window.print(); return true;'></input>
+</form>

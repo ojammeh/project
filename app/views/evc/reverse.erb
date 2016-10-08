@@ -1,0 +1,107 @@
+<%if(session[:evc_role] == 2 or session[:evc_role] == 1)%>
+<div class="container">
+  <section>				
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+            
+              <%if @type == 'dealertosub'%>
+                <h1>ECV To Normal</h1> 
+                <center>
+                <table>
+                <tr>
+                  <th>Date</th>
+                  <th>Number</th>
+                  <th>Recipient</th>
+                  <th>Amount</th>
+                  <th>Start Balance</th>
+                  <th>End Balance</th>
+                  <th>Start FreeMoney</th>
+                  <th>End FreeMoney</th>
+                  <th>Reverse</th>
+                  <th>Move to EVC Acct</th>
+                </tr>
+
+                <% @check_evc.each do |evc| %>
+                <tr>
+                  <td><%=evc.time%></td>
+                  <td><%=evc.cardnum%></td>
+                  <td><%=evc.accnum%></td>
+                  <td><%=evc.amount%></td>
+                  <td><%=evc.strtbal%></td>
+                  <td><%=evc.endbal%></td>
+                  <td><%=evc.strtfm%></td>
+                  <td><%=evc.endfm%></td>
+                  <td><%= button_to " Reverse EVC  ", {:action=> "reverse_transaction", :controller => "evc", :id => evc.transid} %></td>
+                  <td><%= button_to " Normal To EVC ", {:action=> "normal_to_evc", :controller => "evc", :id => evc.transid} %></td>
+                </tr>
+                <%end%>
+              <%elsif @type == 'subtosub'%>
+                <h1>Normal To Normal</h1> 
+                <center>
+                <table>
+                <tr>
+                  <th>Date</th>
+                  <th>Sender</th>
+                  <th>Recipient</th>
+                  <th>Amount</th>
+                  <th>Start Balance</th>
+                  <th>End Balance</th>
+                  <th>Start FreeMoney</th>
+                  <th>End FreeMoney</th>
+                  <th>Reverse</th>
+                </tr>
+
+                <% @check_evc.each do |evc| %>
+                <tr>
+                  <td><%=evc.time%></td>
+                  <td><%=evc.opid[4..10]%></td>
+                  <td><%=evc.accnum%></td>
+                  <td><%=evc.amount%></td>
+                  <td><%=evc.strtbal%></td>
+                  <td><%=evc.endbal%></td>
+                  <td><%=evc.strtfm%></td>
+                  <td><%=evc.endfm%></td>
+                  <td><%= button_to " Reverse Credit Transfer  ", {:action=> "reverse_sub", :controller => "evc", :id => evc.transid} %></td>
+                </tr>
+                <%end%>
+              <%elsif @type == 'dealertodealer'%>
+                <h1>EVC To EVC</h1> 
+                <center>
+                <table>
+                <tr>
+                  <th>Date</th>
+                  <th>Dealer Number</th>
+                  <th>Recipient</th>
+                  <th>Amount</th>
+                  <th>Start Balance</th>
+                  <th>End Balance</th>
+                  <th>Reverse</th>
+                </tr>
+                <% @check_evc.each do |evc| %>
+                <tr>
+                  <td><%=evc.time%></td>
+                  <td><%=evc.cardnum%></td>
+                  <td><%=evc.accnum%></td>
+                  <td><%=evc.amount%></td>
+                  <td><%=evc.strtbal%></td>
+                  <td><%=evc.endbal%></td>
+                  <td><%= button_to " Reverse Dealer Credit  ", {:action=> "reverse_dealer", :controller => "evc", :id => evc.transid} %></td>
+                </tr>
+                <%end%>
+              <%end%>
+              </table>
+            </center>
+              <p></p>                      
+              <p class="change_link">
+			           <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2016</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+		        </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>
+<%else%>
+<center><h2>ACCESS DENIED</h2></center>
+<%end%>

@@ -1,0 +1,158 @@
+<div class="container">
+  <section>       
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+        <h1>Customer Care Work Sheet Report</h1>
+        <center>
+          <form  action="/admin/cc_report" > 
+          <font color="green"> <%=flash[:message]%></font><br/> 
+
+            <label for="username"><b>Agent Name</b></label>
+              <select name ="username" required="required">
+                  <option value="" disabled selected>Name / Username / Department</option>
+                  <option value="allusers">All Users</option>
+                <% @allusers.each do |user| %>
+                  <option value="<%=user.name%>"><%=user.full_name%> / <%=user.name%> /<%=user.department%></option> 
+                  <%end%>
+              </select> 
+              <br/><br/>
+              <label for="month1"><b>From:</b></label>
+              <select size="1" name="month1" id="month1">
+              <option value="01-">Jan</option>
+                    <option value="02-">Feb</option>
+                    <option value="03-">Mar</option>
+                    <option value="04-">Apr</option>
+                    <option value="05-">May</option>
+                    <option value="06-">Jun</option>
+                    <option value="07-">Jul</option>
+                    <option value="08-">Aug</option>
+                    <option value="09-">Sep</option>
+                    <option value="10-">Oct</option>
+                    <option value="11-">Nov</option>
+                    <option value="12-">Dec</option>
+                </select>
+    
+                <select size="1" name="day1" id="day1">
+                <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                </select>
+                <select size="1" name="year1" id="year1">
+		    <option value="2016-">2016</option>
+                    <option value="2015-">2015</option>  				
+                    <option value="2014-">2014</option>     
+                    <option value="2013-">2013</option>
+                    <option value="2012-">2012</option>
+                    <option value="2011-">2011</option>
+                    <option value="2010-">2010</option>
+                    <option value="2009-">2009</option>
+                    <option value="2008-">2008</option>
+                    <option value="2007-">2007</option>
+
+                </select>
+    
+                <label for="month1"><b>To:</b></label>
+                <select size="1" name="month2" id="month2">
+                <option value="01">Jan</option>
+                    <option value="02">Feb</option>
+                    <option value="03">Mar</option>
+                    <option value="04">Apr</option>
+                    <option value="05">May</option>
+                    <option value="06">Jun</option>
+                    <option value="07">Jul</option>
+                    <option value="08">Aug</option>
+                    <option value="09">Sep</option>
+                    <option value="10">Oct</option>
+                    <option value="11">Nov</option>
+                    <option value="12">Dec</option>
+                </select>
+    
+                <select size="1" name="day2" id="day2">
+                <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                </select>
+                <select size="1" name="year2" id="year2">
+                    
+<option value="2015">2015</option>       
+                    <option value="2014">2014</option>
+                    <option value="2013">2013</option>
+                    <option value="2012">2012</option>
+                    <option value="2011">2011</option>
+                    <option value="2010">2010</option>
+                    <option value="2009">2009</option>
+                    <option value="2008">2008</option>
+                    <option value="2007">2007</option>
+                </select>
+
+            <p class="login button"> 
+                <input type="submit" value="Generate"/>
+            </p>
+          </form>
+          </center>
+              <p></p>                      
+              <p class="change_link">
+             Africell
+            </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>

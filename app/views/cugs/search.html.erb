@@ -1,0 +1,49 @@
+<div class="container">
+<section>       
+  <div id="container_demo" >
+    <div id="wrapper">
+      <div id="login" class="animate form">
+
+<h1>Search Results</h1>
+<tr>
+
+</tr>
+<table>
+<tr>
+
+</tr>
+<%if @show == "numbers"%>
+	<tr>
+	  <th>Company Name</th>
+	  <th>Number</th>
+	  <th>Date Created</th>
+	</tr>
+	<td><%=@cug_name%></td>
+	<td><%=@number%></td>
+	<td><%=@date%></td>
+<%else%>
+	  <tr>
+	  <th>Company Name</th>
+	  <th>Monthly Charge</th>
+	  <th>Type</th>
+	  <th>Comments</th>
+	  <th>Date Created</th>
+	  <th>Delete</th>
+	  </tr>
+
+	<% @view == "names" %>
+		<td><%=link_to @cug_name, :action => 'show', :id => @cug_id%></td>
+		<td><%=@cug_month%></td>
+		<td><%=@cug_phone%></td>
+		<td><%=@cug_comment%></td>
+		<td><%=@cug_date%></td>	
+		<td><%= link_to image_tag("delete.gif", alt: "delete"), {:controller => 'cugs', :action => 'destroy_cug', :id => @cug_id }, :method => :delete, data: { confirm: "Are you sure You want to delete?" } %></td>
+		 <br />
+
+<%end%>
+
+ </table>
+</div>
+</div>
+</div>
+</section>

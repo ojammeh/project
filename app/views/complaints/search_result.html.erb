@@ -1,0 +1,58 @@
+<div class="container">
+  <section>				
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+          <%= link_to 'Complaint Status', complaints_status_path, :style=>'color:#510269; font-style:italic; font-weight:bold; font-size:15px;' %> 
+          <form  action="/complaints/search_result" > 
+            <h1>Customer Care Complaints</h1> 
+            <center>             
+              <label for="msisdn" > MSISDN </label>
+              <input id="msisdn" size="8" name="msisdn" required="required" onkeypress="return isNumberKey(event)" maxlength="7" value="<%=session[:msisdn]%>" type="text" placeholder="MSISDN"/>            
+            </center>
+            <p class="login button"> 
+              <input type="submit" value="Submit" /> 
+						</p>
+          </form>
+          <center>
+            <table>
+                <tr>
+                  <th width="40">#</th>
+                  <th width="100">Customer Name</th>
+                  <th width="80">Status</th>
+                  <th width="80">Time Launched</th> 
+                  <th width="180">Complaint</th> 
+                  <th width="80">Agent</th> 
+                  <th width="180">Technical Comment</th> 
+                </tr>
+                <% @results.each do |result|%>
+                <tr>
+                  <td><%=result.id%></td>
+                  <td><%=result.customer_name%></td>
+                  <td><% if result.status == 0 %>Pending<%else%>Complete<%end%></td>
+                  <td><%=result.time_in%></td>
+                  <td><%=result.complaint%></td>
+                  <td><%=result.custcare_user%></td>
+                  <td><%=result.technical_comments%></td>
+                </tr>
+                <%end%>
+                <tr>
+                  <td colspan = "7">
+                    <%= button_to " LAUNCH NEW COMPLAINT ", complaints_new_complaint_path, :remote => true, :style=>'background: rgb(61, 157, 179); color:#fff;font-size: 15px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px;'%>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan = "7"> <div id="newcomplaint"></div></td>
+                </tr>
+            </table>
+          </center>
+              <p></p>                      
+              <p class="change_link">
+			         <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+		        </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>

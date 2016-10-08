@@ -1,0 +1,105 @@
+<%if(session[:evc_role] == 2 or session[:evc_role] == 1)%>
+<div class="container">
+  <section>       
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+          
+          <form  action="/evc/reverse" method="post"> 
+            <h1>EVC Reverse</h1>
+            <br/>
+            <center>  
+              <b><%=flash[:success]%></b><br/>
+              <input type="radio" name="reverse_type" value="dealertosub" required> EVC Transfer &#8195;
+              <input type="radio" name="reverse_type" value="dealertodealer" required> Dealer Transfer &#8195;
+              <input type="radio" name="reverse_type" value="subtosub" required> Credit Transfer<br/><br/>
+
+              <label for="msisdn">Sender Number:</label>
+              <input id="dealer_number" size="7" name="dealer_number" required onkeypress="return isNumberKey(event)" type="text" maxlength="7"/>&#8195;
+
+              <label for="recipient">Recipient Number:</label>
+              <input id="recipient" size="7" name="recipient" required onkeypress="return isNumberKey(event)" type="text" maxlength="7"/>&#8195;
+
+              <label for="amount1">Amount 1:</label>
+              <input id="amount1" size="4" name="amount1" required onkeypress="return isNumberKey(event)" type="text" maxlength="7"/>&#8195;
+
+              <label for="amount2">Amount 2:</label>
+              <input id="amount2" size="4" name="amount2" required onkeypress="return isNumberKey(event)" type="text" />&#8195;  
+
+              <label for="amount3">Amount 3:</label>
+              <input id="amount3" size="4" name="amount3" required onkeypress="return isNumberKey(event)" type="text" />&#8195;
+
+            <center>
+            <label for="sdate">Date:</label><br>
+              <select size="1" name="month" id="month">
+                <option value="01-">Jan</option>
+                <option value="02-">Feb</option>
+                <option value="03-">Mar</option>
+                <option value="04-">Apr</option>
+                <option value="05-">May</option>
+                <option value="06-">Jun</option>
+                <option value="07-">Jul</option>
+                <option value="08-">Aug</option>
+                <option value="09-">Sep</option>
+                <option value="10-">Oct</option>
+                <option value="11-">Nov</option>
+                <option value="12-">Dec</option>
+              </select>
+              <select size="1" name="day" id="day">
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+              </select>
+              <select size="1" name="year" id="year">
+                <option value="2016-">2016</option>
+              </select>
+              </center>
+            </center>
+              <br/><br/>
+
+            </center>
+            <p class="login button"> 
+              <input type="submit" value="Check Transaction" name="check_trans" /> 
+            </p>
+          </form>
+              <p></p>                      
+              <p class="change_link">
+                 <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2016</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+            </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>
+ <%else%>
+ <center><h2>ACCESS DENIED</h2></center>
+ <%end%>

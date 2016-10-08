@@ -1,0 +1,47 @@
+<div class="container">
+<section>       
+    <div id="container_demo" >
+
+        <div id="wrapper">
+            <div id="login" class="animate form">
+             <center>
+             <font color="green"><%=flash[:success]%></font><font color="red"><%=flash[:danger]%></font><br>
+				<br/><br />
+
+				<table>
+					 <tr>
+					  <th>Name</th>
+					  <th>Address</th>
+					  <th>Bank Name</th>
+					  <th>Bank Address</th>
+					  <th>Swift Code</th>
+					  <th>Account Number</th>
+					  <th>Account Type</th>
+					  <th>Delete</th>
+					  <th>Edit</th>
+					  <!-- <th>Delete Multiple</th> -->
+					 </tr>
+					  <% @supplier.each do |sup| %>
+					<tr>
+					  <td><%= sup.name %></td>
+					  <td><%= sup.address %></td>
+					  <td><%=SupplierBank.find_by_supplier_id(sup.id).bank_name %></td>
+					  <td><%=SupplierBank.find_by_supplier_id(sup.id).bank_address %></td>
+					  <td><%=SupplierBank.find_by_supplier_id(sup.id).swift_code %></td>
+					  <td><%=SupplierAccountNumber.find_by_supplier_id(sup.id).account_number %></td>
+					  <td><%=SupplierAccountNumber.find_by_supplier_id(sup.id).account_type %></td>
+					  <td><%= link_to image_tag("delete.gif", alt: "delete"), {:controller => 'banks', :action => 'destroy_supplier', :id => sup.id }, :method => :post, data: { confirm: "Are you sure You want to delete?" } %></td>
+        			  <td> <%= link_to image_tag("pencil.png", alt: "edit"), {:controller => 'banks', :action => 'edit_supplier', :id => sup.id }, :method => :get%></td>
+					  <%end%>
+				</table>
+			</center>
+			<br><br>
+			<p class="change_link">
+            <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+            </p>
+            </div>
+        </div>
+    </div>  
+</section>
+</div>

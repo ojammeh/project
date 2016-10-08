@@ -1,0 +1,65 @@
+<div class="container">
+  <section>				
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+          
+          <form  action="/datawarehouse/msisdn_tracker" > 
+            <h1>Track MSISDN</h1> 
+            <center>             
+              <label for="msisdn" > MSISDN </label>
+              <input id="msisdn" size="8" name="msisdn" required="required" type="text" placeholder="MSISDN"/>
+                              
+              <label for="date"> Date </label>
+                <select name ="date" required="required">
+                  <option value="" disabled selected>Select Month</option>
+                  <option value="May_2014">May 2014</option> 
+                </select>             
+            </center>
+            <p class="login button"> 
+              <input type="submit" value="Generate" /> 
+						</p>
+          </form>
+          <center>
+            <table>
+              <tr>
+                <th>Call Type</th>
+                <th>A Number</th>     
+                <th>B Number</th>
+                <th>IMEI</th>
+                <th>Duration</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Cellida</th>
+              </tr>
+        <% for row in @result.each do %>
+          <tr>
+            <td><%=row.CallTransactionType%></td>
+
+
+<td><%= link_to row.Anumber,datawarehouse_subscriber_details_path,:msisdn => row.Anumber, :onclick=>"window.open(this.href,'subscriber_details', 'height=600, width=600');return false;" %></td>
+
+
+            <td><%= row.Bnumber %></td>
+            <td><%=row.ServedIMEI %></td>
+            <td><%=row.CallDuration %></td>
+            <td><%=row.StartDate %></td>
+            <td><%=row.StartTime.strftime("%H:%M:%S") %></td>
+          <% if (!(row.CellIdA.blank?) and (!Site.find_by_cellid(row.CellIdA).blank?)) %>
+            <td><%=Site.find_by_cellid(row.CellIdA).sitename %></td>
+          <%else%>
+            <td><%=row.CellIdA %></td>
+          <%end%>
+          </tr>
+          <%end%>
+          </table>
+        </center>
+              <p></p>                      
+              <p class="change_link">
+			       Africell
+		        </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>

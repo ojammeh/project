@@ -1,0 +1,158 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+ <%if(session[:userrole] == "admin" and session[:report_role] == "super")%>
+  <div class="field">
+    <%= f.label :username %><br>
+    <%= f.text_field :name,:required => true %>
+  </div>
+  <div class="field">
+    <%= f.label :full_name %><br>
+    <%= f.text_field :full_name, :required => true %>
+  </div>
+  <div class="field">
+    <%= f.label :department %><br>
+   <%= f.select :department, ['Technical', 'Call Center', 'Customer Care','Finance','Direct Sales','IT','Admin','Commercial','HR','OCE'], { :include_blank => '  ---- Select Department ---- ' }, :required => true %>
+  </div>
+  <div class="field">
+    <%= f.label :role %><br>
+     <%= f.select :role, [['Administrator(admin)','admin'], ['Call Center(callcenter)','callcenter'], ['Main Hall(mainhall)','mainhall'],['Outlet(outlet)','outlet'], ['Custcare Complaints(technician)','technician'], ['CallCenter Dialout(callcenter_dialout)','callcenter_dialout'], ['Cashiers(cashier)','cashier'], ['Cashier Report Generation(cashier_report)','cashier_report'], ['Cashier Admin(cashier_admin)','cashier_admin'], ['Direct Sales(direct_sales)','direct_sales'], ['IT(it)','it'], ['IT Request(it-request)','it-request'], ['CalCenter Sim Reg(sim_reg)','sim_reg'], ['Print Out(printout)','printout'], ['CUG(cug)','cug'],['Shop Keeper(shop)','shop'], ['Smart Reg Verifier(smart)','smart']], { :include_blank => '  ---- Select User Role ---- ' }, :required => true %>
+  </div>
+  <div class="field">
+    <%= f.label :report_role %><br>
+    <%= f.select :report_role, [['Super Admin(super)','super'], ['Main Hall Senior Supervisors(mainhall_super)','mainhall_super'], ['Outlet(outlet)','outlet'],['Main Hall Supervisors(mainhall_supervisor)','mainhall_supervisor'], ['Outlet Supervisor(outlet_supervisor)','outlet_supervisor'], ['CallCenter Supervisors(callcenter_supervisor)','callcenter_supervisor'], ['CallCenter Diallout(dialout)','dialout'], ['CallCenter Report Generation(callcenter_report)','callcenter_report'], ['Shop Keeper(shop)','shop'], ['Telemarketing CallCenter(telemarketing)','telemarketing'], ['Smart Reg Verifier(smart)','smart']], { :include_blank => '--- Select Other Role if required ---' }%>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.password_field :password,:required => true %>
+  </div>
+  <div>
+    <%= f.label :password_confirmation %><br>
+    <%= f.password_field :password_confirmation,:required => true %>
+  </div>
+  <br><br><br>
+  <div class="field">
+    <%= f.label :added_by %><br>
+    <%= f.text_field :added_by, value: session[:username], readonly: 'true' %>
+  </div>
+<%end%>
+
+
+  <%if(session[:userrole] == "callcenter" and session[:report_role] == "callcenter_supervisor")%>
+
+    <div class="field">
+      <%= f.label :full_name %><br>
+      <%= f.text_field :full_name %>
+    </div>
+     <div class="field">
+      <%= f.label :department %><br>
+      <%= f.text_field :department, value: 'Call Center', readonly: 'true' %>
+    </div>
+    <div class="field">
+      <%= f.label :role %><br>
+      <%= f.text_field :role, value: 'callcenter', readonly: 'true' %>
+    </div>
+    <div class="field">
+      <%= f.label :username %><br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :password %><br>
+      <%= f.password_field :password %>
+    </div>
+    <div>
+      <%= f.label :password_confirmation %><br>
+      <%= f.password_field :password_confirmation %>
+    </div>
+    <br><br><br>
+    <div class="field">
+      <%= f.label :added_by %><br>
+      <%= f.text_field :added_by, value: session[:username], readonly: 'true' %>
+    </div>
+  <%end%>
+
+  <%if(session[:userrole] == "mainhall" and session[:report_role] == "mainhall_super")%>
+
+    <div class="field">
+      <%= f.label :full_name %><br>
+      <%= f.text_field :full_name %>
+    </div>
+     <div class="field">
+      <%= f.label :department %><br>
+      <%= f.text_field :department, value: 'Customer Care', readonly: 'true' %>
+    </div>
+    <div class="field">
+      <%= f.label :role %><br>
+      <%= f.text_field :role, value: 'mainhall', readonly: 'true' %>
+    </div>
+    <div class="field">
+      <%= f.label :username %><br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :password %><br>
+      <%= f.password_field :password %>
+    </div>
+    <div>
+      <%= f.label :password_confirmation %><br>
+      <%= f.password_field :password_confirmation %>
+    </div>
+    <br><br><br>
+    <div class="field">
+      <%= f.label :added_by %><br>
+      <%= f.text_field :added_by, value: session[:username], readonly: 'true' %>
+    </div>
+  <%end%>
+
+
+
+  <%if(session[:username] == "kkeita")%>
+
+  <div class="field">
+    <%= f.label :full_name %><br>
+    <%= f.text_field :full_name %>
+  </div>
+   <div class="field">
+    <%= f.label :department %><br>
+    <%= f.text_field :department, value: 'Call Center', readonly: 'true' %>
+  </div>
+  <div class="field">
+    <%= f.label :role %><br>
+    <%= f.text_field :role, value: 'sim_reg', readonly: 'true' %>
+  </div>
+  <div class="field">
+    <%= f.label :username %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+  </div>
+  <div>
+    <%= f.label :password_confirmation %><br>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <br><br><br>
+  <div class="field">
+    <%= f.label :added_by %><br>
+    <%= f.text_field :added_by, value: session[:username], readonly: 'true' %>
+  </div>
+  <%end%>
+
+  <br/>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

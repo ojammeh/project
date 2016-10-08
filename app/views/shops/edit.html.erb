@@ -1,0 +1,31 @@
+<div class="container">
+<section>       
+  <div id="container_demo" >
+    <div id="wrapper">
+      <div id="login" class="animate form">
+		<% provide(:title, "Edit") %>
+			<h1>Update</h1>
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3">
+					 <font color="green"><%=flash[:success]%></font><font color="red"><%=flash[:danger]%></font><br>
+					<%= form_for(@shop, :url => {:action => 'update', :id => @shop.id}) do |f| %>
+						<%= f.label :Number %>
+						<%= f.text_field :msisdn, class: 'form-control' %>
+						<%= f.label :Full_Name %>
+						<%= f.text_field :name, class: 'form-control' %>
+						<%= f.label :Location %>
+						<%= f.text_field :area, class: 'form-control' %>
+						<%= f.submit "Save changes", class: "btn btn-primary" %>
+					<% end %>
+					</div>
+				</div>	
+
+			<p class="change_link">
+		      <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+		      <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+		    </p>
+
+		</div>
+	</div>
+ </div>
+</section>

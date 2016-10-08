@@ -1,0 +1,35 @@
+<div class="container">
+  <section>       
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+          <h1>PUK</h1> 
+            <center>
+            <%if(@numtype == "imsi" or @numtype == "msisdn")%>
+              <% @result.each do |result|%>
+                  <b><u>PUK: <%=result.PUK%></u></b>
+              <%end%>
+            <%elsif @numtype == "invalid"%>
+                  <b><u>Incorrect Number or Sim Number</u></b>
+            <%end%>
+            <b><u><%=@notfound%></u></b>
+          </center><br/>
+            <center>  
+            <form  action="/puk/search_result" >     
+              <label for="number" >MSISDN / IMSI</label>
+              <input id="number" size="10" name="number" required="required" onkeypress="return isNumberKey(event)" maxlength="8" type="text" value="<%=session[:msisdn]%>" />            
+            </center>
+            <p class="login button"> 
+              <input type="submit" value="Submit" /> 
+            </p>
+          </form>
+              <p></p>                      
+              <p class="change_link">
+                <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+            </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>

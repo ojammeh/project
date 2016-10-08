@@ -1,0 +1,27 @@
+<div class="container">
+<section>       
+  <div id="container_demo" >
+    <div id="wrapper">
+      <div id="login" class="animate form">
+      
+      <h1>Add Category</h1>
+      <font color="green"><%=flash[:success]%></font><font color="red"><%=flash[:danger]%></font><br>
+	<form action="/stocks/add_cat" method="post" >
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<label>Category Name</label>
+					<input type="text" name="category" style="width: 250px; margin-right: 0px;" placeholder="Description" required />
+
+				<input type="submit" name="submit" id="submit" value="Save" size="4" style="background: rgb(61, 157, 179); color:#fff;font-size: 12px;border: 1px solid rgb(28, 108, 122);text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);cursor: pointer;box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,0px 0px 0px 3px rgb(254, 254, 254),0px 5px 3px 3px rgb(210, 210, 210);padding: 3px 25px; width:40px"  />
+			</div>
+		</div>							
+	</form>
+		<p class="change_link">
+      <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+      <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+    </p>
+    </div>
+    </div>
+  </div>  
+</section>
+</div>

@@ -1,0 +1,43 @@
+<div class="container">
+  <section>				
+    <div id="container_demo" >
+      <div id="wrapper">
+        <div id="login" class="animate form">
+        &#8195;&#8195;<%= link_to 'List Entries', directsales_list_path %> | <%= link_to 'New Sim Entry', directsales_input_path %> | <%= link_to 'List Teams', directsales_list_teams_path %> | <%= link_to 'Add Team', directsales_add_team_path %>
+            <h1>Direct Sales Teams</h1> 
+            <center>
+              <table>
+                <tr>
+                  <th>Team ID</th>
+                  <th>Team Leader</th>
+                  <th>Date Created</th>
+                  <th>Created By</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+
+                <% @list.each do |lists| %>
+                <tr>
+                  <td><%=lists.team_id%></td>
+                  <td><%=lists.team_leader%></td>
+                  <td><%=lists.date%></td>
+                  <td><%=lists.created_by%></td>
+                  <td><%= link_to "Edit", { :controller => 'directsales', :action => 'edit_team', :id => lists.id }, :method => :post %></td>
+                  <td><%= link_to "delete", { :controller => 'directsales', :action => 'delete_team', :id => lists.id }, :confirm => "Are you sure You want to delete this record?", :method => :post %></td>
+                  
+                </tr>
+                <%end%>
+              </table>
+            </center>
+
+
+              <p></p>                      
+              <p class="change_link">
+			           <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2015</font> <br>
+              <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+		        </p>
+          </div>
+        </div>
+      </div>  
+    </section>
+ </div>

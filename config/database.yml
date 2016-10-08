@@ -1,0 +1,395 @@
+# SQLite version 3.x
+#   gem install sqlite3
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem 'sqlite3'
+development:
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
+
+production:
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
+
+usernames:
+  adapter: mysql2
+  encoding: utf8
+  database: aup
+  username: root
+  password: root
+  host: 192.168.30.150
+  port: 3306
+
+stocks:
+  adapter: mysql2
+  encoding: utf8
+  database: stock
+  username: root
+  password: root
+  host: 192.168.5.220
+  port: 3306
+
+banks:
+  adapter: mysql2
+  encoding: utf8
+  database: africell_banks
+  username: root
+  password: root
+  host: 192.168.5.220
+  port: 3306
+
+live_CDR:
+  adapter: sqlserver
+  mode: ODBC
+  dsn: tracker
+  #database: LiveCDR
+  username: app
+  password: app2013
+ # host: 192.168.5.221
+  pool: 5
+  timeout: 5000
+
+smart_reg:
+  adapter: sqlserver
+  mode: ODBC
+  dsn: smart_reg
+  #database: afr_sl_registration
+  username: app
+  password: app2013
+ # host: 192.168.5.221
+  pool: 5
+  timeout: 5000
+
+cug:
+  adapter: mysql2
+  encoding: utf8
+  database: cug
+  username: root
+  password: root
+  host: 192.168.30.150
+  port: 3306
+
+custcare:
+  adapter: sqlserver
+  mode: ODBC
+  dsn: custcare
+  #database: custcare
+  username: app
+  password: app2013
+ # host: 192.168.5.220
+  pool: 5
+  timeout: 5000
+
+gprsbill:
+  adapter: sqlserver
+  mode: ODBC
+  dsn: GPRSBILL
+  #database: GPRSBILL
+  username: app
+  password: app2013
+ # host: 192.168.5.220
+  pool: 5
+  timeout: 5000
+
+receipts:
+  adapter: mysql2
+  encoding: utf8
+  database: custcare
+  username: root
+  password: root
+  host: 192.168.30.150
+  port: 3306
+
+complaints:
+  adapter: mysql2
+  encoding: utf8
+  database: central
+  username: root
+  password: root
+  host: 192.168.30.150
+  port: 3306
+
+central_logs:
+  adapter: sqlserver
+  mode: ODBC
+  dsn: central_logs
+  #database: user_logs
+  username: app
+  password: app2013
+ # host: 192.168.5.220
+  pool: 5
+  timeout: 5000
+
+gprs3g:
+  adapter: sqlserver
+  mode: ODBC
+  dsn: gprs
+  #database: GPRS
+  username: app
+  password: app2013
+ # host: 192.168.5.220
+  pool: 5
+  timeout: 5000
+
+CRBT:
+  adapter: mysql2
+  encoding: utf8
+  database: crbt
+  username: app
+  password: app2013
+  host: 192.168.0.72
+  port: 3306
+
+jazeera:
+  adapter: sqlserver
+  mode: ODBC
+  dsn: aljazeera
+  username: sa
+  password: sa
+ # host: 192.168.5.120
+  pool: 5
+  timeout: 5000
+
+gprsbilling:
+  adapter: sqlserver
+  mode: ODBC
+  dsn: gprsbilling
+  username: gprsappuser
+  password: GambiaOnl1n3
+ # host: 192.168.30.205
+  pool: 5
+  timeout: 5000
+
+# gprsbilling206:
+#   adapter: sqlserver
+#   mode: ODBC
+#   dsn: gprsbilling206
+#   username: gprsappuser
+#   password: GambiaOnl1n3
+#  # host: 192.168.30.206
+#   pool: 5
+#   timeout: 5000
+
+gprsbilling133:
+  adapter: sqlserver
+  mode: ODBC
+  dsn: gprsbilling133
+  username: gprsappuser
+  password: GambiaOnl1n3
+ # host: 192.168.0.133
+  pool: 5
+  timeout: 5000
+
+# gprsbilling208:
+#   adapter: sqlserver
+#   mode: ODBC
+#   dsn: gprsbilling208
+#   username: gprsappuser
+#   password: GambiaOnl1n3
+#  # host: 192.168.30.208
+#   pool: 5
+#   timeout: 5000
+
+sport_service:
+  adapter: sqlserver
+  mode: ODBC
+  dsn: sport
+  #database: VAS
+  username: khalil
+  password: khalil
+ # host: 192.168.0.220 CSS2
+  pool: 5
+  timeout: 5000
+
+khavasvas:
+  adapter: sqlserver
+  mode: ODBC
+  dsn: khavas
+  #database: VAS
+  username: sa
+  password: sa
+ # host: 192.168.0.119
+  pool: 5
+  timeout: 5000
+
+khavascontrol:
+  adapter: sqlserver
+  mode: ODBC
+  dsn: khavascontrol
+  #database: ControlRoom
+  username: sa
+  password: sa
+ # host: 192.168.0.119
+  pool: 5
+  timeout: 5000
+
+khavasdirect:
+  adapter: sqlserver
+  mode: ODBC
+  dsn: khavasdirect
+  #database: Direct_Sales
+  username: sa
+  password: sa
+ # host: 192.168.0.119
+  pool: 5
+  timeout: 5000
+
+khavas_linked:
+  adapter: sqlserver
+  mode: ODBC
+  dsn: khavas_linked_server
+  #database: VAS
+  username: sa
+  password: sa
+ # host: 192.168.30.20
+  pool: 5
+  timeout: 5000
+
+tok_cos:
+  adapter: sqlserver
+  mode: ODBC
+  dsn: cos0_124
+  #database: Evoucher
+  username: sa
+  password: sa
+ # host: 192.168.0.124
+  timeout: 5000
+
+web2sms:
+  adapter: sqlserver
+  mode: ODBC
+  dsn: webtosms_0_124
+  #database: web2sms
+  username: sa
+  password: sa
+ # host: 192.168.0.124
+  pool: 5
+  timeout: 5000
+
+msc:
+  adapter: sqlserver
+  mode: ODBC
+  dsn: MSC
+  #database: MSC
+  username: app
+  password: app2013
+ # host: 192.168.5.220
+  pool: 5
+  timeout: 5000
+
+fhvas_direct_sales:
+  adapter: sqlserver
+  mode: ODBC
+  dsn: fhvas_direct
+  #database: Direct_Sales
+  username: sa
+  password: sa
+ # host: 192.168.0.122
+  pool: 5
+  timeout: 5000
+
+in_beast:
+  adapter: sqlserver
+  mode: ODBC
+  dsn: IN_Beast
+  #database: VAS
+  username: sa
+  password: sa
+ # host: 192.168.0.123
+  pool: 5
+  timeout: 5000
+
+cdrcollection:
+  adapter: sqlserver
+  mode: ODBC
+  dsn: CDR
+  #database: BSU_Reports
+  username: app
+  password: app2013
+ # host: 192.168.5.220
+  pool: 5
+  timeout: 5000
+
+ip_addresses:
+  adapter: mysql2
+  encoding: utf8
+  database: ip_addresses
+  username: root
+  password: root
+  host: 192.168.30.41
+  port: 3306
+
+it_request:
+  adapter: mysql2
+  encoding: utf8
+  database: it-request
+  username: root
+  password: root
+  host: 192.168.30.41
+  port: 3306
+
+iclip:
+  adapter: sqlserver
+  mode: ODBC
+  dsn: iClip
+  #database: ICLIP-Plus
+  username: sa
+  password: ivrsystem30
+ # host: 192.168.0.208
+  pool: 5
+  timeout: 5000
+
+custsales:
+  adapter: mysql2
+  encoding: utf8
+  database: custcare_sales
+  username: root
+  password: root
+  host: 192.168.30.150
+  port: 3306
+
+livefeed:
+  adapter: sqlserver
+  mode: ODBC
+  dsn: LiveFeed
+  #database: LiveFeed
+  username: app
+  password: R@1l$104
+ # host: 192.166.0.16
+  pool: 5
+  timeout: 5000
+
+livefeedcdr:
+  adapter: sqlserver
+  mode: ODBC
+  dsn: LiveFeedCdr
+  #database: LiveFeed
+  username: sa
+  password: R@1l$104
+ # host: 192.166.0.17
+  pool: 5
+  timeout: 5000
+
+cdn118:
+  adapter: sqlserver
+  mode: ODBC
+  dsn: TopUP118
+  #database: VAS
+  username: developper
+  password: R@1l$118
+ # host: 192.168.0.118
+  timeout: 5000
+

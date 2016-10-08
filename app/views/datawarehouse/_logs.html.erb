@@ -1,0 +1,23 @@
+<%= paginate @logs %>
+          <center>
+            <table>
+              <tr>
+                <th>Name</th>   
+                <th>MSISDN</th>
+                <th>Action</th>
+                <th>Description</th>
+                <th>IP Address</th>
+                <th>Date</th>
+              </tr>
+            <% @logs.each do |row| %>
+              <tr>
+                <td><%= row.user %></td>
+                <td><%= row.msisdn %></td>
+                <td><%= row.transaction_type %></td>
+                <td><%= row.description %></td>
+                <td><%= row.ip_address %></td>
+                <td><%= row.created_at %></td>
+              </tr>
+            <%end%>
+            </table>
+          </center>

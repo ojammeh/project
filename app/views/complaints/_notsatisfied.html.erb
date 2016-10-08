@@ -1,0 +1,7 @@
+<form  action="/complaints/not_satisfied" > 
+		<label for="satisfy"> Comment </label><br/>
+		<textarea id="satisfy" name="satisfy" rows="8" cols="60" type="text" ><%=session[:satisfied]%>&#13;&#10;............................................................&#13;&#10;RE:&#13;&#10;</textarea>
+	<p class="login button"> 
+	    <input type="submit" value="Re-submit" name="notsatisfied" />
+	</p>
+</form>

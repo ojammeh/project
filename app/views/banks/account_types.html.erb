@@ -1,0 +1,47 @@
+
+<div class="container">
+<section>       
+  <div id="container_demo" >
+    <div id="wrapper">
+      <div id="login" class="animate form">
+      <h1>Add Account Type</h1>
+      <center>
+      	<font color="green"><%=flash[:success]%></font><font color="red"><%=flash[:danger]%></font><br>
+		<form  action="/banks/account_type" method="post">
+			<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+<!-- 			<input type="text" name="" value="<%= @afriBanks.id %>" <%= @afriBanks.bank_name %>> -->
+			<!-- <input type="text" name="" value="<%= @afriBanks.id %>"> -->
+			<select name="africell_bank_id" class="form-control">
+              <!-- <option value="null">---Select Bank---</option> -->
+              <option value="<%= @afriBanks.id %>"><%= @afriBanks.bank_name %></option>
+              
+
+            </select>
+              	
+			
+
+			<select name="account_type" >
+				<option value="null">---Select Account Type---</option>
+				<option>Dollar</option>
+				<option>Euro</option>
+				<option>Pound</option>
+				<option>Dallasi</option>
+			</select>
+
+			<p class="login button"> 
+			<input type="submit" name="submit" value="Save and Continue" class="btn btn-primary"></input>
+			</p>
+			</div>
+			</div>
+		</form>
+	</center>
+			<p></p><br><br>
+			<p class="change_link">
+		      <font color="#7E17E4"><b>Africell Gambia BSU Department.</b> </font><font color="#556E70" size="2">All rights reserved. © Copyright 2016</font> <br>
+		      <font color="#556E70" size="2">Designed & Developed by <b>Mam M Cham</b></font>&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;&#8195;
+		    </p>
+		</div>
+	 </div>
+	</div>
+</section>

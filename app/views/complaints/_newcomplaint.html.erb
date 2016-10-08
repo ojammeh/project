@@ -1,0 +1,84 @@
+<br/><br/>
+<form action="/complaints/new_complaint" > 
+  <center>             
+    <label for="category">Complaint Category </label>
+    <select name ="category" required="required">
+      <option value="" disabled selected>Select Category</option>
+      <option value="3G">3G 120</option>
+      <option value="Advance I-CLIP">Advance I-CLIP 127</option>
+      <option value="Jazeera">Al-Jazeera Service 7272</option>
+      <option value="BBC Sports">BBC Sports 3121</option>
+      <option value="Block Number">Block Number</option>
+      <option value="Boy Service">Boy Service 7001</option>
+      <option value="Call Divert">Call Divert</option>
+      <option value="Call Problem">Call Problem</option>
+      <option value="Change of Language">Change of Language</option>
+      <option value="Complements">Complements</option>
+      <option value="Credit Transfer">Credit Transfer 141/6171</option>
+      <option value="CYN 222">CYN 222</option>
+      <option value="EVC">EVC 1661</option>
+      <option value="Fraud SMS">Fraud SMS</option>
+      <option value="Funring">Funring 139/138</option>
+      <option value="Girl Service">Girl Service 7002</option>
+      <option value="Horoscope">Horoscope 7151</option>
+      <option value="Incoming/Outgoing Calls">Incoming/Outgoing Calls</option>
+      <option value="International Access">International Access</option>
+      <option value="Invalid Scratched Cards">Invalid Scratched Cards</option>
+      <option value="Kolareh">Kolareh 152</option>
+      <option value="Loss of Credit">Loss of Credit</option>
+      <option value="Lost & Block">Lost & Block</option>
+      <option value="Love Message">Love Message 7115</option>
+      <option value="Love Meter">Love Meter 7114</option>
+      <option value="Network Problem">Network Problem</option>
+      <option value="Own Number Enquiry">Own Number Enquiry 211</option>
+      <option value="Prayer Time">Prayer Time 7120</option>
+      <option value="Prepaid Roaming">Prepaid Roaming</option>
+      <option value="Print Out">Print Out</option>
+      <option value="PUK">PUK</option>
+      <option value="Self Service">Self Service 111</option>
+      <option value="Sim Registration">Sim Registration</option>
+      <option value="SIM Replacement">SIM Replacement</option>
+      <option value="SMS">SMS</option>
+      <option value="SMS Express">SMS Express 7050</option>
+      <option value="Sports Update">Sports Update 7070</option>
+      <option value="Star Match">Star Match 7116</option>
+      <option value="Surprise SMS">Surprise SMS</option>
+      <option value="TOK">TOK 135</option>
+      <option value="Validity">Validiy</option>
+      <option value="Voice Message">Voice Message 151</option>
+      <option value="Wohma Service">Wohma Service 7140</option>
+    </select> &#8195;
+
+    <label for="name"> First Name </label>
+    <input id="name" size="20" name="name" required="required" type="text" placeholder="Customer First Name"/>&#8195;
+
+    <label for="l_name"> Last Name </label>
+    <input id="l_name" size="20" name="l_name" required="required" type="text" placeholder="Customer Last Name"/>
+    <br/>
+    <%if(session[:registered] = "Not Registered")%>
+      <label for="id_type">ID Type: </label>
+                <select name ="id_type">
+                  <option value="0" disabled selected>ID Type</option>
+                  <option value="biometric">Biometric ID</option>
+                  <option value="drivers_license">Driver's License</option>
+                  <option value="voter_card">Voter's Card</option>
+                  <option value="passport">National Passport</option>
+                  <option value="residence_permit">Residence Permit</option>
+                  <option value="foreign_passport">Foreign Passport</option>
+                  <option value="foreign_id_card">Foreign ID Card</option>
+                  <option value="alien_card">Alien Card</option>
+                  <option value="non_gam_biometric_id">Non-Gambian Biometric ID</option> 
+                </select>&#8195;&#8195;
+
+              <label for="id_number" > ID Number: </label>
+              <input id="id_number" size="15" name="id_number" type="text" placeholder="ID Number"/>
+    <%end%>
+<br/><br/>
+    <label for="complaint"> Complaint </label><br/>
+    <textarea id="complaint" name="complaint" rows="4" cols="60" type="text" required="required" /></textarea>
+
+  </center>
+  <p class="login button"> 
+    <input type="submit" value="Submit" name="newcomplaint"/>
+  </p>
+</form>
